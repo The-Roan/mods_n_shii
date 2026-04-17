@@ -173,6 +173,7 @@ world.afterEvents.itemUse.subscribe(ev => {
         entity.addTag("orbital_strike_kill");
         entity.addEffect("slowness",  EFFECT_TICKS, { amplifier: 100, showParticles: false });
         entity.addEffect("blindness", EFFECT_TICKS, { amplifier: 0,   showParticles: false });
+        entity.addEffect("resistance", EFFECT_TICKS, { amplifier: 50,   showParticles: false });
       } catch { /* no effects component */ }
     }
   }
