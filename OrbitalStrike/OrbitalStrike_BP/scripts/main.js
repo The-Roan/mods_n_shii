@@ -3,7 +3,6 @@ import {
   system,
   BlockPermutation,
   GameMode,
-  PlayerInputPermissions
 } from "@minecraft/server";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
