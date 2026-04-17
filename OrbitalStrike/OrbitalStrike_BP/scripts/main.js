@@ -2,18 +2,19 @@ import {
   world,
   system,
   BlockPermutation,
-  GameMode,
+  GameMode
 } from "@minecraft/server";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const STRIKE_ITEM_ID  = "orbital:strike_beacon";
-const STRIKE_BLOCK_ID = "orbital:strike_block";
+const STRIKE_BLOCK_ID = "orbital:strike_block"; // unused
 const STRIKE_RADIUS   = 5;
 const EFFECT_TICKS    = 20000000;
 const CYLINDER_DELAY  = 40;
 const FADE_TICKS      = 20;
-const MAX_RANGE       = 100;
+const MAX_RANGE       = 50;
 const INDICATOR_STEPS = 32;
+const ORBITAL_BLOCK   = "minecraft:air";
 
 const PROTECTED = new Set([
   "minecraft:bedrock", "minecraft:barrier", "minecraft:structure_block",
@@ -76,7 +77,7 @@ function getCylinderPositions(dimension, cx, cz) {
   const minY = dimension.heightRange.min;
   const maxY = dimension.heightRange.max;
   const out  = [];
-  const r2   = STRIKE_RADIUS * STRIKE_RADIUS;
+  const r2   = STRIKE_RADIUS ** 2;
   for (let x = cx - STRIKE_RADIUS; x <= cx + STRIKE_RADIUS; x++) {
     for (let z = cz - STRIKE_RADIUS; z <= cz + STRIKE_RADIUS; z++) {
       if ((x-cx)*(x-cx) + (z-cz)*(z-cz) <= r2) {
@@ -87,6 +88,7 @@ function getCylinderPositions(dimension, cx, cz) {
   return out;
 }
 
+// unused
 function placeCylinder(dimension, cx, cz) {
   const perm    = BlockPermutation.resolve(STRIKE_BLOCK_ID);
   const changed = [];
@@ -103,11 +105,10 @@ function placeCylinder(dimension, cx, cz) {
 }
 
 function removeCylinder(dimension, positions) {
-  const air = BlockPermutation.resolve("minecraft:air");
   for (const pos of positions) {
     try {
       const block = dimension.getBlock(pos);
-      if (block && block.typeId === STRIKE_BLOCK_ID) block.setPermutation(air);
+      if (block && block.typeId === STRIKE_BLOCK_ID) block.setPermutation(ORBITAL_BLOCK);
     } catch { /* ignore */ }
   }
 }
@@ -158,7 +159,7 @@ world.afterEvents.itemUse.subscribe(ev => {
   const player    = ev.source;
   const dimension = player.dimension;
   const target    = getTarget(player);
-  const r2        = STRIKE_RADIUS * STRIKE_RADIUS;
+  const r2        = STRIKE_RADIUS ** 2;
 
   dimension.playSound("random.orb",      target, { volume: 2.0, pitch: 0.4 });
   dimension.playSound("beacon.activate", target, { volume: 1.5, pitch: 1.8 });
