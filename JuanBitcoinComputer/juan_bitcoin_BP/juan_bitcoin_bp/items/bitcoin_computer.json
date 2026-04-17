@@ -1,0 +1,18 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:item": {
+    "description": {
+      "identifier": "juan:bitcoin_computer",
+      "category": "none"
+    },
+    "components": {
+      "minecraft:max_stack_size": 1,
+      "minecraft:icon": {
+        "texture": "juan_bitcoin_computer"
+      },
+      "minecraft:display_name": {
+        "value": "Juan Bitcoin Computer"
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+    "format_version": "1.21.40",
+    "minecraft:item": {
+        "description": {
+            "identifier": "moremusicdiscs:music_disc_thorus_phase_2",
+            "menu_category": {
+                "category": "items",
+                "group": "itemGroup.name.record"
+            }
+        },
+        "components": {
+            "minecraft:icon": "moremusicdiscs:music_disc_thorus_phase_2",
+            "minecraft:display_name": {
+                "value": "§bMusic Disc\n§7TPT2 - Thorus Phase 2"
+            },
+            "minecraft:max_stack_size": 1
+        }
+    }
+}

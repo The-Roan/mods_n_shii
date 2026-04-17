@@ -1,0 +1,19 @@
+{
+    "format_version": "1.21.40",
+    "minecraft:item": {
+        "description": {
+            "identifier": "moremusicdiscs:music_disc_burger_king",
+            "menu_category": {
+                "category": "items",
+                "group": "itemGroup.name.record"
+            }
+        },
+        "components": {
+            "minecraft:icon": "moremusicdiscs:music_disc_burger_king",
+            "minecraft:display_name": {
+                "value": "§bMusic Disc\n§7Burger King Man - KICK THE N1663R817CH OFF THE PLANE"
+            },
+            "minecraft:max_stack_size": 1
+        }
+    }
+}

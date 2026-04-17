@@ -1,0 +1,9 @@
+{
+  "resource_pack_name": "orbital_strike",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "orbital_strike_beacon": {
+      "textures": "textures/items/orbital_strike_beacon"
+    }
+  }
+}

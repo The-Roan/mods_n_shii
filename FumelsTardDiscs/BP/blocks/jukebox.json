@@ -1,0 +1,190 @@
+{
+    "format_version": "1.21.40",
+    "minecraft:block": {
+        "description": {
+            "identifier": "moremusicdiscs:jukebox",
+            "menu_category": {
+                "category": "items",
+                "is_hidden_in_commands": false
+            },
+            "traits": {
+                "minecraft:placement_direction": {
+                    "enabled_states": [
+                        "minecraft:cardinal_direction"
+                    ],
+                    "y_rotation_offset": 90
+                }
+            },
+            "states": {
+                "moremusicdiscs:vanilla_disc_1": [
+                    "none",
+                    "minecraft:music_disc_13",
+                    "minecraft:music_disc_cat",
+                    "minecraft:music_disc_blocks",
+                    "minecraft:music_disc_chirp",
+                    "minecraft:music_disc_far",
+                    "minecraft:music_disc_mall",
+                    "minecraft:music_disc_mellohi",
+                    "minecraft:music_disc_stal",
+                    "minecraft:music_disc_strad",
+                    "minecraft:music_disc_ward",
+                    "minecraft:music_disc_11",
+                    "minecraft:music_disc_wait",
+                    "minecraft:music_disc_otherside",
+                    "minecraft:music_disc_5",
+                    "minecraft:music_disc_pigstep"
+                ],
+                "moremusicdiscs:vanilla_disc_2": [
+                    "none",
+                    "minecraft:music_disc_relic",
+                    "minecraft:music_disc_creator",
+                    "minecraft:music_disc_creator_music_box",
+                    "minecraft:music_disc_precipice"
+                ],
+                "moremusicdiscs:custom_disc_1": [
+                    "none",
+                    "moremusicdiscs:music_disc_burger_king",
+                    "moremusicdiscs:music_disc_67",
+                    "moremusicdiscs:music_disc_nword",
+                    "moremusicdiscs:music_disc_neutral",
+                    "moremusicdiscs:music_disc_efn",
+                    "moremusicdiscs:music_disc_takedown",
+                    "moremusicdiscs:music_disc_wearethekkk",
+                    "moremusicdiscs:music_disc_whfn",
+                    "moremusicdiscs:music_disc_what_it_sounds_like",
+                    "moremusicdiscs:music_disc_je_steal_all_ze_bitcoin",
+                    "moremusicdiscs:music_disc_thorus_phase_1",
+                    "moremusicdiscs:music_disc_thorus_phase_2",
+                    "moremusicdiscs:music_disc_how_its_done",
+                    "moremusicdiscs:music_disc_tnd",
+                    "moremusicdiscs:music_disc_mts"
+                ],
+                "moremusicdiscs:custom_disc_2": [
+                    "none",
+                    "moremusicdiscs:music_disc_golden"
+                ],
+                "moremusicdiscs:playing_disc": [
+                    false,
+                    true
+                ]
+            }
+        },
+        "components": {
+            "minecraft:custom_components": [
+                "moremusicdiscs:jukebox"
+            ],
+            "minecraft:tick": {
+                "interval_range": [
+                    20,
+                    20
+                ],
+                "looping": true
+            },
+            "minecraft:display_name": "Jukebox",
+            "minecraft:destructible_by_mining": {
+                "seconds_to_destroy": 1
+            },
+            "minecraft:geometry": "minecraft:geometry.full_block"
+        },
+        "permutations": [
+            {
+                "condition": "q.block_state('moremusicdiscs:vanilla_disc_1') == 'none' && q.block_state('moremusicdiscs:vanilla_disc_2') == 'none' && q.block_state('moremusicdiscs:custom_disc_1') == 'none' && q.block_state('moremusicdiscs:custom_disc_2') == 'none'",
+                "components": {
+                    "minecraft:material_instances": {
+                        "up": {
+                            "texture": "jukebox_top"
+                        },
+                        "down": {
+                            "texture": "noteblock"
+                        },
+                        "north": {
+                            "texture": "jukebox_side"
+                        },
+                        "south": {
+                            "texture": "jukebox_side"
+                        },
+                        "east": {
+                            "texture": "jukebox_side"
+                        },
+                        "west": {
+                            "texture": "jukebox_side"
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('moremusicdiscs:vanilla_disc_1') != 'none' || q.block_state('moremusicdiscs:vanilla_disc_2') != 'none' || q.block_state('moremusicdiscs:custom_disc_1') != 'none' || q.block_state('moremusicdiscs:custom_disc_2') != 'none'",
+                "components": {
+                    "minecraft:material_instances": {
+                        "up": {
+                            "texture": "jukebox_top"
+                        },
+                        "down": {
+                            "texture": "noteblock"
+                        },
+                        "north": {
+                            "texture": "moremusicdiscs:jukebox_playing_disc"
+                        },
+                        "south": {
+                            "texture": "moremusicdiscs:jukebox_playing_disc"
+                        },
+                        "east": {
+                            "texture": "moremusicdiscs:jukebox_playing_disc"
+                        },
+                        "west": {
+                            "texture": "moremusicdiscs:jukebox_playing_disc"
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [
+                            0,
+                            90,
+                            0
+                        ]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [
+                            0,
+                            180,
+                            0
+                        ]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [
+                            0,
+                            -90,
+                            0
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}

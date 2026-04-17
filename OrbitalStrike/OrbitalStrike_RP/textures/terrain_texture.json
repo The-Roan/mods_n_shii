@@ -1,0 +1,11 @@
+{
+  "resource_pack_name": "orbital_strike",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "orbital_strike_block_blue": {
+      "textures": "textures/blocks/orbital_strike_anim"
+    }
+  }
+}

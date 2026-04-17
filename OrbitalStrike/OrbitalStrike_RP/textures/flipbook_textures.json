@@ -1,0 +1,9 @@
+[
+  {
+    "flipbook_texture": "textures/blocks/orbital_strike_anim",
+    "atlas_tile": "orbital_strike_block_blue",
+    "atlas_tile_frame_count": 2,
+    "ticks_per_frame": 1,
+    "blend_frames": false
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "orbital:strike_block": {
+    "sound": "stone",
+    "events": {
+      "break": "dig.stone",
+      "place": "dig.stone",
+      "hit": "hit.stone",
+      "jump": "jump.stone",
+      "fall.big": "fall.stone",
+      "fall.small": "fall.stone",
+      "step": "step.stone"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "format_version": "1.20.20",
+  "sound_definitions": {
+    "orbital.strike.target": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/orbital/target_lock",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
+    },
+    "orbital.strike.impact": {
+      "category": "hostile",
+      "sounds": [
+        {
+          "name": "sounds/orbital/impact",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
+    },
+    "orbital.strike.fade": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/orbital/fade",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
+    }
+  }
+}

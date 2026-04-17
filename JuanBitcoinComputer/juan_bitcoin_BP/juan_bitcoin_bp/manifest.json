@@ -1,0 +1,34 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Juan Bitcoin Computer - BP",
+    "description": "Adds the Juan Bitcoin Computer item. Mine crypto, get gold!",
+    "uuid": "d020f57a-1159-4ea2-89e5-66dbf7eb072c",
+    "version": [1, 0, 1],
+    "min_engine_version": [1, 21, 0]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "238705e5-5899-42c3-b311-d0a805a71fcc",
+      "version": [1, 0, 1]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "entry": "scripts/main.js",
+      "version": [1, 0, 1]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "4ccf3ccf-9b34-411a-a316-5cab40a3204a",
+      "version": [1, 0, 0]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "1.13.0"
+    }
+  ]
+}

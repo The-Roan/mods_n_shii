@@ -1,0 +1,54 @@
+{
+	"resource_pack_name": "Custom Jukebox Template 1.20",
+	"texture_name": "atlas.items",
+	"texture_data": {
+		"moremusicdiscs:music_disc_thorus_phase_1": {
+			"textures": "textures/moremusicdiscs/items/music_disc_tall"
+		},
+		"moremusicdiscs:music_disc_what_it_sounds_like": {
+			"textures": "textures/moremusicdiscs/items/music_disc_omen"
+		},
+		"moremusicdiscs:music_disc_67": {
+			"textures": "textures/moremusicdiscs/items/music_disc_anti"
+		},
+		"moremusicdiscs:music_disc_tnd": {
+			"textures": "textures/moremusicdiscs/items/music_disc_waves"
+		},
+		"moremusicdiscs:music_disc_thorus_phase_2": {
+			"textures": "textures/moremusicdiscs/items/music_disc_tide"
+		},
+		"moremusicdiscs:music_disc_efn": {
+			"textures": "textures/moremusicdiscs/items/music_disc_fort_stress"
+		},
+		"moremusicdiscs:music_disc_nword": {
+			"textures": "textures/moremusicdiscs/items/music_disc_caravan"
+		},
+		"moremusicdiscs:music_disc_takedown": {
+			"textures": "textures/moremusicdiscs/items/music_disc_ice"
+		},
+		"moremusicdiscs:music_disc_je_steal_all_ze_bitcoin": {
+			"textures": "textures/moremusicdiscs/items/music_disc_storm"
+		},
+		"moremusicdiscs:music_disc_neutral": {
+			"textures": "textures/moremusicdiscs/items/music_disc_chill"
+		},
+		"moremusicdiscs:music_disc_wearethekkk": {
+			"textures": "textures/moremusicdiscs/items/music_disc_iron_oath"
+		},
+		"moremusicdiscs:music_disc_whfn": {
+			"textures": "textures/moremusicdiscs/items/music_disc_mineshaft"
+		},
+		"moremusicdiscs:music_disc_burger_king": {
+			"textures": "textures/moremusicdiscs/items/music_disc_a_quiet_place"
+		},
+		"moremusicdiscs:music_disc_how_its_done": {
+			"textures": "textures/moremusicdiscs/items/music_disc_travel"
+		},
+		"moremusicdiscs:music_disc_mts": {
+			"textures": "textures/moremusicdiscs/items/music_disc_wither_storm_theme"
+		},
+		"moremusicdiscs:music_disc_golden": {
+			"textures": "textures/moremusicdiscs/items/music_disc_the_ender_dragon"
+		}
+	}
+}

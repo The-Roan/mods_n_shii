@@ -1,0 +1,229 @@
+{
+	"format_version": "1.14.0",
+	"sound_definitions": {
+		"record.tall": {
+			"__use_legacy_max_distance": true,
+			"category": "record",
+			"max_distance": 64.0,
+			"min_distance": null,
+			"sounds": [
+				{
+					"load_on_low_memory": true,
+					"name": "sounds/music/game/records/tall",
+					"stream": true,
+					"volume": 0.50
+				}
+			]
+		},
+		"record.omen": {
+			"__use_legacy_max_distance": true,
+			"category": "record",
+			"max_distance": 64.0,
+			"min_distance": null,
+			"sounds": [
+				{
+					"load_on_low_memory": true,
+					"name": "sounds/music/game/records/omen",
+					"stream": true,
+					"volume": 0.50
+				}
+			]
+		},
+		"record.anti": {
+			"__use_legacy_max_distance": true,
+			"category": "record",
+			"max_distance": 64.0,
+			"min_distance": null,
+			"sounds": [
+				{
+					"load_on_low_memory": true,
+					"name": "sounds/music/game/records/anti",
+					"stream": true,
+					"volume": 0.50
+				}
+			]
+		},
+		"record.waves": {
+			"__use_legacy_max_distance": true,
+			"category": "record",
+			"max_distance": 64.0,
+			"min_distance": null,
+			"sounds": [
+				{
+					"load_on_low_memory": true,
+					"name": "sounds/music/game/records/waves",
+					"stream": true,
+					"volume": 0.50
+				}
+			]
+		},
+		"record.tide": {
+			"__use_legacy_max_distance": true,
+			"category": "record",
+			"max_distance": 64.0,
+			"min_distance": null,
+			"sounds": [
+				{
+					"load_on_low_memory": true,
+					"name": "sounds/music/game/records/tide",
+					"stream": true,
+					"volume": 0.50
+				}
+			]
+		},
+		"record.fort_stress": {
+			"__use_legacy_max_distance": true,
+			"category": "record",
+			"max_distance": 64.0,
+			"min_distance": null,
+			"sounds": [
+				{
+					"load_on_low_memory": true,
+					"name": "sounds/music/game/records/fort_stress",
+					"stream": true,
+					"volume": 0.50
+				}
+			]
+		},
+		"record.caravan": {
+			"__use_legacy_max_distance": true,
+			"category": "record",
+			"max_distance": 64.0,
+			"min_distance": null,
+			"sounds": [
+				{
+					"load_on_low_memory": true,
+					"name": "sounds/music/game/records/caravan",
+					"stream": true,
+					"volume": 0.50
+				}
+			]
+		},
+		"record.ice": {
+			"__use_legacy_max_distance": true,
+			"category": "record",
+			"max_distance": 64.0,
+			"min_distance": null,
+			"sounds": [
+				{
+					"load_on_low_memory": true,
+					"name": "sounds/music/game/records/ice",
+					"stream": true,
+					"volume": 0.50
+				}
+			]
+		},
+		"record.storm": {
+			"__use_legacy_max_distance": true,
+			"category": "record",
+			"max_distance": 64.0,
+			"min_distance": null,
+			"sounds": [
+				{
+					"load_on_low_memory": true,
+					"name": "sounds/music/game/records/storm",
+					"stream": true,
+					"volume": 0.50
+				}
+			]
+		},
+		"record.chill": {
+			"__use_legacy_max_distance": true,
+			"category": "record",
+			"max_distance": 64.0,
+			"min_distance": null,
+			"sounds": [
+				{
+					"load_on_low_memory": true,
+					"name": "sounds/music/game/records/chill",
+					"stream": true,
+					"volume": 0.50
+				}
+			]
+		},
+		"record.iron_oath": {
+			"__use_legacy_max_distance": true,
+			"category": "record",
+			"max_distance": 64.0,
+			"min_distance": null,
+			"sounds": [
+				{
+					"load_on_low_memory": true,
+					"name": "sounds/music/game/records/iron_oath",
+					"stream": true,
+					"volume": 0.50
+				}
+			]
+		},
+		"record.mineshaft": {
+			"__use_legacy_max_distance": true,
+			"category": "record",
+			"max_distance": 64.0,
+			"min_distance": null,
+			"sounds": [
+				{
+					"load_on_low_memory": true,
+					"name": "sounds/music/game/records/mineshaft",
+					"stream": true,
+					"volume": 0.50
+				}
+			]
+		},
+		"record.a_quiet_place": {
+			"__use_legacy_max_distance": true,
+			"category": "record",
+			"max_distance": 64.0,
+			"min_distance": null,
+			"sounds": [
+				{
+					"load_on_low_memory": true,
+					"name": "sounds/music/game/records/a_quiet_place",
+					"stream": true,
+					"volume": 0.50
+				}
+			]
+		},
+		"record.travel": {
+			"__use_legacy_max_distance": true,
+			"category": "record",
+			"max_distance": 64.0,
+			"min_distance": null,
+			"sounds": [
+				{
+					"load_on_low_memory": true,
+					"name": "sounds/music/game/records/travel",
+					"stream": true,
+					"volume": 0.50
+				}
+			]
+		},
+		"record.wither_storm_theme": {
+			"__use_legacy_max_distance": true,
+			"category": "record",
+			"max_distance": 64.0,
+			"min_distance": null,
+			"sounds": [
+				{
+					"load_on_low_memory": true,
+					"name": "sounds/music/game/records/wither_storm_theme",
+					"stream": true,
+					"volume": 0.50
+				}
+			]
+		},
+		"record.the_ender_dragon": {
+			"__use_legacy_max_distance": true,
+			"category": "record",
+			"max_distance": 64.0,
+			"min_distance": null,
+			"sounds": [
+				{
+					"load_on_low_memory": true,
+					"name": "sounds/music/game/records/the_ender_dragon",
+					"stream": true,
+					"volume": 0.50
+				}
+			]
+		}
+	}
+}

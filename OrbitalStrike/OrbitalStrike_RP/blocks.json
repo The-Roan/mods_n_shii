@@ -1,0 +1,9 @@
+{
+  "format_version": [1, 1, 0],
+  "orbital:strike_block": {
+    "textures": "orbital_strike_block_blue",
+    "sound": "stone",
+    "brightness_gamma": 0.0,
+    "isotropic": true
+  }
+}

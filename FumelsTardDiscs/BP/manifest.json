@@ -1,0 +1,53 @@
+{
+	"format_version": 2,
+	"metadata": {
+		"authors": [
+			"FUMEL!"
+		],
+		"product_type": "addon"
+	},
+	"header": {
+		"name": "FUMEL!'s TND MTS Discs",
+		"description": "adds a bunch of tard discs",
+		"min_engine_version": [
+			1,
+			21,
+			40
+		],
+		"uuid": "6b00c4b9-32d5-4059-bc4a-fe4744a0d9cb",
+		"version": [
+			10,
+			0,
+			0
+		]
+	},
+	"modules": [
+		{
+			"type": "data",
+			"uuid": "3fe36c14-35c9-4bc8-b19d-977aff7944fd",
+			"version": [
+				10,
+				0,
+				0
+			]
+		},
+		{
+			"type": "script",
+			"language": "javascript",
+			"entry": "main.js",
+			"uuid": "113136a8-3947-4729-bbdb-c7b71e270a84",
+			"version": [
+				10,
+				0,
+				0
+			]
+		}
+	],
+	"dependencies": [
+		{
+			"module_name": "@minecraft/server",
+			"version": "1.12.0"
+		},
+		{"uuid": "73dbfda7-e902-41aa-b690-4325eabbb764", "version": [10, 0, 0]}
+	]
+}

@@ -1,0 +1,19 @@
+{
+    "format_version": "1.21.40",
+    "minecraft:item": {
+        "description": {
+            "identifier": "moremusicdiscs:music_disc_wearethekkk",
+            "menu_category": {
+                "category": "items",
+                "group": "itemGroup.name.record"
+            }
+        },
+        "components": {
+            "minecraft:icon": "moremusicdiscs:music_disc_wearethekkk",
+            "minecraft:display_name": {
+                "value": "§bMusic Disc\n§7Kú Klúx Klán - We Are The Kú Klúx Klán"
+            },
+            "minecraft:max_stack_size": 1
+        }
+    }
+}

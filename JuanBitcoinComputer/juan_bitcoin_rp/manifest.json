@@ -1,0 +1,17 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Juan Bitcoin Computer - RP",
+    "description": "Textures and sounds for the Juan Bitcoin Computer.",
+    "uuid": "4ccf3ccf-9b34-411a-a316-5cab40a3204a",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 20, 0]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "77b76a6e-950b-431f-b72b-c57bff9d76ba",
+      "version": [1, 0, 0]
+    }
+  ]
+}
