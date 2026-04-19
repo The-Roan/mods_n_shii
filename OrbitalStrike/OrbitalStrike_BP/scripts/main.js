@@ -15,6 +15,7 @@ const FADE_TICKS      = 20;
 const MAX_RANGE       = 50;
 const INDICATOR_STEPS = 32;
 const ORBITAL_BLOCK   = "minecraft:air";
+const CAMSHAKE_RANGE  = 2;
 
 const PROTECTED = new Set([
   "minecraft:bedrock", "minecraft:barrier", "minecraft:structure_block",
@@ -105,17 +106,18 @@ function placeCylinder(dimension, cx, cz) {
 }
 
 function removeCylinder(dimension, positions) {
+  const air = "minecraft:air";
   for (const pos of positions) {
     try {
       const block = dimension.getBlock(pos);
-      if (block && block.typeId === STRIKE_BLOCK_ID) block.setPermutation(ORBITAL_BLOCK);
+      if (block && block.typeId === STRIKE_BLOCK_ID) block.setPermutation(air);
     } catch { /* ignore */ }
   }
 }
 
 // ─── Active cylinders (unused in particle mode, ready for block mode) ─────────
 const activeCylinders = new Map();
-let strikeId = 0;
+let strikeId = 0; // unused
 
 // ─── Indicator loop ───────────────────────────────────────────────────────────
 system.runInterval(() => {
@@ -175,6 +177,7 @@ world.afterEvents.itemUse.subscribe(ev => {
         entity.addEffect("slowness",  EFFECT_TICKS, { amplifier: 100, showParticles: false });
         entity.addEffect("blindness", EFFECT_TICKS, { amplifier: 0,   showParticles: false });
         entity.addEffect("resistance", EFFECT_TICKS, { amplifier: 50,   showParticles: false });
+        entity.addEffect("wither", EFFECT_TICKS, { amplifier: 1,   showParticles: false });
       } catch { /* no effects component */ }
     }
   }
@@ -194,7 +197,7 @@ world.afterEvents.itemUse.subscribe(ev => {
     for (const p of dimension.getPlayers()) {
       const dx = p.location.x - cx;
       const dz = p.location.z - cz;
-      if (dx * dx + dz * dz <= (STRIKE_RADIUS * 2) ** 2) {
+      if (dx * dx + dz * dz <= (STRIKE_RADIUS * CAMSHAKE_RANGE) ** 2) {
         try { p.camera.shake(1.0, 0.5, "rotational"); } catch { /* ignore */ }
       }
     }
@@ -221,7 +224,7 @@ world.afterEvents.itemUse.subscribe(ev => {
           for (let y = minY; y < maxY; y++) {
             try {
               const block = dimension.getBlock({ x, y, z });
-              if (block && !PROTECTED.has(block.typeId)) block.setPermutation(air);
+              if (block && !PROTECTED.has(block.typeId)) block.setPermutation(ORBITAL_BLOCK);
             } catch { /* unloaded */ }
           }
         }

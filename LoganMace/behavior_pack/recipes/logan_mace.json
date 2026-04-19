@@ -1,0 +1,23 @@
+{
+  "format_version": "1.17",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "logan:recipe_logan_mace"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+      "PHP",
+      "HMH",
+      "PHP"
+    ],
+    "key": {
+      "P": { "item": "minecraft:podzol" },
+      "H": { "item": "minecraft:heavy_core" },
+      "M": { "item": "minecraft:mace" }
+    },
+    "result": {
+      "item": "logan:logan_mace",
+      "count": 1
+    }
+  }
+}
