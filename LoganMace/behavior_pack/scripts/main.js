@@ -10,7 +10,7 @@ const SAFE_BLOCKS = new Set([
   "minecraft:command_block", "minecraft:chain_command_block",
   "minecraft:repeating_command_block", "minecraft:structure_void",
   "minecraft:jigsaw", "minecraft:allow", "minecraft:deny",
-  "minecraft:border_block", "minecraft:light_block", "minecraft_air"
+  "minecraft:border_block", "minecraft:light_block", "minecraft:air"
 ]);
 
 const cooldowns = new Map();
