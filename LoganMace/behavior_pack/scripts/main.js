@@ -36,7 +36,7 @@ function spawnParticles(dim, cx, cy, cz) {
   // Spawn particles individually at many positions across the radius using spawnParticle()
   // This is the reliable Education Edition scripting API method
 
-  // 1. Dense wither rose burst — dark decay particles at center and spreading out
+  // 1. Wither rose particles
   for (let i = 0; i < 60; i++) {
     const angle = Math.random() * Math.PI * 2;
     const r     = Math.random() * R;
@@ -50,7 +50,7 @@ function spawnParticles(dim, cx, cy, cz) {
     } catch(_) {}
   }
 
-  // 2. Gravel/dirt falling chunks — brown gritty debris
+  // 2. Gravel/dirt falling particles
   for (let i = 0; i < 80; i++) {
     const angle = Math.random() * Math.PI * 2;
     const r     = Math.random() * R;
@@ -64,7 +64,7 @@ function spawnParticles(dim, cx, cy, cz) {
     } catch(_) {}
   }
 
-  // 3. Terrain/podzol chunks flying out at ground level
+  // 3. Terrain/podzol particles
   for (let i = 0; i < 60; i++) {
     const angle = Math.random() * Math.PI * 2;
     const r     = 0.5 + Math.random() * (R - 0.5);
@@ -77,7 +77,7 @@ function spawnParticles(dim, cx, cy, cz) {
     } catch(_) {}
   }
 
-  // 4. Dark smoke rising — decay/rot feel
+  // 4. Dark smoke particles
   for (let i = 0; i < 40; i++) {
     const angle = Math.random() * Math.PI * 2;
     const r     = Math.random() * R;
@@ -90,7 +90,7 @@ function spawnParticles(dim, cx, cy, cz) {
     } catch(_) {}
   }
 
-  // 5. Extra wither emitters at the outer ring edge
+  // 5. Extra wither particles
   for (let i = 0; i < 16; i++) {
     const angle = (i / 16) * Math.PI * 2;
     try {
@@ -125,8 +125,8 @@ function groundSlam(player) {
         const dz = e.location.z - loc.z;
         const len = Math.sqrt(dx*dx+dz*dz) || 0.001;
         e.applyKnockback({x:(dx/len)*4, z:(dz/len)*4}, 1.0);
-        e.addEffect("wither",   100, {amplifier:1, showParticles:true});
-        e.addEffect("slowness", 100, {amplifier:1, showParticles:true});
+        e.addEffect("wither",   100, {amplifier:5, showParticles:true});
+        e.addEffect("slowness", 100, {amplifier:2, showParticles:true});
       } catch(_) {}
     }
   } catch(err) { console.warn("[LoganMace] slam: "+err); }

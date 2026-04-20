@@ -4,7 +4,7 @@
     "description": {
       "identifier": "logan:logan_mace",
       "menu_category": {
-        "category": "equipment"
+        "category": "none"
       }
     },
     "components": {
