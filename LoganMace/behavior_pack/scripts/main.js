@@ -6,10 +6,11 @@ const RADIUS  = 5;
 const COOLDOWN_TICKS = 200;
 
 const SAFE_BLOCKS = new Set([
-  "minecraft:air","minecraft:bedrock","minecraft:barrier",
-  "minecraft:command_block","minecraft:chain_command_block",
-  "minecraft:repeating_command_block","minecraft:structure_block",
-  "minecraft:jigsaw","minecraft:deny","minecraft:allow","minecraft:border_block"
+  "minecraft:bedrock", "minecraft:barrier", "minecraft:structure_block",
+  "minecraft:command_block", "minecraft:chain_command_block",
+  "minecraft:repeating_command_block", "minecraft:structure_void",
+  "minecraft:jigsaw", "minecraft:allow", "minecraft:deny",
+  "minecraft:border_block", "minecraft:light_block", "minecraft_air"
 ]);
 
 const cooldowns = new Map();
