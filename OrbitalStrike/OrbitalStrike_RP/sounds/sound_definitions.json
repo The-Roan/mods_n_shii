@@ -30,6 +30,16 @@
           "pitch": 1.0
         }
       ]
+    },
+    "orbital.ddx.song": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/orbital/ddx_song",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
     }
   }
 }

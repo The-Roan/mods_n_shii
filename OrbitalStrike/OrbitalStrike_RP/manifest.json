@@ -3,20 +3,20 @@
   "header": {
     "name": "Orbital Strike RP",
     "description": "lol super tnd mts d/dx laser orbital strike cannon",
-    "uuid": "d4e5f6a7-b8c9-0123-defa-234567890123",
+    "uuid": "8b0d2f4a-6c8e-4a0b-9d1f-3a5c7e9b1d3f",
     "version": [1, 0, 0],
     "min_engine_version": [1, 21, 0]
   },
   "modules": [
     {
       "type": "resources",
-      "uuid": "e5f6a7b8-c9d0-1234-efab-345678901234",
+      "uuid": "3f5a7c9e-1b3d-4e5f-8a2c-4e6f8a0b2c4e",
       "version": [1, 0, 0]
     }
   ],
   "dependencies": [
     {
-      "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "uuid": "7c4f9a2e-1b3d-4e5f-8a6b-c9d0e1f23456",
       "version": [1, 0, 0]
     }
   ]

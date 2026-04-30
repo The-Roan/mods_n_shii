@@ -7,6 +7,7 @@ import {
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const STRIKE_ITEM_ID  = "orbital:strike_beacon";
+const DDX_ITEM_ID     = "orbital:ddx_beacon";
 const STRIKE_BLOCK_ID = "orbital:strike_block"; // unused
 const STRIKE_RADIUS   = 5;
 const EFFECT_TICKS    = 20000000;
@@ -14,7 +15,6 @@ const CYLINDER_DELAY  = 40;
 const FADE_TICKS      = 20;
 const MAX_RANGE       = 50;
 const INDICATOR_STEPS = 32;
-const ORBITAL_BLOCK   = "minecraft:air";
 const CAMSHAKE_RANGE  = 2;
 
 const PROTECTED = new Set([
@@ -50,11 +50,11 @@ function getTarget(player) {
   return { x: lastX, y: lastY, z: lastZ };
 }
 
-// ─── Is player holding the beacon ────────────────────────────────────────────
-function isHoldingBeacon(player) {
+// ─── Is player holding a beacon ───────────────────────────────────────────────
+function isHoldingAnyBeacon(player) {
   try {
     const held = player.getComponent("minecraft:equippable")?.getEquipment("Mainhand");
-    return held?.typeId === STRIKE_ITEM_ID;
+    return held?.typeId === STRIKE_ITEM_ID || held?.typeId === DDX_ITEM_ID;
   } catch { return false; }
 }
 
@@ -122,7 +122,7 @@ let strikeId = 0; // unused
 // ─── Indicator loop ───────────────────────────────────────────────────────────
 system.runInterval(() => {
   for (const player of world.getPlayers()) {
-    if (isHoldingBeacon(player)) spawnIndicator(player);
+    if (isHoldingAnyBeacon(player)) spawnIndicator(player);
   }
 }, 5);
 
@@ -142,7 +142,6 @@ system.runInterval(() => {
 world.afterEvents.entityDie.subscribe(ev => {
   const entity = ev.deadEntity;
   try {
-    // In particle mode, check if entity died near the strike target via tag
     const name = entity.nameTag?.trim() ||
       (entity.typeId === "minecraft:player"
         ? (entity.name ?? "A player")
@@ -150,34 +149,33 @@ world.afterEvents.entityDie.subscribe(ev => {
     if (entity.hasTag("orbital_strike_kill")) {
       world.sendMessage(`§c${name} §7was obliterated by an orbital strike`);
       entity.removeTag("orbital_strike_kill");
+    } else if (entity.hasTag("ddx_strike_kill")) {
+      world.sendMessage(`§e${name} §7was vaporized by a D/DX strike`);
+      entity.removeTag("ddx_strike_kill");
     }
   } catch { /* ignore */ }
 });
 
-// ─── Item use ─────────────────────────────────────────────────────────────────
-world.afterEvents.itemUse.subscribe(ev => {
-  if (ev.itemStack.typeId !== STRIKE_ITEM_ID) return;
-
-  const player    = ev.source;
+// ─── Shared strike execution ──────────────────────────────────────────────────
+function executeStrike(player, deathTag, particles, actionBarMsg) {
   const dimension = player.dimension;
   const target    = getTarget(player);
   const r2        = STRIKE_RADIUS ** 2;
 
   dimension.playSound("random.orb",      target, { volume: 2.0, pitch: 0.4 });
   dimension.playSound("beacon.activate", target, { volume: 1.5, pitch: 1.8 });
-  player.onScreenDisplay.setActionBar("§c☄ Orbital Strike incoming...");
+  player.onScreenDisplay.setActionBar(actionBarMsg);
 
-  // Effects across full cylinder column
   for (const entity of dimension.getEntities()) {
     const dx = Math.floor(entity.location.x) - target.x;
     const dz = Math.floor(entity.location.z) - target.z;
     if (dx * dx + dz * dz <= r2) {
       try {
-        entity.addTag("orbital_strike_kill");
-        entity.addEffect("slowness",  EFFECT_TICKS, { amplifier: 100, showParticles: false });
-        entity.addEffect("blindness", EFFECT_TICKS, { amplifier: 0,   showParticles: false });
-        entity.addEffect("resistance", EFFECT_TICKS, { amplifier: 50,   showParticles: false });
-        entity.addEffect("wither", EFFECT_TICKS, { amplifier: 1,   showParticles: false });
+        entity.addTag(deathTag);
+        entity.addEffect("slowness",   EFFECT_TICKS, { amplifier: 100, showParticles: false });
+        entity.addEffect("blindness",  EFFECT_TICKS, { amplifier: 0,   showParticles: false });
+        entity.addEffect("resistance", EFFECT_TICKS, { amplifier: 50,  showParticles: false });
+        entity.addEffect("wither",     EFFECT_TICKS, { amplifier: 1,   showParticles: false });
       } catch { /* no effects component */ }
     }
   }
@@ -193,7 +191,6 @@ world.afterEvents.itemUse.subscribe(ev => {
     dimension.playSound("beacon.power",   target, { volume: 2.0, pitch: 0.7 });
     dimension.playSound("random.explode", target, { volume: 3.0, pitch: 0.6 });
 
-    // Camera shake for all players within 2x strike radius
     for (const p of dimension.getPlayers()) {
       const dx = p.location.x - cx;
       const dz = p.location.z - cz;
@@ -202,29 +199,25 @@ world.afterEvents.itemUse.subscribe(ev => {
       }
     }
 
-    // Particles
     const pcx = cx + 0.5, pcz = cz + 0.5;
-    try { dimension.spawnParticle("orbital:shockwave", { x: pcx, y: target.y,     z: pcz }); } catch { /* ignore */ }
-    try { dimension.spawnParticle("orbital:shockwave", { x: pcx, y: target.y + 1, z: pcz }); } catch { /* ignore */ }
-    // Explosion fireballs from bedrock to world height
+    try { dimension.spawnParticle(particles.shockwave, { x: pcx, y: target.y,     z: pcz }); } catch { /* ignore */ }
+    try { dimension.spawnParticle(particles.shockwave, { x: pcx, y: target.y + 1, z: pcz }); } catch { /* ignore */ }
     for (let hy = minY; hy < maxY; hy += 8) {
-      try { dimension.spawnParticle("orbital:explosion", { x: pcx, y: hy, z: pcz }); } catch { /* ignore */ }
+      try { dimension.spawnParticle(particles.explosion, { x: pcx, y: hy, z: pcz }); } catch { /* ignore */ }
     }
-    // Glow wisps from bedrock to world height
     for (let gy = minY; gy < maxY; gy += 4) {
-      try { dimension.spawnParticle("orbital:glow", { x: pcx, y: gy, z: pcz }); } catch { /* ignore */ }
+      try { dimension.spawnParticle(particles.glow, { x: pcx, y: gy, z: pcz }); } catch { /* ignore */ }
     }
-    try { dimension.spawnParticle("minecraft:huge_explosion_emitter", { x: pcx, y: target.y,      z: pcz }); } catch { /* ignore */ }
-    try { dimension.spawnParticle("minecraft:huge_explosion_emitter", { x: pcx, y: minY + 10,     z: pcz }); } catch { /* ignore */ }
+    try { dimension.spawnParticle("minecraft:huge_explosion_emitter", { x: pcx, y: target.y,  z: pcz }); } catch { /* ignore */ }
+    try { dimension.spawnParticle("minecraft:huge_explosion_emitter", { x: pcx, y: minY + 10, z: pcz }); } catch { /* ignore */ }
 
-    // Carve hole + kill entities
     for (let x = cx - STRIKE_RADIUS; x <= cx + STRIKE_RADIUS; x++) {
       for (let z = cz - STRIKE_RADIUS; z <= cz + STRIKE_RADIUS; z++) {
         if ((x-cx)*(x-cx) + (z-cz)*(z-cz) <= r2) {
           for (let y = minY; y < maxY; y++) {
             try {
               const block = dimension.getBlock({ x, y, z });
-              if (block && !PROTECTED.has(block.typeId)) block.setPermutation(ORBITAL_BLOCK);
+              if (block && !PROTECTED.has(block.typeId)) block.setPermutation(air);
             } catch { /* unloaded */ }
           }
         }
@@ -234,20 +227,16 @@ world.afterEvents.itemUse.subscribe(ev => {
     for (const entity of dimension.getEntities()) {
       const dx = Math.floor(entity.location.x) - cx;
       const dz = Math.floor(entity.location.z) - cz;
-      if (dx * dx + dz * dz <= r2 || entity.getTags().includes("orbital_strike_kill")) {
+      if (dx * dx + dz * dz <= r2 || entity.getTags().includes(deathTag)) {
         try {
-          if(!entity.getTags().includes("orbital_strike_kill")){
-            entity.addTag("orbital_strike_kill");
-          }
+          if (!entity.getTags().includes(deathTag)) entity.addTag(deathTag);
           let gm;
-          if (entity.typeId === "minecraft:player"){
+          if (entity.typeId === "minecraft:player") {
             gm = entity.getGameMode();
             entity.setGameMode(GameMode.survival);
           }
           entity.kill();
-          if(entity.typeId === "minecraft:player"){
-            entity.setGameMode(gm);
-          }
+          if (entity.typeId === "minecraft:player") entity.setGameMode(gm);
         } catch { /* already dead */ }
       }
     }
@@ -257,9 +246,33 @@ world.afterEvents.itemUse.subscribe(ev => {
     }, FADE_TICKS);
 
   }, CYLINDER_DELAY);
+}
+
+// ─── Item use ─────────────────────────────────────────────────────────────────
+world.afterEvents.itemUse.subscribe(ev => {
+  const { itemStack, source: player } = ev;
+
+  if (itemStack.typeId === STRIKE_ITEM_ID) {
+    executeStrike(player,
+      "orbital_strike_kill",
+      { explosion: "orbital:explosion", shockwave: "orbital:shockwave", glow: "orbital:glow" },
+      "§c☄ Orbital Strike incoming..."
+    );
+    return;
+  }
+
+  if (itemStack.typeId === DDX_ITEM_ID) {
+    player.dimension.playSound("orbital.ddx.song", player.location, { volume: 2.0 });
+    executeStrike(player,
+      "ddx_strike_kill",
+      { explosion: "orbital:ddx_explosion", shockwave: "orbital:ddx_shockwave", glow: "orbital:ddx_glow" },
+      "§e☄ D/DX Strike incoming..."
+    );
+    return;
+  }
 });
 
 // ─── Load message ─────────────────────────────────────────────────────────────
 world.afterEvents.worldInitialize.subscribe(() => {
-  world.sendMessage("§b[Orbital Strike] §fLoaded. §e/give @s orbital:strike_beacon");
+  world.sendMessage("§b[Orbital Strike] §fLoaded. §e/give @s orbital:strike_beacon §7| §e/give @s orbital:ddx_beacon");
 });

@@ -4,6 +4,9 @@
   "texture_data": {
     "orbital_strike_beacon": {
       "textures": "textures/items/orbital_strike_beacon"
+    },
+    "ddx_beacon": {
+      "textures": "textures/items/ddx_beacon"
     }
   }
 }

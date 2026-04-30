@@ -1,0 +1,26 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "orbital:ddx_beacon_recipe"
+    },
+    "tags": ["crafting_table"],
+    "unlock": [
+      { "item": "minecraft:gold_ingot" },
+      { "item": "orbital:strike_beacon" }
+    ],
+    "pattern": [
+      "GGG",
+      "GSG",
+      "GGG"
+    ],
+    "key": {
+      "G": { "item": "minecraft:gold_ingot" },
+      "S": { "item": "orbital:strike_beacon" }
+    },
+    "result": {
+      "item": "orbital:ddx_beacon",
+      "count": 1
+    }
+  }
+}
