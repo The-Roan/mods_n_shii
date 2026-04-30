@@ -1,0 +1,27 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "orbital:big_beacon_recipe"
+    },
+    "tags": ["crafting_table"],
+    "unlock": [
+      { "item": "minecraft:end_crystal" },
+      { "item": "orbital:strike_beacon" }
+    ],
+    "pattern": [
+      "EEE",
+      "ASA",
+      "EEE"
+    ],
+    "key": {
+      "E": { "item": "minecraft:end_crystal" },
+      "A": { "item": "minecraft:amethyst_shard" },
+      "S": { "item": "orbital:strike_beacon" }
+    },
+    "result": {
+      "item": "orbital:big_beacon",
+      "count": 1
+    }
+  }
+}

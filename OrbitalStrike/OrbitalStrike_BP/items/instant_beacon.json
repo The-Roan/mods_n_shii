@@ -1,0 +1,28 @@
+{
+  "format_version": "1.20.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "orbital:instant_beacon",
+      "menu_category": {
+        "category": "none"
+      },
+      "is_hidden_in_commands": true
+    },
+    "components": {
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:use_duration": 32,
+      "minecraft:use_animation": "none",
+      "minecraft:cooldown": {
+        "category": "instant_strike",
+        "duration": 15.0
+      },
+      "minecraft:icon": {
+        "texture": "instant_beacon"
+      },
+      "minecraft:display_name": {
+        "value": "Instant Strike Beacon"
+      }
+    }
+  }
+}

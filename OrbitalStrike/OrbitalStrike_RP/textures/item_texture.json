@@ -7,6 +7,12 @@
     },
     "ddx_beacon": {
       "textures": "textures/items/ddx_beacon"
+    },
+    "instant_beacon": {
+      "textures": "textures/items/instant_beacon"
+    },
+    "big_beacon": {
+      "textures": "textures/items/big_beacon"
     }
   }
 }

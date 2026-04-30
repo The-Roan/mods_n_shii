@@ -1,3 +1,5 @@
 item.orbital:strike_beacon.name=Orbital Strike Beacon
 item.orbital:ddx_beacon.name=D/DX Strike Beacon
+item.orbital:instant_beacon.name=Instant Strike Beacon
+item.orbital:big_beacon.name=Big Strike Beacon
 tile.orbital:strike_block.name=Orbital Strike Block

@@ -1,0 +1,27 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "orbital:instant_beacon_recipe"
+    },
+    "tags": ["crafting_table"],
+    "unlock": [
+      { "item": "minecraft:redstone" },
+      { "item": "orbital:strike_beacon" }
+    ],
+    "pattern": [
+      "RCR",
+      "RSR",
+      "RRR"
+    ],
+    "key": {
+      "R": { "item": "minecraft:redstone" },
+      "C": { "item": "minecraft:clock" },
+      "S": { "item": "orbital:strike_beacon" }
+    },
+    "result": {
+      "item": "orbital:instant_beacon",
+      "count": 1
+    }
+  }
+}
