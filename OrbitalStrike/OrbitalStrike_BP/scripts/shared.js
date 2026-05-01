@@ -8,13 +8,6 @@ export const INDICATOR_STEPS = 32;
 export const CAMSHAKE_RANGE  = 2;
 export const STRIKE_BLOCK_ID = "orbital:strike_block"; // unused
 
-export const PROTECTED = new Set([
-  "minecraft:bedrock", "minecraft:barrier", "minecraft:structure_block",
-  "minecraft:command_block", "minecraft:chain_command_block",
-  "minecraft:repeating_command_block", "minecraft:structure_void",
-  "minecraft:jigsaw", "minecraft:allow", "minecraft:deny",
-  "minecraft:border_block", "minecraft:light_block"
-]);
 
 // ─── Raycast ──────────────────────────────────────────────────────────────────
 export function getTarget(player) {
@@ -73,13 +66,13 @@ export function getCylinderPositions(dimension, cx, cz, radius) {
 }
 
 // unused
-export function placeCylinder(dimension, cx, cz, radius) {
+export function placeCylinder(dimension, cx, cz, radius, protectedBlocks) {
   const perm    = BlockPermutation.resolve(STRIKE_BLOCK_ID);
   const changed = [];
   for (const pos of getCylinderPositions(dimension, cx, cz, radius)) {
     try {
       const block = dimension.getBlock(pos);
-      if (block && !PROTECTED.has(block.typeId)) {
+      if (block && !protectedBlocks.has(block.typeId)) {
         block.setPermutation(perm);
         changed.push(pos);
       }
@@ -119,7 +112,7 @@ function getParticleSpawnPoints(cx, cz, radius) {
 }
 
 // ─── Strike execution engine ──────────────────────────────────────────────────
-export function executeStrike(player, deathTag, particles, actionBarMsg, radius, delay) {
+export function executeStrike(player, deathTag, particles, actionBarMsg, radius, delay, protectedBlocks) {
   const dimension = player.dimension;
   const target    = getTarget(player);
   const r2        = radius ** 2;
@@ -193,7 +186,7 @@ export function executeStrike(player, deathTag, particles, actionBarMsg, radius,
           for (let y = minY; y < maxY; y++) {
             try {
               const block = dimension.getBlock({ x, y, z });
-              if (block && !PROTECTED.has(block.typeId)) block.setPermutation(air);
+              if (block && !protectedBlocks.has(block.typeId)) block.setPermutation(air);
             } catch { /* unloaded */ }
           }
         }

@@ -12,8 +12,15 @@ export const PARTICLES  = {
   shockwave: "orbital:big_shockwave",
   glow:      "orbital:big_glow"
 };
+export const PROTECTED = new Set([
+  "minecraft:bedrock", "minecraft:barrier", "minecraft:structure_block",
+  "minecraft:command_block", "minecraft:chain_command_block",
+  "minecraft:repeating_command_block", "minecraft:structure_void",
+  "minecraft:jigsaw", "minecraft:allow", "minecraft:deny",
+  "minecraft:border_block", "minecraft:light_block"
+]);
 
 world.afterEvents.itemUse.subscribe(ev => {
   if (ev.itemStack.typeId !== ITEM_ID) return;
-  executeStrike(ev.source, DEATH_TAG, PARTICLES, ACTION_BAR, RADIUS, DELAY);
+  executeStrike(ev.source, DEATH_TAG, PARTICLES, ACTION_BAR, RADIUS, DELAY, PROTECTED);
 });
