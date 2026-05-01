@@ -1,0 +1,91 @@
+HOW TO ADD A NEW STRIKE VARIANT
+================================
+
+STEP 1 — Item (OrbitalStrike_BP/items/)
+----------------------------------------
+Create a new JSON file (e.g. my_beacon.json). Copy any existing item file and change:
+  - "identifier"            -> "orbital:my_beacon"
+  - "minecraft:cooldown"    -> unique "category" name (e.g. "my_strike")
+  - "minecraft:icon"        -> your texture key name
+  - "minecraft:display_name" -> display name
+
+
+STEP 2 — Recipe (OrbitalStrike_BP/recipes/)
+--------------------------------------------
+Create a new JSON file. Define your crafting pattern and ingredients.
+Make sure "identifier" is unique.
+
+
+STEP 3 — Particles (OrbitalStrike_RP/particles/)
+-------------------------------------------------
+Create 3 particle files: my_explosion.json, my_shockwave.json, my_glow.json.
+Copy existing ones for your chosen theme and adjust the color gradients.
+If you want an image particle like DDX, create a 4th one (my_image.json)
+and add your texture to textures/particles/.
+
+
+STEP 4 — Item Texture (OrbitalStrike_RP/textures/items/)
+---------------------------------------------------------
+Drop your texture PNG here. Then register it in:
+  OrbitalStrike_RP/textures/item_texture.json
+
+Add an entry:
+  "my_beacon": {
+    "textures": "textures/items/my_beacon"
+  }
+
+
+STEP 5 — Language Files
+------------------------
+Add one line to BOTH of these files:
+  OrbitalStrike_RP/texts/en_US.lang
+  OrbitalStrike_BP/texts/en_US.lang
+
+Line to add:
+  item.orbital:my_beacon.name=My Strike Beacon
+
+
+STEP 6 — Strike Script (OrbitalStrike_BP/scripts/strikes/)
+-----------------------------------------------------------
+Create my_strike.js. This is the only file where you write real code.
+All strike-specific values live here:
+
+  import { world } from "@minecraft/server";
+  import { executeStrike } from "../shared.js";
+
+  export const ITEM_ID    = "orbital:my_beacon";
+  export const RADIUS     = 5;      // blast cylinder radius in blocks
+  export const DELAY      = 40;     // ticks before detonation (0 = instant)
+  export const DEATH_TAG  = "my_strike_kill";
+  export const ACTION_BAR = "§a☄ My Strike incoming...";
+  export const DEATH_MSG  = name => `§a${name} §7was destroyed by my strike`;
+  export const PARTICLES  = {
+    explosion: "orbital:my_explosion",
+    shockwave: "orbital:my_shockwave",
+    glow:      "orbital:my_glow",
+    // image: "orbital:my_image"   <- uncomment if using an image particle
+  };
+
+  world.afterEvents.itemUse.subscribe(ev => {
+    if (ev.itemStack.typeId !== ITEM_ID) return;
+    executeStrike(ev.source, DEATH_TAG, PARTICLES, ACTION_BAR, RADIUS, DELAY);
+  });
+
+
+STEP 7 — Register in main.js (OrbitalStrike_BP/scripts/main.js)
+----------------------------------------------------------------
+Add one import line at the top with the others:
+  import * as myStrike from "./strikes/my_strike.js";
+
+Then add it to the ALL_STRIKES array:
+  const ALL_STRIKES = [orbital, ddx, instant, big, myStrike];
+
+The indicator ring, death messages, and load message all update automatically.
+No other changes needed.
+
+
+SUMMARY
+-------
+Steps 1-5  ->  Data files only (JSON / PNG / lang). No coding.
+Step 6     ->  The only file where you write code. All tuning values are here.
+Step 7     ->  Two lines in main.js.
