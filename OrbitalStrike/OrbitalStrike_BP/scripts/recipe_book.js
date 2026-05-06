@@ -111,17 +111,11 @@ const RECIPES = [
 
 // ─── Build crafting grid display ──────────────────────────────────────────────
 function buildRecipeBody(recipe) {
-  // 3×3 grid: each cell is the letter key, space-separated
-  const grid = recipe.pattern.map(row =>
-    `§e${row[0]} ${row[1]} ${row[2]}`
+  return recipe.pattern.map(row =>
+    [row[0], row[1], row[2]]
+      .map(letter => `§f[${recipe.key[letter].label}]`)
+      .join("")
   ).join("\n");
-
-  // Legend: letter = Item Name
-  const legend = Object.entries(recipe.key)
-    .map(([letter, item]) => `§e${letter} §f= ${item.label}`)
-    .join("\n");
-
-  return `${grid}\n\n${legend}`;
 }
 
 // ─── Open book on use ─────────────────────────────────────────────────────────
