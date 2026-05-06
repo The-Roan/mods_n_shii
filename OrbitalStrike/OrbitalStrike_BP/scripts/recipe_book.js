@@ -6,9 +6,10 @@ const BOOK_ID = "orbital:recipe_book";
 // ─── Recipe data ──────────────────────────────────────────────────────────────
 const RECIPES = [
   {
-    name:     "Orbital Strike Beacon",
-    color:    "§c",
-    pageIcon: "textures/items/recipe_page_orbital",
+    name:       "Orbital Strike Beacon",
+    color:      "§c",
+    pageIcon:   "textures/items/recipe_page_orbital",
+    detailIcon: "textures/items/recipe_detail_orbital",
     ingredients: [
       "End Crystal  ×6",
       "Nether Star  ×2",
@@ -16,18 +17,20 @@ const RECIPES = [
     ]
   },
   {
-    name:     "D/DX Strike Beacon",
-    color:    "§e",
-    pageIcon: "textures/items/recipe_page_ddx",
+    name:       "D/DX Strike Beacon",
+    color:      "§e",
+    pageIcon:   "textures/items/recipe_page_ddx",
+    detailIcon: "textures/items/recipe_detail_ddx",
     ingredients: [
       "Gold Ingot  ×8",
       "Orbital Strike Beacon  ×1"
     ]
   },
   {
-    name:     "Instant Strike Beacon",
-    color:    "§6",
-    pageIcon: "textures/items/recipe_page_instant",
+    name:       "Instant Strike Beacon",
+    color:      "§6",
+    pageIcon:   "textures/items/recipe_page_instant",
+    detailIcon: "textures/items/recipe_detail_instant",
     ingredients: [
       "Redstone  ×7",
       "Clock  ×1",
@@ -35,9 +38,10 @@ const RECIPES = [
     ]
   },
   {
-    name:     "Big Strike Beacon",
-    color:    "§4",
-    pageIcon: "textures/items/recipe_page_big",
+    name:       "Big Strike Beacon",
+    color:      "§4",
+    pageIcon:   "textures/items/recipe_page_big",
+    detailIcon: "textures/items/recipe_detail_big",
     ingredients: [
       "End Crystal  ×6",
       "Amethyst Shard  ×2",
@@ -45,9 +49,10 @@ const RECIPES = [
     ]
   },
   {
-    name:     "Throwable Strike Beacon",
-    color:    "§9",
-    pageIcon: "textures/items/recipe_page_throwable",
+    name:       "Throwable Strike Beacon",
+    color:      "§9",
+    pageIcon:   "textures/items/recipe_page_throwable",
+    detailIcon: "textures/items/recipe_detail_throwable",
     ingredients: [
       "Arrow  ×2",
       "Bow  ×1",
@@ -58,9 +63,10 @@ const RECIPES = [
     ]
   },
   {
-    name:     "Laser Strike Beacon",
-    color:    "§b",
-    pageIcon: "textures/items/recipe_page_laser",
+    name:       "Laser Strike Beacon",
+    color:      "§b",
+    pageIcon:   "textures/items/recipe_page_laser",
+    detailIcon: "textures/items/recipe_detail_laser",
     ingredients: [
       "Bow  ×6",
       "Crossbow  ×2",
@@ -68,9 +74,10 @@ const RECIPES = [
     ]
   },
   {
-    name:     "Void Strike Beacon",
-    color:    "§5",
-    pageIcon: "textures/items/recipe_page_void",
+    name:       "Void Strike Beacon",
+    color:      "§5",
+    pageIcon:   "textures/items/recipe_page_void",
+    detailIcon: "textures/items/recipe_detail_void",
     ingredients: [
       "Ender Pearl  ×3",
       "Bedrock  ×2",
@@ -81,9 +88,10 @@ const RECIPES = [
     ]
   },
   {
-    name:     "Heal Strike Beacon",
-    color:    "§a",
-    pageIcon: "textures/items/recipe_page_heal",
+    name:       "Heal Strike Beacon",
+    color:      "§a",
+    pageIcon:   "textures/items/recipe_page_heal",
+    detailIcon: "textures/items/recipe_detail_heal",
     ingredients: [
       "Totem of Undying  ×6",
       "Shield  ×1",
@@ -116,24 +124,24 @@ function showMainMenu(player) {
 }
 
 // ─── Recipe detail page ───────────────────────────────────────────────────────
-// Layout: recipe image button at top, ingredient lines below, Back at bottom.
-// Clicking the image or any ingredient line returns to the main menu.
+// Layout (ActionFormData):
+//   body  = ingredient list (renders as a scrollable text area)
+//   btn 0 = detail image with no label (looks like a display, not a button)
+//   btn 1 = ◀ Back (the only visually "button-like" element)
 function showRecipePage(player, recipe) {
-  const form = new ActionFormData()
+  const body = recipe.ingredients.map(i => `§f• ${i}`).join("\n");
+
+  new ActionFormData()
     .title(`${recipe.color}§l${recipe.name}`)
-    .button("", recipe.pageIcon);  // recipe image — no label, icon is the focus
-
-  for (const line of recipe.ingredients) {
-    form.button(`§7• §f${line}`);
-  }
-
-  form.button("§7◀ Back");
-
-  form.show(player).then(result => {
-    if (result.canceled) return;
-    // Last button is Back; everything else also returns to main menu
-    showMainMenu(player);
-  }).catch(() => {});
+    .body(body)
+    .button("", recipe.detailIcon)
+    .button("§7◀ Back")
+    .show(player)
+    .then(result => {
+      if (result.canceled) return;
+      showMainMenu(player);
+    })
+    .catch(() => {});
 }
 
 // ─── Despawn book when dropped ────────────────────────────────────────────────

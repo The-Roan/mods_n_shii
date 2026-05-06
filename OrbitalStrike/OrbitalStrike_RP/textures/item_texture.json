@@ -52,6 +52,30 @@
     },
     "recipe_page_heal": {
       "textures": "textures/items/recipe_page_heal"
+    },
+    "recipe_detail_orbital": {
+      "textures": "textures/items/recipe_detail_orbital"
+    },
+    "recipe_detail_ddx": {
+      "textures": "textures/items/recipe_detail_ddx"
+    },
+    "recipe_detail_instant": {
+      "textures": "textures/items/recipe_detail_instant"
+    },
+    "recipe_detail_big": {
+      "textures": "textures/items/recipe_detail_big"
+    },
+    "recipe_detail_throwable": {
+      "textures": "textures/items/recipe_detail_throwable"
+    },
+    "recipe_detail_laser": {
+      "textures": "textures/items/recipe_detail_laser"
+    },
+    "recipe_detail_void": {
+      "textures": "textures/items/recipe_detail_void"
+    },
+    "recipe_detail_heal": {
+      "textures": "textures/items/recipe_detail_heal"
     }
   }
 }
