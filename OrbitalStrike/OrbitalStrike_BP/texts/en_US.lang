@@ -7,3 +7,4 @@ item.orbital:void_beacon.name=Void Strike Beacon
 item.orbital:heal_beacon.name=Heal Strike Beacon
 item.orbital:laser_beacon.name=Laser Strike Beacon
 tile.orbital:strike_block.name=Orbital Strike Block
+item.orbital:recipe_book.name=Strike Recipe Book

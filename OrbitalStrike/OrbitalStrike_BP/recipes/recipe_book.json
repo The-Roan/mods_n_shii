@@ -1,0 +1,26 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "orbital:recipe_book_recipe"
+    },
+    "tags": ["crafting_table"],
+    "unlock": [
+      { "item": "orbital:strike_beacon" }
+    ],
+    "pattern": [
+      "LLL",
+      "PSP",
+      "LLL"
+    ],
+    "key": {
+      "L": { "item": "minecraft:leather" },
+      "P": { "item": "minecraft:paper" },
+      "S": { "item": "orbital:strike_beacon" }
+    },
+    "result": {
+      "item": "orbital:recipe_book",
+      "count": 1
+    }
+  }
+}
