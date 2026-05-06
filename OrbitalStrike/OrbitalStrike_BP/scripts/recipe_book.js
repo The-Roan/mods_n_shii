@@ -118,6 +118,13 @@ function buildRecipeBody(recipe) {
   ).join("\n");
 }
 
+// ─── Ingredients for the base orbital beacon (substituted when another recipe needs it) ──
+const ORBITAL_BASE_INGREDIENTS = [
+  { id: "minecraft:end_crystal", count: 6 },
+  { id: "minecraft:nether_star", count: 2 },
+  { id: "minecraft:beacon",      count: 1 }
+];
+
 // ─── Open book on use ─────────────────────────────────────────────────────────
 world.afterEvents.itemUse.subscribe(ev => {
   if (ev.itemStack.typeId !== BOOK_ID) return;
@@ -154,7 +161,13 @@ function showRecipePage(player, recipe) {
       if (result.canceled) return;
       if (result.selection === 0) {
         for (const item of Object.values(recipe.key)) {
-          try { player.runCommand(`give @s ${item.id} 1`); } catch { /* ignore */ }
+          if (item.id === "orbital:strike_beacon") {
+            for (const base of ORBITAL_BASE_INGREDIENTS) {
+              try { player.runCommand(`give @s ${base.id} ${base.count}`); } catch { /* ignore */ }
+            }
+          } else {
+            try { player.runCommand(`give @s ${item.id} 1`); } catch { /* ignore */ }
+          }
         }
         showRecipePage(player, recipe);
       } else {
