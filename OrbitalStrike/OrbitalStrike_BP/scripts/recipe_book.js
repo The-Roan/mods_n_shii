@@ -12,8 +12,8 @@ const RECIPES = [
     detailIcon: "textures/items/recipe_detail_orbital",
     pattern:    ["EEE", "NBN", "EEE"],
     key: {
-      E: { label: "End Crystal",  id: "minecraft:end_crystal",  count: 1 },
-      N: { label: "Nether Star",  id: "minecraft:nether_star",  count: 1 },
+      E: { label: "End Crystal",  id: "minecraft:end_crystal",  count: 6 },
+      N: { label: "Nether Star",  id: "minecraft:nether_star",  count: 2 },
       B: { label: "Beacon",       id: "minecraft:beacon",       count: 1 }
     }
   },
@@ -24,7 +24,7 @@ const RECIPES = [
     detailIcon: "textures/items/recipe_detail_ddx",
     pattern:    ["GGG", "GSG", "GGG"],
     key: {
-      G: { label: "Gold Ingot",             id: "minecraft:gold_ingot",  count: 1 },
+      G: { label: "Gold Ingot",             id: "minecraft:gold_ingot",  count: 8 },
       S: { label: "Orbital Strike Beacon",  id: "orbital:strike_beacon", count: 1 }
     }
   },
@@ -35,7 +35,7 @@ const RECIPES = [
     detailIcon: "textures/items/recipe_detail_instant",
     pattern:    ["RCR", "RSR", "RRR"],
     key: {
-      R: { label: "Redstone",               id: "minecraft:redstone",    count: 1 },
+      R: { label: "Redstone",               id: "minecraft:redstone",    count: 7 },
       C: { label: "Clock",                  id: "minecraft:clock",       count: 1 },
       S: { label: "Orbital Strike Beacon",  id: "orbital:strike_beacon", count: 1 }
     }
@@ -47,8 +47,8 @@ const RECIPES = [
     detailIcon: "textures/items/recipe_detail_big",
     pattern:    ["EEE", "ASA", "EEE"],
     key: {
-      E: { label: "End Crystal",            id: "minecraft:end_crystal",    count: 1 },
-      A: { label: "Amethyst Shard",         id: "minecraft:amethyst_shard", count: 1 },
+      E: { label: "End Crystal",            id: "minecraft:end_crystal",    count: 6 },
+      A: { label: "Amethyst Shard",         id: "minecraft:amethyst_shard", count: 2 },
       S: { label: "Orbital Strike Beacon",  id: "orbital:strike_beacon",    count: 1 }
     }
   },
@@ -59,12 +59,12 @@ const RECIPES = [
     detailIcon: "textures/items/recipe_detail_throwable",
     pattern:    ["RBR", "SOS", "CPC"],
     key: {
-      R: { label: "Arrow",                  id: "minecraft:arrow",         count: 1 },
+      R: { label: "Arrow",                  id: "minecraft:arrow",         count: 2 },
       B: { label: "Bow",                    id: "minecraft:bow",           count: 1 },
-      S: { label: "Snowball",               id: "minecraft:snowball",      count: 1 },
+      S: { label: "Snowball",               id: "minecraft:snowball",      count: 2 },
       O: { label: "Orbital Strike Beacon",  id: "orbital:strike_beacon",   count: 1 },
       C: { label: "End Crystal",            id: "minecraft:end_crystal",   count: 1 },
-      P: { label: "Ender Pearl",            id: "minecraft:ender_pearl",   count: 1 }
+      P: { label: "Ender Pearl",            id: "minecraft:ender_pearl",   count: 2 }
     }
   },
   {
@@ -74,8 +74,8 @@ const RECIPES = [
     detailIcon: "textures/items/recipe_detail_laser",
     pattern:    ["BCB", "BOB", "BCB"],
     key: {
-      B: { label: "Bow",                    id: "minecraft:bow",          count: 1 },
-      C: { label: "Crossbow",               id: "minecraft:crossbow",     count: 1 },
+      B: { label: "Bow",                    id: "minecraft:bow",          count: 6 },
+      C: { label: "Crossbow",               id: "minecraft:crossbow",     count: 2 },
       O: { label: "Orbital Strike Beacon",  id: "orbital:strike_beacon",  count: 1 }
     }
   },
@@ -86,8 +86,8 @@ const RECIPES = [
     detailIcon: "textures/items/recipe_detail_void",
     pattern:    ["EEE", "BOB", "CRN"],
     key: {
-      E: { label: "Ender Pearl",              id: "minecraft:ender_pearl",             count: 1 },
-      B: { label: "Bedrock",                  id: "minecraft:bedrock",                 count: 1 },
+      E: { label: "Ender Pearl",              id: "minecraft:ender_pearl",             count: 3 },
+      B: { label: "Bedrock",                  id: "minecraft:bedrock",                 count: 2 },
       O: { label: "Orbital Strike Beacon",    id: "orbital:strike_beacon",             count: 1 },
       C: { label: "Command Block",            id: "minecraft:command_block",           count: 1 },
       R: { label: "Repeating Cmd Block",      id: "minecraft:repeating_command_block", count: 1 },
@@ -101,7 +101,7 @@ const RECIPES = [
     detailIcon: "textures/items/recipe_detail_heal",
     pattern:    ["TST", "TOT", "TDT"],
     key: {
-      T: { label: "Totem of Undying",       id: "minecraft:totem_of_undying", count: 1 },
+      T: { label: "Totem of Undying",       id: "minecraft:totem_of_undying", count: 6 },
       S: { label: "Shield",                 id: "minecraft:shield",           count: 1 },
       O: { label: "Orbital Strike Beacon",  id: "orbital:strike_beacon",      count: 1 },
       D: { label: "Conduit",                id: "minecraft:conduit",          count: 1 }
