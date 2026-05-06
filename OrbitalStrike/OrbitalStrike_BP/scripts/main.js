@@ -1,5 +1,6 @@
 import { world, system } from "@minecraft/server";
 import { spawnIndicator, activeCylinders, removeCylinder } from "./shared.js";
+import "./recipe_book.js";
 import * as orbital from "./strikes/orbital.js";
 import * as ddx     from "./strikes/ddx.js";
 import * as instant from "./strikes/instant.js";
