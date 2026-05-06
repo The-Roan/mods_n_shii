@@ -1,119 +1,95 @@
 import { world } from "@minecraft/server";
-import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
+import { ActionFormData } from "@minecraft/server-ui";
 
 const BOOK_ID = "orbital:recipe_book";
 
 // ─── Recipe data ──────────────────────────────────────────────────────────────
 const RECIPES = [
   {
-    name:        "Orbital Strike Beacon",
-    color:       "§c",
-    icon:        "textures/items/orbital_strike_beacon",
-    pageIcon:    "textures/items/recipe_page_orbital",
-    pattern:     ["E  E  E", "N  B  N", "E  E  E"],
-    key: [
-      "§7E §f= End Crystal",
-      "§7N §f= Nether Star",
-      "§7B §f= Vanilla Beacon"
-    ],
-    description: "§7Precision orbital strike.\nDestroys a §c5-block radius §7after a §e2s §7delay."
+    name:     "Orbital Strike Beacon",
+    color:    "§c",
+    pageIcon: "textures/items/recipe_page_orbital",
+    ingredients: [
+      "End Crystal  ×6",
+      "Nether Star  ×2",
+      "Beacon  ×1"
+    ]
   },
   {
-    name:        "D/DX Strike Beacon",
-    color:       "§e",
-    icon:        "textures/items/ddx_beacon",
-    pageIcon:    "textures/items/recipe_page_ddx",
-    pattern:     ["G  G  G", "G  S  G", "G  G  G"],
-    key: [
-      "§7G §f= Gold Ingot",
-      "§7S §f= Orbital Strike Beacon"
-    ],
-    description: "§7Orbital strike with an accompanying song.\nDestroys a §e5-block radius §7after a §e2s §7delay."
+    name:     "D/DX Strike Beacon",
+    color:    "§e",
+    pageIcon: "textures/items/recipe_page_ddx",
+    ingredients: [
+      "Gold Ingot  ×8",
+      "Orbital Strike Beacon  ×1"
+    ]
   },
   {
-    name:        "Instant Strike Beacon",
-    color:       "§6",
-    icon:        "textures/items/instant_beacon",
-    pageIcon:    "textures/items/recipe_page_instant",
-    pattern:     ["R  C  R", "R  S  R", "R  R  R"],
-    key: [
-      "§7R §f= Redstone",
-      "§7C §f= Clock",
-      "§7S §f= Orbital Strike Beacon"
-    ],
-    description: "§7Orbital strike with §cno delay.\nDestroys a §65-block radius §7immediately."
+    name:     "Instant Strike Beacon",
+    color:    "§6",
+    pageIcon: "textures/items/recipe_page_instant",
+    ingredients: [
+      "Redstone  ×7",
+      "Clock  ×1",
+      "Orbital Strike Beacon  ×1"
+    ]
   },
   {
-    name:        "Big Strike Beacon",
-    color:       "§4",
-    icon:        "textures/items/big_beacon",
-    pageIcon:    "textures/items/recipe_page_big",
-    pattern:     ["E  E  E", "A  S  A", "E  E  E"],
-    key: [
-      "§7E §f= End Crystal",
-      "§7A §f= Amethyst Shard",
-      "§7S §f= Orbital Strike Beacon"
-    ],
-    description: "§7Larger orbital strike.\nDestroys a §410-block radius §7after a §e2s §7delay."
+    name:     "Big Strike Beacon",
+    color:    "§4",
+    pageIcon: "textures/items/recipe_page_big",
+    ingredients: [
+      "End Crystal  ×6",
+      "Amethyst Shard  ×2",
+      "Orbital Strike Beacon  ×1"
+    ]
   },
   {
-    name:        "Throwable Strike Beacon",
-    color:       "§9",
-    icon:        "textures/items/throwable_beacon",
-    pageIcon:    "textures/items/recipe_page_throwable",
-    pattern:     ["A  B  A", "S  O  S", "C  P  C"],
-    key: [
-      "§7A §f= Arrow",
-      "§7B §f= Bow",
-      "§7S §f= Snowball",
-      "§7O §f= Orbital Strike Beacon",
-      "§7C §f= End Crystal",
-      "§7P §f= Ender Pearl"
-    ],
-    description: "§7Throwable beacon that detonates on impact.\nDestroys a §95-block radius §7on contact."
+    name:     "Throwable Strike Beacon",
+    color:    "§9",
+    pageIcon: "textures/items/recipe_page_throwable",
+    ingredients: [
+      "Arrow  ×2",
+      "Bow  ×1",
+      "Snowball  ×2",
+      "End Crystal  ×2",
+      "Ender Pearl  ×1",
+      "Orbital Strike Beacon  ×1"
+    ]
   },
   {
-    name:        "Laser Strike Beacon",
-    color:       "§b",
-    icon:        "textures/items/laser_beacon",
-    pageIcon:    "textures/items/recipe_page_laser",
-    pattern:     ["B  C  B", "B  O  B", "B  C  B"],
-    key: [
-      "§7B §f= Bow",
-      "§7C §f= Crossbow",
-      "§7O §f= Orbital Strike Beacon"
-    ],
-    description: "§7Fires a laser beam along your line of sight.\nDestroys a §b2-wide path §7through blocks."
+    name:     "Laser Strike Beacon",
+    color:    "§b",
+    pageIcon: "textures/items/recipe_page_laser",
+    ingredients: [
+      "Bow  ×6",
+      "Crossbow  ×2",
+      "Orbital Strike Beacon  ×1"
+    ]
   },
   {
-    name:        "Void Strike Beacon",
-    color:       "§5",
-    icon:        "textures/items/void_beacon",
-    pageIcon:    "textures/items/recipe_page_void",
-    pattern:     ["E  E  E", "B  O  B", "C  R  N"],
-    key: [
-      "§7E §f= Ender Pearl",
-      "§7B §f= Bedrock",
-      "§7O §f= Orbital Strike Beacon",
-      "§7C §f= Command Block",
-      "§7R §f= Repeating Command Block",
-      "§7N §f= Chain Command Block"
-    ],
-    description: "§7Total annihilation strike.\nDestroys §4everything §7in a 5-block radius,\nincluding §4bedrock §7and protected blocks."
+    name:     "Void Strike Beacon",
+    color:    "§5",
+    pageIcon: "textures/items/recipe_page_void",
+    ingredients: [
+      "Ender Pearl  ×3",
+      "Bedrock  ×2",
+      "Command Block  ×1",
+      "Repeating Command Block  ×1",
+      "Chain Command Block  ×1",
+      "Orbital Strike Beacon  ×1"
+    ]
   },
   {
-    name:        "Heal Strike Beacon",
-    color:       "§a",
-    icon:        "textures/items/heal_beacon",
-    pageIcon:    "textures/items/recipe_page_heal",
-    pattern:     ["T  S  T", "T  O  T", "T  D  T"],
-    key: [
-      "§7T §f= Totem of Undying",
-      "§7S §f= Shield",
-      "§7O §f= Orbital Strike Beacon",
-      "§7D §f= Conduit"
-    ],
-    description: "§7Healing strike for allies in a 5-block radius.\nApplies §aInstant Health IX§7, §aRegeneration§7,\n§aResistance §7and §aAbsorption§7."
+    name:     "Heal Strike Beacon",
+    color:    "§a",
+    pageIcon: "textures/items/recipe_page_heal",
+    ingredients: [
+      "Totem of Undying  ×6",
+      "Shield  ×1",
+      "Conduit  ×1",
+      "Orbital Strike Beacon  ×1"
+    ]
   }
 ];
 
@@ -127,7 +103,7 @@ world.afterEvents.itemUse.subscribe(ev => {
 function showMainMenu(player) {
   const form = new ActionFormData()
     .title("§6§lStrike Recipe Book")
-    .body("§7Select a strike to view its crafting recipe.");
+    .body("§7Select a strike to view its recipe.");
 
   for (const r of RECIPES) {
     form.button(`${r.color}§l${r.name}`, r.pageIcon);
@@ -140,31 +116,24 @@ function showMainMenu(player) {
 }
 
 // ─── Recipe detail page ───────────────────────────────────────────────────────
+// Layout: recipe image button at top, ingredient lines below, Back at bottom.
+// Clicking the image or any ingredient line returns to the main menu.
 function showRecipePage(player, recipe) {
-  const body = [
-    "§8▬▬▬ Crafting Recipe ▬▬▬",
-    "",
-    ...recipe.pattern.map(row => `  §f${row}`),
-    "",
-    "§8Key:",
-    ...recipe.key,
-    "",
-    "§8▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬",
-    "",
-    recipe.description
-  ].join("\n");
-
-  new MessageFormData()
+  const form = new ActionFormData()
     .title(`${recipe.color}§l${recipe.name}`)
-    .body(body)
-    .button1("§7◀ Back")
-    .button2("§cClose")
-    .show(player)
-    .then(result => {
-      if (result.canceled) return;
-      if (result.selection === 0) showMainMenu(player);
-    })
-    .catch(() => {});
+    .button("", recipe.pageIcon);  // recipe image — no label, icon is the focus
+
+  for (const line of recipe.ingredients) {
+    form.button(`§7• §f${line}`);
+  }
+
+  form.button("§7◀ Back");
+
+  form.show(player).then(result => {
+    if (result.canceled) return;
+    // Last button is Back; everything else also returns to main menu
+    showMainMenu(player);
+  }).catch(() => {});
 }
 
 // ─── Despawn book when dropped ────────────────────────────────────────────────
