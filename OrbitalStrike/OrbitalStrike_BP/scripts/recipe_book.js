@@ -30,7 +30,7 @@ const RECIPES = [
   },
   {
     name:       "Instant Strike Beacon",
-    color:      "§6",
+    color:      "§c",
     pageIcon:   "textures/items/recipe_page_instant",
     detailIcon: "textures/items/recipe_detail_instant",
     pattern:    ["RCR", "RSR", "RRR"],
@@ -42,7 +42,7 @@ const RECIPES = [
   },
   {
     name:       "Big Strike Beacon",
-    color:      "§4",
+    color:      "§5",
     pageIcon:   "textures/items/recipe_page_big",
     detailIcon: "textures/items/recipe_detail_big",
     pattern:    ["EEE", "ASA", "EEE"],
@@ -54,7 +54,7 @@ const RECIPES = [
   },
   {
     name:       "Throwable Strike Beacon",
-    color:      "§9",
+    color:      "§a",
     pageIcon:   "textures/items/recipe_page_throwable",
     detailIcon: "textures/items/recipe_detail_throwable",
     pattern:    ["RBR", "SOS", "CPC"],
@@ -69,7 +69,7 @@ const RECIPES = [
   },
   {
     name:       "Laser Strike Beacon",
-    color:      "§b",
+    color:      "§f",
     pageIcon:   "textures/items/recipe_page_laser",
     detailIcon: "textures/items/recipe_detail_laser",
     pattern:    ["BCB", "BOB", "BCB"],
@@ -81,7 +81,7 @@ const RECIPES = [
   },
   {
     name:       "Void Strike Beacon",
-    color:      "§5",
+    color:      "§8",
     pageIcon:   "textures/items/recipe_page_void",
     detailIcon: "textures/items/recipe_detail_void",
     pattern:    ["EEE", "BOB", "CRN"],
@@ -96,7 +96,7 @@ const RECIPES = [
   },
   {
     name:       "Heal Strike Beacon",
-    color:      "§a",
+    color:      "§d",
     pageIcon:   "textures/items/recipe_page_heal",
     detailIcon: "textures/items/recipe_detail_heal",
     pattern:    ["TST", "TOT", "TDT"],
