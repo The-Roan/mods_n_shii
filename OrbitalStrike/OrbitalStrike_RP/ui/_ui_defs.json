@@ -1,0 +1,6 @@
+{
+  "ui_defs": [
+    "ui/recipe_book_hud.json",
+    "ui/hud_screen.json"
+  ]
+}
