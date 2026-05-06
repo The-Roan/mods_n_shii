@@ -13,6 +13,18 @@
     },
     "big_beacon": {
       "textures": "textures/items/big_beacon"
+    },
+    "throwable_beacon": {
+      "textures": "textures/items/throwable_beacon"
+    },
+    "laser_beacon": {
+      "textures": "textures/items/laser_beacon"
+    },
+    "void_beacon": {
+      "textures": "textures/items/void_beacon"
+    },
+    "heal_beacon": {
+      "textures": "textures/items/heal_beacon"
     }
   }
 }

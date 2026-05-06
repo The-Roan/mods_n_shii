@@ -1,0 +1,30 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "orbital:throwable_beacon_recipe"
+    },
+    "tags": ["crafting_table"],
+    "unlock": [
+      { "item": "minecraft:snowball" },
+      { "item": "orbital:strike_beacon" }
+    ],
+    "pattern": [
+      "RBR",
+      "SOS",
+      "CPC"
+    ],
+    "key": {
+      "R": { "item": "minecraft:arrow" },
+      "B": { "item": "minecraft:bow" },
+      "S": { "item": "minecraft:snowball" },
+      "O": { "item": "orbital:strike_beacon" },
+      "C": { "item": "minecraft:end_crystal" },
+      "P": { "item": "minecraft:ender_pearl" }
+    },
+    "result": {
+      "item": "orbital:throwable_beacon",
+      "count": 1
+    }
+  }
+}

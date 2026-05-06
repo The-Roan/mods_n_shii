@@ -1,0 +1,27 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "orbital:laser_beacon_recipe"
+    },
+    "tags": ["crafting_table"],
+    "unlock": [
+      { "item": "minecraft:crossbow" },
+      { "item": "orbital:strike_beacon" }
+    ],
+    "pattern": [
+      "BCB",
+      "BOB",
+      "BCB"
+    ],
+    "key": {
+      "B": { "item": "minecraft:bow" },
+      "C": { "item": "minecraft:crossbow" },
+      "O": { "item": "orbital:strike_beacon" }
+    },
+    "result": {
+      "item": "orbital:laser_beacon",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shaped": {
+    "description": { "identifier": "orbital:heal_beacon_recipe" },
+    "tags": ["crafting_table"],
+    "unlock": [
+      { "item": "minecraft:totem_of_undying" },
+      { "item": "orbital:strike_beacon" }
+    ],
+    "pattern": ["TST", "TOT", "TDT"],
+    "key": {
+      "T": { "item": "minecraft:totem_of_undying" },
+      "S": { "item": "minecraft:shield" },
+      "O": { "item": "orbital:strike_beacon" },
+      "D": { "item": "minecraft:conduit" }
+    },
+    "result": { "item": "orbital:heal_beacon", "count": 1 }
+  }
+}

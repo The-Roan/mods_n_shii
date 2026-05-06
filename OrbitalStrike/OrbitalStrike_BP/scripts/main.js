@@ -4,19 +4,28 @@ import * as orbital from "./strikes/orbital.js";
 import * as ddx     from "./strikes/ddx.js";
 import * as instant from "./strikes/instant.js";
 import * as big     from "./strikes/big.js";
+import * as throwable from "./strikes/throwable.js";
+import * as laser    from "./strikes/laser.js";
+import * as voidStrike from "./strikes/void.js";
+import * as heal     from "./strikes/heal.js";
 
-const ALL_STRIKES = [orbital, ddx, instant, big];
+const ALL_STRIKES = [orbital, ddx, instant, big, throwable, laser, voidStrike, heal];
 
 // Built automatically from each strike's exported ITEM_ID and RADIUS
-const BEACON_RADIUS = Object.fromEntries(ALL_STRIKES.map(s => [s.ITEM_ID, s.RADIUS]));
+const BEACON_STRIKE = Object.fromEntries(ALL_STRIKES.map(s => [s.ITEM_ID, s]));
 
 // ─── Indicator loop ───────────────────────────────────────────────────────────
 system.runInterval(() => {
   for (const player of world.getPlayers()) {
     try {
-      const held = player.getComponent("minecraft:equippable")?.getEquipment("Mainhand");
-      const radius = held ? BEACON_RADIUS[held.typeId] : undefined;
-      if (radius !== undefined) spawnIndicator(player, radius);
+      const held   = player.getComponent("minecraft:equippable")?.getEquipment("Mainhand");
+      const strike = held ? BEACON_STRIKE[held.typeId] : undefined;
+      if (!strike) continue;
+      if (strike.INDICATOR_FN) {
+        strike.INDICATOR_FN(player);
+      } else if (strike.RADIUS !== undefined) {
+        spawnIndicator(player, strike.RADIUS);
+      }
     } catch { /* ignore */ }
   }
 }, 5);
@@ -42,8 +51,8 @@ world.afterEvents.entityDie.subscribe(ev => {
         ? (entity.name ?? "A player")
         : entity.typeId.replace("minecraft:", "").replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase()));
     for (const strike of ALL_STRIKES) {
-      if (entity.hasTag(strike.DEATH_TAG)) {
-        world.sendMessage(strike.DEATH_MSG(name));
+      if (strike.DEATH_TAG && entity.hasTag(strike.DEATH_TAG)) {
+        if (strike.DEATH_MSG) world.sendMessage(strike.DEATH_MSG(name));
         entity.removeTag(strike.DEATH_TAG);
         break;
       }

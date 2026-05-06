@@ -94,7 +94,7 @@ export function removeCylinder(dimension, positions) {
 export const activeCylinders = new Map();
 
 // ─── Particle spawn point grid (center + rings for large radii) ───────────────
-function getParticleSpawnPoints(cx, cz, radius) {
+export function getParticleSpawnPoints(cx, cz, radius) {
   const pcx = cx + 0.5, pcz = cz + 0.5;
   const points = [{ x: pcx, z: pcz }];
   if (radius <= 5) return points;
@@ -112,9 +112,9 @@ function getParticleSpawnPoints(cx, cz, radius) {
 }
 
 // ─── Strike execution engine ──────────────────────────────────────────────────
-export function executeStrike(player, deathTag, particles, actionBarMsg, radius, delay, protectedBlocks) {
+export function executeStrike(player, deathTag, particles, actionBarMsg, radius, delay, protectedBlocks, precomputedTarget = null) {
   const dimension = player.dimension;
-  const target    = getTarget(player);
+  const target    = precomputedTarget ?? getTarget(player);
   const r2        = radius ** 2;
 
   dimension.playSound("random.orb",      target, { volume: 2.0, pitch: 0.4 });
