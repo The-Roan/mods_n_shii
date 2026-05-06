@@ -160,13 +160,15 @@ function showRecipePage(player, recipe) {
     .then(result => {
       if (result.canceled) return;
       if (result.selection === 0) {
-        for (const item of Object.values(recipe.key)) {
+        const flat = recipe.pattern.join("");
+        for (const [letter, item] of Object.entries(recipe.key)) {
+          const count = [...flat].filter(c => c === letter).length;
           if (item.id === "orbital:strike_beacon") {
             for (const base of ORBITAL_BASE_INGREDIENTS) {
-              try { player.runCommand(`give @s ${base.id} ${base.count}`); } catch { /* ignore */ }
+              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch { /* ignore */ }
             }
           } else {
-            try { player.runCommand(`give @s ${item.id} 1`); } catch { /* ignore */ }
+            try { player.runCommand(`give @s ${item.id} ${count}`); } catch { /* ignore */ }
           }
         }
         showRecipePage(player, recipe);
