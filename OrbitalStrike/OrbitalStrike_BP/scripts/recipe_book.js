@@ -134,7 +134,7 @@ world.afterEvents.itemUse.subscribe(ev => {
 // ─── Main menu ────────────────────────────────────────────────────────────────
 function showMainMenu(player) {
   const form = new ActionFormData()
-    .title("§6§lStrike Recipe Book")
+    .title("§8§lStrike Recipe Book")
     .body("§fSelect a strike to view its recipe.");
 
   for (const r of RECIPES) {
