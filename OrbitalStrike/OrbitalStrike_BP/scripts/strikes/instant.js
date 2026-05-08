@@ -6,7 +6,7 @@ export const RADIUS     = 5;
 export const DELAY      = 0;
 export const DEATH_TAG  = "instant_strike_kill";
 export const ACTION_BAR = "§c⚡ Instant Strike!";
-export const DEATH_MSG  = name => `§c${name} §7was instantly obliterated by an instant strike`;
+export const DEATH_MSG  = name => `§c${name} §7was §cinstantly §7vaporized`;
 export const PARTICLES  = {
   explosion: "orbital:instant_explosion",
   shockwave: "orbital:instant_shockwave",

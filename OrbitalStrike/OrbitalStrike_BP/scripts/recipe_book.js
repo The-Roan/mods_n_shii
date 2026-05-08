@@ -7,7 +7,7 @@ const BOOK_ID = "orbital:recipe_book";
 const RECIPES = [
   {
     name:       "Orbital Strike Beacon",
-    color:      "§c",
+    color:      "§b",
     pageIcon:   "textures/items/recipe_page_orbital",
     detailIcon: "textures/items/recipe_detail_orbital",
     pattern:    ["EEE", "NBN", "EEE"],

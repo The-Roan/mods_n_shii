@@ -6,7 +6,7 @@ export const RADIUS     = 10;
 export const DELAY      = 40;
 export const DEATH_TAG  = "big_strike_kill";
 export const ACTION_BAR = "§5☄ Big Strike incoming...";
-export const DEATH_MSG  = name => `§5${name} §7was crushed by a big orbital strike`;
+export const DEATH_MSG  = name => `§5${name} §7was §ccrushed §7by a big orbital strike`;
 export const PARTICLES  = {
   explosion: "orbital:big_explosion",
   shockwave: "orbital:big_shockwave",

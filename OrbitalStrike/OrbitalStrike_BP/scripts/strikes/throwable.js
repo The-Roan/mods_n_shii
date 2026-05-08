@@ -5,7 +5,7 @@ export const ITEM_ID       = "orbital:throwable_beacon";
 export const RADIUS        = 5;
 export const DEATH_TAG     = "throwable_strike_kill";
 export const ACTION_BAR    = "§a☄ Throwable Strike incoming...";
-export const DEATH_MSG     = name => `§a${name} §7was exploded by a tick strike`;
+export const DEATH_MSG     = name => `§a${name} §7was §cbombed §7like §cHiroshima`;
 export const PARTICLES     = {
   explosion: "orbital:throwable_explosion",
   shockwave: "orbital:throwable_shockwave",

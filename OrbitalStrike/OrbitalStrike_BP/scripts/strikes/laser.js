@@ -118,6 +118,6 @@ world.afterEvents.entityDie.subscribe(ev => {
     const killer = laserKills.get(entity.id) ?? "someone";
     laserKills.delete(entity.id);
     entity.removeTag(DEATH_TAG);
-    world.sendMessage(`§f${victimName} §7was lasered by §f${killer}`);
+    world.sendMessage(`§f${victimName} §7was §clasered §7by §f${killer}`);
   } catch { /* ignore */ }
 });

@@ -6,7 +6,7 @@ export const RADIUS     = 5;
 export const DELAY      = 40;
 export const DEATH_TAG  = "ddx_strike_kill";
 export const ACTION_BAR = "§e☄ D/DX Strike incoming...";
-export const DEATH_MSG  = name => `§e${name} §7was vaporized by a D/DX strike`;
+export const DEATH_MSG  = name => `§e${name} §7was brutally §cáss ráped§7 by §pHuntr/x`;
 export const PARTICLES  = {
   explosion: "orbital:ddx_explosion",
   shockwave: "orbital:ddx_shockwave",
