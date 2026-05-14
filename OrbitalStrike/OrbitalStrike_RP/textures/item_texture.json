@@ -76,6 +76,42 @@
     },
     "recipe_detail_heal": {
       "textures": "textures/items/recipe_detail_heal"
+    },
+    "napalm_beacon": {
+      "textures": "textures/items/napalm_beacon"
+    },
+    "recipe_page_napalm": {
+      "textures": "textures/items/recipe_page_napalm"
+    },
+    "recipe_detail_napalm": {
+      "textures": "textures/items/recipe_detail_napalm"
+    },
+    "implicit_beacon": {
+      "textures": "textures/items/implicit_beacon"
+    },
+    "recipe_page_implicit": {
+      "textures": "textures/items/recipe_page_implicit"
+    },
+    "recipe_detail_implicit": {
+      "textures": "textures/items/recipe_detail_implicit"
+    },
+    "related_rates_beacon": {
+      "textures": "textures/items/related_rates_beacon"
+    },
+    "recipe_page_related_rates": {
+      "textures": "textures/items/recipe_page_related_rates"
+    },
+    "recipe_detail_related_rates": {
+      "textures": "textures/items/recipe_detail_related_rates"
+    },
+    "optimization_beacon": {
+      "textures": "textures/items/optimization_beacon"
+    },
+    "recipe_page_optimization": {
+      "textures": "textures/items/recipe_page_optimization"
+    },
+    "recipe_detail_optimization": {
+      "textures": "textures/items/recipe_detail_optimization"
     }
   }
 }

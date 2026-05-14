@@ -40,6 +40,36 @@
           "pitch": 1.0
         }
       ]
+    },
+    "orbital.implicit.song": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/orbital/implicit_song",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
+    },
+    "orbital.related_rates.song": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/orbital/related_rates_song",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
+    },
+    "orbital.optimization.song": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/orbital/optimization_song",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
     }
   }
 }

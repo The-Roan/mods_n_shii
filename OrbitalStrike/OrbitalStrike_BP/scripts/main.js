@@ -9,8 +9,12 @@ import * as throwable from "./strikes/throwable.js";
 import * as laser    from "./strikes/laser.js";
 import * as voidStrike from "./strikes/void.js";
 import * as heal     from "./strikes/heal.js";
+import * as napalm        from "./strikes/napalm.js";
+import * as implicit      from "./strikes/implicit.js";
+import * as relatedRates  from "./strikes/related_rates.js";
+import * as optimization  from "./strikes/optimization.js";
 
-const ALL_STRIKES = [orbital, ddx, instant, big, throwable, laser, voidStrike, heal];
+const ALL_STRIKES = [orbital, ddx, instant, big, throwable, laser, voidStrike, heal, napalm, implicit, relatedRates, optimization];
 
 // Built automatically from each strike's exported ITEM_ID and RADIUS
 const BEACON_STRIKE = Object.fromEntries(ALL_STRIKES.map(s => [s.ITEM_ID, s]));

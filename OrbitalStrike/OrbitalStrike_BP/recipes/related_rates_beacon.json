@@ -1,0 +1,18 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shaped": {
+    "description": { "identifier": "orbital:related_rates_beacon_recipe" },
+    "tags": ["crafting_table"],
+    "unlock": [
+      { "item": "minecraft:diamond_sword" },
+      { "item": "orbital:ddx_beacon" }
+    ],
+    "pattern": ["SRS", "RXR", "SRS"],
+    "key": {
+      "S": { "item": "minecraft:diamond_sword" },
+      "R": { "item": "minecraft:redstone" },
+      "X": { "item": "orbital:ddx_beacon" }
+    },
+    "result": { "item": "orbital:related_rates_beacon", "count": 1 }
+  }
+}

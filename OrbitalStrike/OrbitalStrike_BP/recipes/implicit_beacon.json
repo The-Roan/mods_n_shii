@@ -1,0 +1,18 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shaped": {
+    "description": { "identifier": "orbital:implicit_beacon_recipe" },
+    "tags": ["crafting_table"],
+    "unlock": [
+      { "item": "minecraft:diamond_sword" },
+      { "item": "orbital:ddx_beacon" }
+    ],
+    "pattern": ["SLS", "LXL", "SLS"],
+    "key": {
+      "S": { "item": "minecraft:diamond_sword" },
+      "L": { "item": "minecraft:lapis_lazuli" },
+      "X": { "item": "orbital:ddx_beacon" }
+    },
+    "result": { "item": "orbital:implicit_beacon", "count": 1 }
+  }
+}

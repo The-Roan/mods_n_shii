@@ -1,0 +1,19 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shaped": {
+    "description": { "identifier": "orbital:napalm_beacon_recipe" },
+    "tags": ["crafting_table"],
+    "unlock": [
+      { "item": "minecraft:fire_charge" },
+      { "item": "orbital:strike_beacon" }
+    ],
+    "pattern": ["FFF", "IOI", "NNN"],
+    "key": {
+      "F": { "item": "minecraft:fire_charge" },
+      "I": { "item": "minecraft:flint_and_steel" },
+      "O": { "item": "orbital:strike_beacon" },
+      "N": { "item": "minecraft:netherrack" }
+    },
+    "result": { "item": "orbital:napalm_beacon", "count": 1 }
+  }
+}
