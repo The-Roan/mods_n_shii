@@ -112,6 +112,15 @@
     },
     "recipe_detail_optimization": {
       "textures": "textures/items/recipe_detail_optimization"
+    },
+    "singularity_beacon": {
+      "textures": "textures/items/singularity_beacon"
+    },
+    "recipe_page_singularity": {
+      "textures": "textures/items/recipe_page_singularity"
+    },
+    "recipe_detail_singularity": {
+      "textures": "textures/items/recipe_detail_singularity"
     }
   }
 }

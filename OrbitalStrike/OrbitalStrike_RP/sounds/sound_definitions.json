@@ -70,6 +70,36 @@
           "pitch": 1.0
         }
       ]
+    },
+    "orbital.singularity.spawn": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/orbital/singularity_spawn",
+          "volume": 1.0,
+          "pitch": 0.7
+        }
+      ]
+    },
+    "orbital.singularity.loop": {
+      "category": "ambient",
+      "sounds": [
+        {
+          "name": "sounds/orbital/singularity_loop",
+          "volume": 1.0,
+          "pitch": 0.6
+        }
+      ]
+    },
+    "orbital.singularity.explode": {
+      "category": "hostile",
+      "sounds": [
+        {
+          "name": "sounds/orbital/singularity_explode",
+          "volume": 1.0,
+          "pitch": 0.5
+        }
+      ]
     }
   }
 }

@@ -175,6 +175,19 @@ const RECIPES = [
       O: { label: "Orbital Strike Beacon",  id: "orbital:strike_beacon",      count: 1 },
       N: { label: "Netherrack",             id: "minecraft:netherrack",       count: 3 }
     }
+  },
+  {
+    name:       "Singularity Strike Beacon",
+    color:      "§5",
+    pageIcon:   "textures/items/recipe_page_singularity",
+    detailIcon: "textures/items/recipe_detail_singularity",
+    desc:       "The Artificial Disaster",
+    pattern:    ["NBN", "BVB", "NBN"],
+    key: {
+      N: { label: "Nether Star",        id: "minecraft:nether_star", count: 4 },
+      B: { label: "Big Strike Beacon",  id: "orbital:big_beacon",    count: 4 },
+      V: { label: "Void Strike Beacon", id: "orbital:void_beacon",   count: 1 }
+    }
   }
 ];
 
@@ -201,6 +214,26 @@ const DDX_BASE_INGREDIENTS = [
   { id: "minecraft:end_crystal", count: 6 },
   { id: "minecraft:nether_star", count: 2 },
   { id: "minecraft:beacon",      count: 1 }
+];
+
+// ─── Ingredients for the Big beacon (orbital:strike_beacon expanded) ──
+const BIG_BASE_INGREDIENTS = [
+  { id: "minecraft:end_crystal",    count: 12 },
+  { id: "minecraft:amethyst_shard", count: 2 },
+  { id: "minecraft:nether_star",    count: 2 },
+  { id: "minecraft:beacon",         count: 1 }
+];
+
+// ─── Ingredients for the Void beacon (orbital:strike_beacon expanded) ──
+const VOID_BASE_INGREDIENTS = [
+  { id: "minecraft:ender_pearl",             count: 3 },
+  { id: "minecraft:bedrock",                 count: 2 },
+  { id: "minecraft:end_crystal",             count: 6 },
+  { id: "minecraft:nether_star",             count: 2 },
+  { id: "minecraft:beacon",                  count: 1 },
+  { id: "minecraft:command_block",           count: 1 },
+  { id: "minecraft:repeating_command_block", count: 1 },
+  { id: "minecraft:chain_command_block",     count: 1 }
 ];
 
 // ─── Open book on use ─────────────────────────────────────────────────────────
@@ -269,6 +302,14 @@ function showRecipePage(player, recipe, parentGroup) {
             }
           } else if (item.id === "orbital:ddx_beacon") {
             for (const base of DDX_BASE_INGREDIENTS) {
+              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch { /* ignore */ }
+            }
+          } else if (item.id === "orbital:big_beacon") {
+            for (const base of BIG_BASE_INGREDIENTS) {
+              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch { /* ignore */ }
+            }
+          } else if (item.id === "orbital:void_beacon") {
+            for (const base of VOID_BASE_INGREDIENTS) {
               try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch { /* ignore */ }
             }
           } else {

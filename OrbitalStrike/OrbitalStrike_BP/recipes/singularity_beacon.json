@@ -1,0 +1,19 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shaped": {
+    "description": { "identifier": "orbital:singularity_beacon_recipe" },
+    "tags": ["crafting_table"],
+    "unlock": [
+      { "item": "minecraft:nether_star" },
+      { "item": "orbital:big_beacon" },
+      { "item": "orbital:void_beacon" }
+    ],
+    "pattern": ["NBN", "BVB", "NBN"],
+    "key": {
+      "N": { "item": "minecraft:nether_star" },
+      "B": { "item": "orbital:big_beacon" },
+      "V": { "item": "orbital:void_beacon" }
+    },
+    "result": { "item": "orbital:singularity_beacon", "count": 1 }
+  }
+}
