@@ -1,0 +1,28 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "orbital:bitcoin_beacon_recipe"
+    },
+    "tags": ["crafting_table"],
+    "unlock": [
+      { "item": "minecraft:gold_ingot" },
+      { "item": "orbital:ddx_beacon" }
+    ],
+    "pattern": [
+      "DGD",
+      "GOG",
+      "IGI"
+    ],
+    "key": {
+      "D": { "item": "orbital:ddx_beacon" },
+      "G": { "item": "minecraft:gold_ingot" },
+      "O": { "item": "orbital:strike_beacon" },
+      "I": { "item": "orbital:instant_beacon" }
+    },
+    "result": {
+      "item": "orbital:bitcoin_beacon",
+      "count": 1
+    }
+  }
+}

@@ -121,6 +121,15 @@
     },
     "recipe_detail_singularity": {
       "textures": "textures/items/recipe_detail_singularity"
+    },
+    "bitcoin_beacon": {
+      "textures": "textures/items/bitcoin_beacon"
+    },
+    "recipe_page_bitcoin": {
+      "textures": "textures/items/recipe_page_bitcoin"
+    },
+    "recipe_detail_bitcoin": {
+      "textures": "textures/items/recipe_detail_bitcoin"
     }
   }
 }

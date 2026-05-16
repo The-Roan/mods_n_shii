@@ -188,6 +188,20 @@ const RECIPES = [
       B: { label: "Big Strike Beacon",  id: "orbital:big_beacon",    count: 4 },
       V: { label: "Void Strike Beacon", id: "orbital:void_beacon",   count: 1 }
     }
+  },
+  {
+    name:       "Bitcoin Strike Beacon",
+    color:      "§6",
+    pageIcon:   "textures/items/recipe_page_bitcoin",
+    detailIcon: "textures/items/recipe_detail_bitcoin",
+    desc:       "JE STEAL ALL ZE BITCOIN",
+    pattern:    ["DGD", "GOG", "IGI"],
+    key: {
+      D: { label: "D/DX Strike Beacon",    id: "orbital:ddx_beacon",     count: 2 },
+      G: { label: "Gold Ingot",            id: "minecraft:gold_ingot",   count: 4 },
+      O: { label: "Orbital Strike Beacon", id: "orbital:strike_beacon",  count: 1 },
+      I: { label: "Instant Strike Beacon", id: "orbital:instant_beacon", count: 2 }
+    }
   }
 ];
 
@@ -222,6 +236,15 @@ const BIG_BASE_INGREDIENTS = [
   { id: "minecraft:amethyst_shard", count: 2 },
   { id: "minecraft:nether_star",    count: 2 },
   { id: "minecraft:beacon",         count: 1 }
+];
+
+// ─── Ingredients for the Instant beacon (orbital:strike_beacon expanded) ──
+const INSTANT_BASE_INGREDIENTS = [
+  { id: "minecraft:redstone",    count: 7 },
+  { id: "minecraft:clock",       count: 1 },
+  { id: "minecraft:end_crystal", count: 6 },
+  { id: "minecraft:nether_star", count: 2 },
+  { id: "minecraft:beacon",      count: 1 }
 ];
 
 // ─── Ingredients for the Void beacon (orbital:strike_beacon expanded) ──
@@ -306,6 +329,10 @@ function showRecipePage(player, recipe, parentGroup) {
             }
           } else if (item.id === "orbital:big_beacon") {
             for (const base of BIG_BASE_INGREDIENTS) {
+              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch { /* ignore */ }
+            }
+          } else if (item.id === "orbital:instant_beacon") {
+            for (const base of INSTANT_BASE_INGREDIENTS) {
               try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch { /* ignore */ }
             }
           } else if (item.id === "orbital:void_beacon") {
