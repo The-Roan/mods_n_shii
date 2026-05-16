@@ -44,24 +44,67 @@ world.afterEvents.itemUse.subscribe(ev => {
   }
 
   let t = 0;
+  let orbitAngle = 0;
+  // Washer from r=5 to r=10 — 4 radial layers, steps scaled to circumference
+  const RING_LAYERS = [
+    { r: 5.0,  steps: 10 },
+    { r: 6.7,  steps: 13 },
+    { r: 8.3,  steps: 16 },
+    { r: 10.0, steps: 20 },
+  ];
   const runId = system.runInterval(() => {
     t++;
+    orbitAngle += 0.12; // ~1 full rotation every 2.6 s
 
     // ── Phase 1: Formation (ticks 1–40) ───────────────────────────────────────
     if (t <= SPAWN_TICKS) {
-      dim.spawnParticle("orbital:singularity_form", target);
-      if (t % 4 === 0) dim.spawnParticle("orbital:singularity_ring", target);
-      if (t >= Math.floor(SPAWN_TICKS * 0.6)) dim.spawnParticle("orbital:singularity_core", target);
+      // Shadow grows from 0→5 via the shadow_form particle spawned once at tick 1
+      if (t === 1) dim.spawnParticle("orbital:singularity_shadow_form", target);
+
+      // Washer expands outward: one new layer unlocks every quarter of Phase 1
+      const numLayers = Math.max(1, Math.ceil((t / SPAWN_TICKS) * RING_LAYERS.length));
+      for (let li = 0; li < numLayers; li++) {
+        const { r, steps } = RING_LAYERS[li];
+        for (let i = 0; i < steps; i++) {
+          const a = orbitAngle + (i / steps) * Math.PI * 2;
+          dim.spawnParticle("orbital:singularity_ring", {
+            x: target.x + Math.cos(a) * r, y: target.y, z: target.z + Math.sin(a) * r
+          });
+        }
+      }
+      if (t % 2 === 0) {
+        for (let i = 0; i < 8; i++) {
+          const a = orbitAngle * 1.5 + (i / 8) * Math.PI * 2;
+          dim.spawnParticle("orbital:singularity_core", {
+            x: target.x + Math.cos(a) * 2.5, y: target.y, z: target.z + Math.sin(a) * 2.5
+          });
+        }
+      }
+      if (t % 4 === 0) dim.spawnParticle("orbital:singularity_form", target);
     }
 
     if (t === SPAWN_TICKS) {
       dim.playSound("orbital.singularity.loop", target, { volume: 3.0 });
     }
 
-    // ── Phase 2: Active suction (ticks 41–140) ────────────────────────────────
+    // ── Phase 2: Active suction (ticks 41–140) — full washer spinning ─────────
     if (t > SPAWN_TICKS && t <= SPAWN_TICKS + SUCK_TICKS) {
-      dim.spawnParticle("orbital:singularity_core", target);
-      if (t % 2 === 0) dim.spawnParticle("orbital:singularity_ring", target);
+      // Full washer — all 4 layers every tick
+      for (const { r, steps } of RING_LAYERS) {
+        for (let i = 0; i < steps; i++) {
+          const a = orbitAngle + (i / steps) * Math.PI * 2;
+          dim.spawnParticle("orbital:singularity_ring", {
+            x: target.x + Math.cos(a) * r, y: target.y, z: target.z + Math.sin(a) * r
+          });
+        }
+      }
+      for (let i = 0; i < 10; i++) {
+        const a = orbitAngle * 1.5 + (i / 10) * Math.PI * 2;
+        dim.spawnParticle("orbital:singularity_core", {
+          x: target.x + Math.cos(a) * 3.5, y: target.y, z: target.z + Math.sin(a) * 3.5
+        });
+      }
+      dim.spawnParticle("orbital:singularity_shadow", target);
       if (t % 3 === 0) dim.spawnParticle("orbital:singularity_pull", target);
 
       // Tag anyone who walked into range during formation

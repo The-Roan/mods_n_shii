@@ -5,7 +5,7 @@
       "identifier": "orbital:singularity_pull",
       "basic_render_parameters": {
         "material": "particles_add",
-        "texture": "textures/particle/particles"
+        "texture": "textures/particles/singularity_circle"
       }
     },
     "components": {
@@ -21,7 +21,7 @@
       "minecraft:particle_appearance_billboard": {
         "size": ["Math.random(0.15, 0.5)", "Math.random(0.15, 0.5)"],
         "facing_camera_type": "rotate_xyz",
-        "uv": { "texture_width": 128, "texture_height": 128, "uv": [56, 0], "uv_size": [8, 8] }
+        "uv": { "texture_width": 32, "texture_height": 32, "uv": [0, 0], "uv_size": [32, 32] }
       },
       "minecraft:particle_appearance_tinting": {
         "color": {
