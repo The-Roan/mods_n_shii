@@ -10,7 +10,7 @@ const RECIPES = [
     color:      "§b",
     pageIcon:   "textures/items/recipe_page_orbital",
     detailIcon: "textures/items/recipe_detail_orbital",
-    desc:       "Obliteration",
+    desc:       "...was blown up by Mo",
     pattern:    ["EEE", "NBN", "EEE"],
     key: {
       E: { label: "End Crystal",  id: "minecraft:end_crystal",  count: 6 },
