@@ -28,8 +28,9 @@ let originX = 0, originY = 0, originZ = 0;
 
 function cellKey(gx, gz) { return `${gx},${gz}`; }
 
-export function resetState() { placedCells.clear(); placedRooms.clear(); }
+export function resetState() { placedCells.clear(); placedRooms.clear(); originX = 0; originY = 0; originZ = 0; }
 export function getOrigin() { return { x: originX, y: originY, z: originZ }; }
+export function getPlacedCells() { return placedCells; }
 
 // Pick a room that has all required exits, boosting rooms whose type already
 // appears in a neighbour cell (clusterBonus drives same-type clustering).

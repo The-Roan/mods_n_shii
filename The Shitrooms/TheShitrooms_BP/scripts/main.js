@@ -13,7 +13,152 @@ world.afterEvents.worldInitialize.subscribe(() => {
   startExplorationLoop();
   startSpawnLoop();
   startCleanupLoop();
+  startNavmeshLoop();
+  setupScoreboard();
 });
+
+// ─── Block-level A* pathfinding ───────────────────────────────────────────────
+
+const BOT_SPEED     = 0.3;  // blocks per tick (~Speed II player)
+const PATH_RETICK   = 10;   // recompute path every N ticks
+const ASTAR_BUDGET  = 500;  // max nodes A* explores before giving up
+
+function isWalkable(dim, bx, bz, floorY) {
+  try {
+    const lo = dim.getBlock({ x: bx, y: floorY + 1, z: bz });
+    const hi = dim.getBlock({ x: bx, y: floorY + 2, z: bz });
+    return lo?.isAir && hi?.isAir;
+  } catch { return false; }
+}
+
+// A* on the block grid. Returns [{x,z},...] from first step to goal, or null.
+function astar(dim, sx, sz, ex, ez, floorY) {
+  if (sx === ex && sz === ez) return [];
+  const key = (x, z) => `${x},${z}`;
+  const h   = (x, z) => Math.abs(x - ex) + Math.abs(z - ez);
+  const startKey = key(sx, sz);
+  const goalKey  = key(ex, ez);
+
+  const open  = [{ x: sx, z: sz, f: h(sx, sz) }];
+  const prev  = new Map([[startKey, null]]);
+  const gCost = new Map([[startKey, 0]]);
+
+  while (open.length > 0 && prev.size <= ASTAR_BUDGET) {
+    // Pop lowest-f (linear scan is fine for budgets under ~1000)
+    let bi = 0;
+    for (let i = 1; i < open.length; i++) if (open[i].f < open[bi].f) bi = i;
+    const { x: cx, z: cz } = open.splice(bi, 1)[0];
+    if (cx === ex && cz === ez) break;
+
+    const ck = key(cx, cz);
+    const cg = gCost.get(ck);
+    for (const [dx, dz] of [[1,0],[-1,0],[0,1],[0,-1]]) {
+      const nx = cx + dx, nz = cz + dz;
+      const nk = key(nx, nz);
+      if (prev.has(nk)) continue;
+      if (!isWalkable(dim, nx, nz, floorY)) continue;
+      const ng = cg + 1;
+      prev.set(nk, ck);
+      gCost.set(nk, ng);
+      if (nx === ex && nz === ez) { open.length = 0; break; }
+      open.push({ x: nx, z: nz, f: ng + h(nx, nz) });
+    }
+  }
+
+  if (!prev.has(goalKey)) return null;
+  const path = [];
+  let cur = goalKey;
+  while (prev.get(cur) !== null) {
+    const [x, z] = cur.split(",").map(Number);
+    path.unshift({ x, z });
+    cur = prev.get(cur);
+  }
+  return path;
+}
+
+const botCache = new Map(); // entityId -> { path: [{x,z}]|null, nextRecalc: number }
+
+function startNavmeshLoop() {
+  const TYPES = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3"];
+
+  system.runInterval(() => {
+    const origin = getOrigin();
+    if (origin.x === 0 && origin.y === 0 && origin.z === 0) return;
+    const floorY = origin.y;
+    const tick   = system.currentTick;
+
+    const dimsMap = new Map();
+    for (const player of world.getPlayers()) dimsMap.set(player.dimension.id, player.dimension);
+
+    for (const [, dim] of dimsMap) {
+      const players = dim.getPlayers();
+      if (players.length === 0) continue;
+
+      for (const typeId of TYPES) {
+        for (const entity of dim.getEntities({ type: typeId })) {
+          // Nearest player
+          let nearest = null, nearDist = Infinity;
+          for (const p of players) {
+            const d = Math.hypot(p.location.x - entity.location.x, p.location.z - entity.location.z);
+            if (d < nearDist) { nearDist = d; nearest = p; }
+          }
+          if (!nearest) continue;
+
+          // Always face the player
+          try {
+            entity.setRotation({
+              x: 0,
+              y: -Math.atan2(nearest.location.x - entity.location.x,
+                             nearest.location.z - entity.location.z) * (180 / Math.PI)
+            });
+          } catch { }
+
+          let cache = botCache.get(entity.id) ?? { path: null, nextRecalc: 0 };
+
+          // Advance path when entity enters the current waypoint block
+          if (cache.path?.length > 0) {
+            const wp = cache.path[0];
+            if (Math.hypot(entity.location.x - (wp.x + 0.5),
+                           entity.location.z - (wp.z + 0.5)) < 0.6) {
+              cache.path.shift();
+            }
+          }
+
+          // Recompute when path is exhausted or timer fires
+          if (!cache.path?.length || tick >= cache.nextRecalc) {
+            const sx = Math.floor(entity.location.x);
+            const sz = Math.floor(entity.location.z);
+            const ex = Math.floor(nearest.location.x);
+            const ez = Math.floor(nearest.location.z);
+            cache = { path: astar(dim, sx, sz, ex, ez, floorY) ?? [], nextRecalc: tick + PATH_RETICK };
+            botCache.set(entity.id, cache);
+          }
+
+          // Move toward next block waypoint, or directly to player when path is empty
+          let wx, wz;
+          if (cache.path.length === 0) {
+            wx = nearest.location.x; wz = nearest.location.z;
+          } else {
+            wx = cache.path[0].x + 0.5; wz = cache.path[0].z + 0.5;
+          }
+
+          const dx = wx - entity.location.x;
+          const dz = wz - entity.location.z;
+          const dist = Math.sqrt(dx * dx + dz * dz);
+          if (dist < 0.05) continue;
+
+          const step = Math.min(BOT_SPEED, dist);
+          try {
+            entity.teleport(
+              { x: entity.location.x + (dx / dist) * step, y: floorY + 1, z: entity.location.z + (dz / dist) * step },
+              { dimension: dim, checkForBlocks: false }
+            );
+          } catch { }
+        }
+      }
+    }
+  }, 1);
+}
 
 function startCleanupLoop() {
   const LIQUIDS = ["minecraft:water", "minecraft:lava", "minecraft:flowing_water", "minecraft:flowing_lava"];
@@ -44,7 +189,7 @@ function startCleanupLoop() {
         const seg = (s.seg % NEXTBOT_SEGMENT_COUNT) + 1;
         const { x, y, z } = entity.location;
         try {
-          dim.runCommand(`playsound mob.nextbot.seg.${seg} @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 100 1 0`);
+          dim.runCommand(`playsound mob.nextbot.seg.${seg} @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 1.6 1 0`);
           soundState.set(entity.id, { seg, tick });
         } catch { }
       }
@@ -53,7 +198,7 @@ function startCleanupLoop() {
         if (tick - s.tick < NEXTBOT2_TICKS) continue;
         const { x, y, z } = entity.location;
         try {
-          dim.runCommand(`playsound ${NEXTBOT2_SOUND} @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 100 1 0`);
+          dim.runCommand(`playsound ${NEXTBOT2_SOUND} @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 1.6 1 0`);
           soundState.set(entity.id, { seg: 0, tick });
         } catch { }
       }
@@ -63,7 +208,7 @@ function startCleanupLoop() {
         const seg = (s.seg % 5) + 1;
         const { x, y, z } = entity.location;
         try {
-          dim.runCommand(`playsound mob.nextbot3.seg.${seg} @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 100 1 0`);
+          dim.runCommand(`playsound mob.nextbot3.seg.${seg} @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 1.6 1 0`);
           soundState.set(entity.id, { seg, tick });
         } catch { }
       }
@@ -71,52 +216,10 @@ function startCleanupLoop() {
   }, 20);
 
   // Script-driven combat: steer nextbots toward the nearest player and deal damage.
-  const attackCooldown = new Map();
-  const lastDirs = new Map(); // entityId -> last chosen steer direction for momentum
-  const CHASE_RANGE = 64;
-  const ATTACK_RANGE = 2.5;
-  const ATTACK_DAMAGE = 8;
-  const ATTACK_INTERVAL = 20;
-  const NEXTBOT_SPEED = 0.60;
+  const KILL_RANGE = 2.5;
   const NEXTBOT_TYPES = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3"];
 
-  // Returns true if a 1.5-block step in direction (nx, nz) from (ex, ey, ez) is unobstructed.
-  function pathClear(dim, ex, ey, ez, nx, nz) {
-    try {
-      const cx = ex + nx * 1.5, cz = ez + nz * 1.5;
-      const b1 = dim.getBlock({ x: cx, y: ey + 0.1, z: cz });
-      const b2 = dim.getBlock({ x: cx, y: ey + 0.9, z: cz });
-      return (!b1 || b1.isAir) && (!b2 || b2.isAir);
-    } catch { return true; }
-  }
-
-  // Rotate a unit direction (nx, nz) by deg degrees clockwise in the XZ plane.
-  function rotate(nx, nz, deg) {
-    const r = deg * Math.PI / 180;
-    const c = Math.cos(r), s = Math.sin(r);
-    return { x: nx * c + nz * s, z: -nx * s + nz * c };
-  }
-
-  // Sweep 12 directions (every 30°). Prefer last direction only if still clear and forward-facing.
-  function steerDir(dim, ex, ey, ez, dx, dz, dist, entityId) {
-    const nx = dx / dist, nz = dz / dist;
-    const last = lastDirs.get(entityId);
-    if (last && pathClear(dim, ex, ey, ez, last.x, last.z) && (last.x * nx + last.z * nz) > 0.0) {
-      return last;
-    }
-    const angles = [0, 30, -30, 60, -60, 90, -90, 120, -120, 150, -150, 180];
-    for (const deg of angles) {
-      const dir = deg === 0 ? { x: nx, z: nz } : rotate(nx, nz, deg);
-      if (pathClear(dim, ex, ey, ez, dir.x, dir.z)) {
-        lastDirs.set(entityId, dir);
-        return dir;
-      }
-    }
-    return { x: nx, z: nz };
-  }
-
   system.runInterval(() => {
-    const tick = system.currentTick;
     const dimsMap = new Map();
     for (const player of world.getPlayers()) dimsMap.set(player.dimension.id, player.dimension);
 
@@ -126,48 +229,14 @@ function startCleanupLoop() {
 
       for (const typeId of NEXTBOT_TYPES) {
         for (const entity of dim.getEntities({ type: typeId })) {
-          let nearest = null;
-          let nearestDist = CHASE_RANGE + 1;
           for (const p of players) {
             const dx = p.location.x - entity.location.x;
             const dy = p.location.y - entity.location.y;
             const dz = p.location.z - entity.location.z;
-            const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
-            if (d < nearestDist) { nearestDist = d; nearest = p; }
-          }
-          if (!nearest) continue;
-
-          const ex = entity.location.x, ey = entity.location.y, ez = entity.location.z;
-          const dx = nearest.location.x - ex;
-          const dy = nearest.location.y - ey;
-          const dz = nearest.location.z - ez;
-
-          // Always face the player
-          const yaw = Math.atan2(-dx, dz) * (180 / Math.PI);
-          const horizDist = Math.sqrt(dx * dx + dz * dz);
-          const pitch = -Math.atan2(dy, horizDist) * (180 / Math.PI);
-          try { entity.setRotation({ x: pitch, y: yaw }); } catch { }
-
-          if (nearestDist > 0.5) {
-            const vel = entity.getVelocity();
-            // Low XZ speed despite previous impulse = blocked by wall; reset momentum
-            if (Math.sqrt(vel.x * vel.x + vel.z * vel.z) < 0.08) lastDirs.delete(entity.id);
-            const dir = steerDir(dim, ex, ey, ez, dx, dz, nearestDist, entity.id);
-            try {
-              entity.applyImpulse({
-                x: dir.x * NEXTBOT_SPEED - vel.x,
-                y: 0,
-                z: dir.z * NEXTBOT_SPEED - vel.z
-              });
-            } catch { }
-          }
-
-          // Deal damage when in melee range
-          if (nearestDist <= ATTACK_RANGE) {
-            const lastHit = attackCooldown.get(entity.id) ?? 0;
-            if (tick - lastHit >= ATTACK_INTERVAL) {
-              try { nearest.applyDamage(ATTACK_DAMAGE); } catch { }
-              attackCooldown.set(entity.id, tick);
+            if (Math.sqrt(dx * dx + dy * dy + dz * dz) <= KILL_RANGE) {
+              try { p.kill(); } catch { }
+              try { entity.kill(); } catch { }
+              break;
             }
           }
         }
@@ -175,28 +244,11 @@ function startCleanupLoop() {
     }
   }, 2);
 
-  // Keep Speed II and Strength II on all nextbots permanently
-  system.runInterval(() => {
-    const seen = new Set();
-    for (const player of world.getPlayers()) {
-      if (seen.has(player.dimension.id)) continue;
-      seen.add(player.dimension.id);
-      const dim = player.dimension;
-      for (const typeId of NEXTBOT_TYPES) {
-        for (const entity of dim.getEntities({ type: typeId })) {
-          try {
-            entity.runCommand("effect @s speed 4 1 true");
-            entity.runCommand("effect @s strength 4 1 true");
-          } catch { }
-        }
-      }
-    }
-  }, 60);
-
-  // Keep Speed II on all players permanently
+  // Keep Speed II and Saturation X on all players permanently
   system.runInterval(() => {
     for (const player of world.getPlayers()) {
-      try { player.addEffect("speed", 100, { amplifier: 1, showParticles: false }); } catch { }
+      try { player.addEffect("speed",      100, { amplifier: 1, showParticles: false }); } catch { }
+      try { player.addEffect("saturation", 100, { amplifier: 9, showParticles: false }); } catch { }
     }
   }, 60);
 
@@ -221,16 +273,72 @@ function startCleanupLoop() {
   }, 100);
 }
 
-// Generate on the first player to ever join this world
+// ─── Survival time scoreboard ─────────────────────────────────────────────────
+
+const SCORE_OBJ  = "sr_time"; // hidden — tracks current run
+const SCORE_BEST = "sr_best"; // sidebar leaderboard — best times only
+
+function setupScoreboard() {
+  let obj = world.scoreboard.getObjective(SCORE_OBJ);
+  if (!obj) obj = world.scoreboard.addObjective(SCORE_OBJ, "Time");
+
+  let best = world.scoreboard.getObjective(SCORE_BEST);
+  if (!best) best = world.scoreboard.addObjective(SCORE_BEST, "§6Best Time §f(s)");
+  try { world.getDimension("overworld").runCommand(`scoreboard objectives setdisplay sidebar ${SCORE_BEST}`); } catch { }
+  // Clear any previous list display so only sidebar shows
+  try { world.getDimension("overworld").runCommand(`scoreboard objectives setdisplay list`); } catch { }
+
+  system.runInterval(() => {
+    const o = world.scoreboard.getObjective(SCORE_OBJ);
+    const b = world.scoreboard.getObjective(SCORE_BEST);
+    if (!o) return;
+    for (const player of world.getPlayers()) {
+      let cur = 0;
+      try { cur = o.getScore(player) ?? 0; } catch { }
+      const next = cur + 1;
+      try { o.setScore(player, next); } catch { }
+      if (b) {
+        let pb = 0;
+        try { pb = b.getScore(player) ?? 0; } catch { }
+        if (next > pb) try { b.setScore(player, next); } catch { }
+      }
+      // Show current run time above the hotbar
+      try { player.onScreenDisplay.setActionBar(`§7Current: §f${next}s`); } catch { }
+    }
+  }, 20);
+}
+
+// Reset timer on death (respawn fires after death)
+world.afterEvents.playerSpawn.subscribe(ev => {
+  if (ev.initialSpawn) return;
+  const o = world.scoreboard.getObjective(SCORE_OBJ);
+  if (!o) return;
+  try { o.setScore(ev.player, 0); } catch { }
+});
+
+// Generate on the first player to ever join; teleport later joiners into the maze
 world.afterEvents.playerSpawn.subscribe(ev => {
   if (!ev.initialSpawn) return;
   try { ev.player.runCommand("gamemode survival"); } catch { }
-  if (world.getDynamicProperty(INIT_PROP)) return;
+  if (world.getDynamicProperty(INIT_PROP)) {
+    // Maze already exists — send this player straight to the spawn room
+    const o = getOrigin();
+    if (o.x !== 0 || o.y !== 0 || o.z !== 0) {
+      system.runTimeout(() => {
+        try {
+          ev.player.teleport(
+            { x: o.x + 2.5, y: o.y + 1, z: o.z + 2.5 },
+            { dimension: ev.player.dimension }
+          );
+        } catch { }
+      }, 40);
+    }
+    return;
+  }
   world.setDynamicProperty(INIT_PROP, true);
   const player = ev.player;
   player.addEffect("blindness", 100, { amplifier: 0, showParticles: false });
   player.addEffect("slowness", 100, { amplifier: 99, showParticles: false });
-  // 40 ticks (~2 s) so the player's chunks are loaded before placing structures
   system.runTimeout(() => generateInitial(player), 40);
 });
 
