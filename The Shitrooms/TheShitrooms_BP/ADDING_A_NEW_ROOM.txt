@@ -1,0 +1,87 @@
+HOW TO ADD A NEW ROOM
+=====================
+
+STEP 1 — Build your room and save the structure
+------------------------------------------------
+Build the room in-game. Save it with:
+  /structure save myroom <from> <to> disk true
+
+The .mcstructure file will appear in your world's structures folder.
+Copy it into:
+  TheShitrooms_BP/structures/shitrooms/myroom.mcstructure
+
+It will be loadable in-game as:  shitrooms:myroom
+
+
+STEP 2 — Measure the bounding box
+----------------------------------
+Note the exact dimensions of the structure you saved:
+  size.x = width  (east/west, +X axis)
+  size.y = height (+Y axis)
+  size.z = depth  (south/north, +Z axis)
+
+The ANCHOR (origin) of the structure = the NW bottom corner
+(the minimum X, minimum Y, minimum Z corner).
+
+
+STEP 3 — Identify the exits
+-----------------------------
+For each doorway in the room, note:
+
+  local.x, local.y, local.z
+    The block position of the doorway relative to the anchor.
+    Use the convention:
+      north exit (pointing -Z)  →  local.z = 0
+      south exit (pointing +Z)  →  local.z = size.z
+      west  exit (pointing -X)  →  local.x = 0
+      east  exit (pointing +X)  →  local.x = size.x
+
+  face
+    The direction you walk OUT of this room through the exit.
+    "north" | "south" | "east" | "west"
+
+  TIP: design all rooms so doorways are open at these edges.
+  The generator lines up exit blocks exactly — two rooms will
+  share the same column of blocks at their seam.
+
+
+STEP 4 — Register the room in three places
+-------------------------------------------
+A) scripts/rooms.js — add to the ROOMS array:
+
+    { id: "shitrooms:myroom" },
+
+B) worldgen/template_pool/shitrooms_rooms.json — add an element block:
+
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "shitrooms:myroom",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      }
+    }
+
+C) (optional) If this room can be the starting room, also add the same
+   element block to worldgen/template_pool/shitrooms_start.json
+   and set START_ROOM_ID = "shitrooms:myroom" in rooms.js.
+
+
+STEP 5 — Reset generation (if testing)
+----------------------------------------
+To regenerate from scratch (clears the "already initialized" flag):
+  /scriptevent shitrooms:reset
+
+(You'll need to implement this command in main.js when ready,
+or just create a new world for now.)
+
+
+NOTES
+-----
+- Rooms connect by matching OPPOSITE faces:
+    north ↔ south,  east ↔ west
+- The generator picks a random compatible room for each open exit.
+- Rooms that don't fit (overlap) are silently skipped.
+- The more room variants you add, the more varied the layout.
+- Keep all rooms at the same Y for now (vertical connections not yet supported).

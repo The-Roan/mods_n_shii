@@ -1,0 +1,20 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:template_pool": {
+    "description": {
+      "identifier": "shitrooms:shitstart"
+    },
+    "fallback": "minecraft:empty",
+    "elements": [
+      {
+        "weight": 1,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "shitrooms:shitstart",
+          "processors": "minecraft:empty",
+          "projection": "rigid"
+        }
+      }
+    ]
+  }
+}

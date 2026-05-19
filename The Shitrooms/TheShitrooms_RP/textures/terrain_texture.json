@@ -1,0 +1,15 @@
+{
+  "resource_pack_name": "shitrooms",
+  "texture_name": "atlas.terrain",
+  "texture_data": {
+    "backrooms_tile_side": {
+      "textures": "textures/blocks/backrooms_tile_side"
+    },
+    "backrooms_tile_top": {
+      "textures": "textures/blocks/backrooms_tile_top"
+    },
+    "backrooms_tile_bottom": {
+      "textures": "textures/blocks/backrooms_tile_bottom"
+    }
+  }
+}

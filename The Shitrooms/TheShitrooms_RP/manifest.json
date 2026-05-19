@@ -1,0 +1,23 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "The Shitrooms RP",
+    "description": "like the backrooms but worse",
+    "uuid": "4b8d3f7a-1c2e-4f9a-b1c3-a2b4c6e5d7f9",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 21, 0]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "8d4b3f7a-2e1c-9a4f-c3b1-b4c6e5d7f9a2",
+      "version": [1, 0, 0]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "3f7a1c2e-4b8d-4f9a-b1c3-e5d7f9a2b4c6",
+      "version": [1, 0, 0]
+    }
+  ]
+}

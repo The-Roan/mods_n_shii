@@ -1,0 +1,15 @@
+{
+  "format_version": [1, 1, 0],
+  "shitrooms:backrooms_wall": {
+    "textures": "backrooms_tile_side",
+    "sound": "stone"
+  },
+  "shitrooms:backrooms_floor": {
+    "textures": "backrooms_tile_bottom",
+    "sound": "stone"
+  },
+  "shitrooms:backrooms_ceiling": {
+    "textures": "backrooms_tile_top",
+    "sound": "stone"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:template_pool": {
+    "description": {
+      "identifier": "shitrooms:directions"
+    },
+    "fallback": "minecraft:empty",
+    "elements": [
+      {
+        "weight": 1,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "shitrooms:open",
+          "processors": "minecraft:empty",
+          "projection": "rigid"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "shitrooms:east_wall",
+          "processors": "minecraft:empty",
+          "projection": "rigid"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "shitrooms:west_wall",
+          "processors": "minecraft:empty",
+          "projection": "rigid"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "shitrooms:north_wall",
+          "processors": "minecraft:empty",
+          "projection": "rigid"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "shitrooms:south_wall",
+          "processors": "minecraft:empty",
+          "projection": "rigid"
+        }
+      }
+    ]
+  }
+}
