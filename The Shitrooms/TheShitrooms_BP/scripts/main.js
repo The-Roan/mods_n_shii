@@ -1,15 +1,35 @@
 import { world, system } from "@minecraft/server";
-import { generateInitial, startExplorationLoop, startSpawnLoop, resetState, getOrigin } from "./generator.js";
+import { generateInitial, startExplorationLoop, startSpawnLoop, resetState, getOrigin, restoreState } from "./generator.js";
 
 const INIT_PROP = "shitrooms:initialized";
 
 world.beforeEvents.playerBreakBlock.subscribe(ev => {
-  if (ev.block.typeId === "minecraft:sea_lantern") ev.cancel = true;
+  if (ev.block.typeId === "minecraft:sea_lantern") { ev.cancel = true; return; }
+  if (ev.block.typeId === "shitrooms:backrooms_wall") {
+    const item = ev.player.getComponent("minecraft:equippable")?.getEquipment("Mainhand");
+    if (!item || item.typeId !== "shitrooms:wall_pickaxe") ev.cancel = true;
+  }
+});
+
+world.afterEvents.playerBreakBlock.subscribe(ev => {
+  if (ev.brokenBlockPermutation.type.id !== "shitrooms:backrooms_wall") return;
+  const equip = ev.player.getComponent("minecraft:equippable");
+  if (!equip) return;
+  const item = equip.getEquipment("Mainhand");
+  if (!item || item.typeId !== "shitrooms:wall_pickaxe") return;
+  const dur = item.getComponent("minecraft:durability");
+  if (!dur || dur.damage + 1 >= dur.maxDurability) {
+    equip.setEquipment("Mainhand", undefined);
+  } else {
+    dur.damage += 1;
+    equip.setEquipment("Mainhand", item);
+  }
 });
 
 world.afterEvents.worldInitialize.subscribe(() => {
   world.sendMessage("§8[The Shitrooms] §7Loaded. Don't look behind you.");
   try { world.getDimension("overworld").runCommand("gamerule doMobSpawning false"); } catch { }
+  if (world.getDynamicProperty(INIT_PROP)) restoreState();
   startExplorationLoop();
   startSpawnLoop();
   startCleanupLoop();
@@ -79,7 +99,7 @@ function astar(dim, sx, sz, ex, ez, floorY) {
 const botCache = new Map(); // entityId -> { path: [{x,z}]|null, nextRecalc: number }
 
 function startNavmeshLoop() {
-  const TYPES = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3"];
+  const TYPES = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5"];
 
   system.runInterval(() => {
     const origin = getOrigin();
@@ -212,12 +232,32 @@ function startCleanupLoop() {
           soundState.set(entity.id, { seg, tick });
         } catch { }
       }
+      for (const entity of dim.getEntities({ type: "shitrooms:nextbot4" })) {
+        const s = soundState.get(entity.id) ?? { seg: 0, tick: 0 };
+        if (tick - s.tick < NEXTBOT_SEG_TICKS) continue;
+        const seg = (s.seg % 43) + 1;
+        const { x, y, z } = entity.location;
+        try {
+          dim.runCommand(`playsound mob.nextbot4.seg.${seg} @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 1.6 1 0`);
+          soundState.set(entity.id, { seg, tick });
+        } catch { }
+      }
+      for (const entity of dim.getEntities({ type: "shitrooms:nextbot5" })) {
+        const s = soundState.get(entity.id) ?? { seg: 0, tick: 0 };
+        if (tick - s.tick < NEXTBOT_SEG_TICKS) continue;
+        const seg = (s.seg % 12) + 1;
+        const { x, y, z } = entity.location;
+        try {
+          dim.runCommand(`playsound mob.nextbot5.seg.${seg} @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 1.6 1 0`);
+          soundState.set(entity.id, { seg, tick });
+        } catch { }
+      }
     }
   }, 20);
 
   // Script-driven combat: steer nextbots toward the nearest player and deal damage.
   const KILL_RANGE = 2.5;
-  const NEXTBOT_TYPES = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3"];
+  const NEXTBOT_TYPES = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5"];
 
   system.runInterval(() => {
     const dimsMap = new Map();
@@ -257,6 +297,8 @@ function startCleanupLoop() {
     "shitrooms:nextbot",
     "shitrooms:nextbot2",
     "shitrooms:nextbot3",
+    "shitrooms:nextbot4",
+    "shitrooms:nextbot5",
   ]);
 
   // Kill all mobs and item drops every 5 seconds, sparing ignored types
@@ -316,12 +358,18 @@ world.afterEvents.playerSpawn.subscribe(ev => {
   try { o.setScore(ev.player, 0); } catch { }
 });
 
-// Generate on the first player to ever join; teleport later joiners into the maze
+// Generate on the first player to ever join; teleport brand-new players into the maze
 world.afterEvents.playerSpawn.subscribe(ev => {
   if (!ev.initialSpawn) return;
   try { ev.player.runCommand("gamemode survival"); } catch { }
+
+  // Returning players already have their position saved — don't move them
+  const seenKey = "shitrooms:seen:" + ev.player.name;
+  if (world.getDynamicProperty(seenKey)) return;
+  world.setDynamicProperty(seenKey, true);
+
   if (world.getDynamicProperty(INIT_PROP)) {
-    // Maze already exists — send this player straight to the spawn room
+    // New player joining an existing maze — send them to the spawn room
     const o = getOrigin();
     if (o.x !== 0 || o.y !== 0 || o.z !== 0) {
       system.runTimeout(() => {

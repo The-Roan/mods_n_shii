@@ -7,7 +7,7 @@ const EXPLORE_ROOMS  = 80;   // max new rooms per exploration tick
 const EXPLORE_AHEAD  = 10;   // cell radius to keep frontier ahead of player
 const CHECK_INTERVAL = 10;   // ticks between exploration scans
 
-const NEXTBOT_TYPES   = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3"];
+const NEXTBOT_TYPES   = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5"];
 const MAX_PER_TYPE    = 3;
 const SPAWN_DELAY     = 600;  // ticks before first spawn (~30 seconds)
 const SPAWN_INTERVAL  = 600;  // ticks between spawn attempts (~30 seconds)
@@ -28,9 +28,54 @@ let originX = 0, originY = 0, originZ = 0;
 
 function cellKey(gx, gz) { return `${gx},${gz}`; }
 
-export function resetState() { placedCells.clear(); placedRooms.clear(); originX = 0; originY = 0; originZ = 0; }
+export function resetState() {
+  placedCells.clear(); placedRooms.clear(); originX = 0; originY = 0; originZ = 0;
+  try { world.setDynamicProperty("shitrooms:cells_n", 0); } catch { }
+}
 export function getOrigin() { return { x: originX, y: originY, z: originZ }; }
 export function getPlacedCells() { return placedCells; }
+
+function saveState() {
+  try {
+    world.setDynamicProperty("shitrooms:ox", originX);
+    world.setDynamicProperty("shitrooms:oy", originY);
+    world.setDynamicProperty("shitrooms:oz", originZ);
+    const parts = [];
+    for (const [k] of placedCells) {
+      const suffix = (placedRooms.get(k) ?? "").replace("shitrooms:", "");
+      parts.push(k + "~" + suffix);
+    }
+    const data = parts.join("|");
+    const CHUNK = 30000;
+    let chunk = 0;
+    for (let i = 0; i < data.length; i += CHUNK) {
+      world.setDynamicProperty(`shitrooms:cells_${chunk}`, data.slice(i, i + CHUNK));
+      chunk++;
+    }
+    world.setDynamicProperty("shitrooms:cells_n", chunk);
+  } catch { }
+}
+
+export function restoreState() {
+  const ox = world.getDynamicProperty("shitrooms:ox");
+  const oy = world.getDynamicProperty("shitrooms:oy");
+  const oz = world.getDynamicProperty("shitrooms:oz");
+  if (typeof ox !== "number") return;
+  originX = ox; originY = oy; originZ = oz;
+  const n = world.getDynamicProperty("shitrooms:cells_n");
+  if (typeof n !== "number" || n === 0) return;
+  let data = "";
+  for (let i = 0; i < n; i++) data += world.getDynamicProperty(`shitrooms:cells_${i}`) ?? "";
+  for (const entry of data.split("|")) {
+    if (!entry) continue;
+    const tilde = entry.indexOf("~");
+    if (tilde === -1) continue;
+    const k = entry.slice(0, tilde);
+    const suffix = entry.slice(tilde + 1);
+    placedCells.set(k, new Set());
+    if (suffix) placedRooms.set(k, "shitrooms:" + suffix);
+  }
+}
 
 // Pick a room that has all required exits, boosting rooms whose type already
 // appears in a neighbour cell (clusterBonus drives same-type clustering).
@@ -94,6 +139,7 @@ function commitCells(newCells, dim) {
       placedRooms.set(key, room.id);
     } catch { }
   }
+  saveState();
 }
 
 // ─── Public API ───────────────────────────────────────────────────────────────
@@ -140,10 +186,6 @@ export function startSpawnLoop() {
       if (players.length === 0) return;
       const dim = players[0].dimension;
 
-      const type = NEXTBOT_TYPES[Math.floor(Math.random() * NEXTBOT_TYPES.length)];
-      const existing = dim.getEntities({ type }).length;
-      if (existing >= MAX_PER_TYPE) return;
-
       const NO_SPAWN_ROOMS = new Set(["shitrooms:corridors", "shitrooms:cross", "shitrooms:x"]);
       const validKeys = [...placedCells.keys()].filter(k => {
         if (NO_SPAWN_ROOMS.has(placedRooms.get(k))) return false;
@@ -157,15 +199,19 @@ export function startSpawnLoop() {
       });
       if (validKeys.length === 0) return;
 
-      const key = validKeys[Math.floor(Math.random() * validKeys.length)];
-      const [gx, gz] = key.split(",").map(Number);
-      const wx = originX + gx * CELL_SIZE + 2;
-      const wy = originY + 1;
-      const wz = originZ + gz * CELL_SIZE + 2;
-      try {
-        const entity = dim.spawnEntity(type, { x: wx, y: wy, z: wz });
-        system.runTimeout(() => { try { entity.kill(); } catch { } }, 3600);
-      } catch { }
+      for (let i = 0; i < 2; i++) {
+        const type = NEXTBOT_TYPES[Math.floor(Math.random() * NEXTBOT_TYPES.length)];
+        if (dim.getEntities({ type }).length >= MAX_PER_TYPE) continue;
+        const key = validKeys[Math.floor(Math.random() * validKeys.length)];
+        const [gx, gz] = key.split(",").map(Number);
+        const wx = originX + gx * CELL_SIZE + 2;
+        const wy = originY + 1;
+        const wz = originZ + gz * CELL_SIZE + 2;
+        try {
+          const entity = dim.spawnEntity(type, { x: wx, y: wy, z: wz });
+          system.runTimeout(() => { try { entity.kill(); } catch { } }, 3600);
+        } catch { }
+      }
     }, SPAWN_INTERVAL);
   }, SPAWN_DELAY);
 }

@@ -2,7 +2,10 @@
   "textures/entity/nextbot",
   "textures/entity/nextbot2",
   "textures/entity/nextbot3",
+  "textures/entity/nextbot4",
+  "textures/entity/nextbot5",
   "textures/blocks/backrooms_tile_side",
   "textures/blocks/backrooms_tile_top",
-  "textures/blocks/backrooms_tile_bottom"
+  "textures/blocks/backrooms_tile_bottom",
+  "textures/items/wall_pickaxe"
 ]
