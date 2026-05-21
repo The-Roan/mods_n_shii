@@ -16,8 +16,9 @@ import * as optimization  from "./strikes/optimization.js";
 import * as singularity   from "./strikes/singularity.js";
 import * as bitcoin       from "./strikes/bitcoin.js";
 import * as eventHorizon  from "./strikes/event_horizon.js";
+import * as endOfIntegrals from "./strikes/end_of_integrals.js";
 
-const ALL_STRIKES = [orbital, ddx, instant, big, throwable, laser, voidStrike, heal, napalm, implicit, relatedRates, optimization, singularity, bitcoin, eventHorizon];
+const ALL_STRIKES = [orbital, ddx, instant, big, throwable, laser, voidStrike, heal, napalm, implicit, relatedRates, optimization, singularity, bitcoin, eventHorizon, endOfIntegrals];
 
 // Built automatically from each strike's exported ITEM_ID and RADIUS
 const BEACON_STRIKE = Object.fromEntries(ALL_STRIKES.map(s => [s.ITEM_ID, s]));

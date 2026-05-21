@@ -1,0 +1,21 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shaped": {
+    "description": { "identifier": "orbital:end_of_integrals_beacon_recipe" },
+    "tags": ["crafting_table"],
+    "unlock": [
+      { "item": "orbital:optimization_beacon" },
+      { "item": "orbital:ddx_beacon" },
+      { "item": "orbital:implicit_beacon" }
+    ],
+    "pattern": ["NON", "DOI", "ROR"],
+    "key": {
+      "N": { "item": "minecraft:nether_star" },
+      "O": { "item": "orbital:optimization_beacon" },
+      "D": { "item": "orbital:ddx_beacon" },
+      "I": { "item": "orbital:implicit_beacon" },
+      "R": { "item": "orbital:related_rates_beacon" }
+    },
+    "result": { "item": "orbital:end_of_integrals_beacon", "count": 1 }
+  }
+}

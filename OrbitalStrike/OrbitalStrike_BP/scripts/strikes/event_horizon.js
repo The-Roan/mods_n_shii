@@ -6,7 +6,7 @@ export const RADIUS     = 10;
 export const DEATH_TAG  = "event_horizon_kill";
 const MARKED_TAG = "event_horizon_marked";
 export const ACTION_BAR = "§d☄ Ultimate D/DX Singularity Strike incoming...";
-export const DEATH_MSG  = name => `§d${name} §7fell into §l§cD§6/§eD§2X §bÁ§9S§5S§dH§cO§6L§eE`;
+export const DEATH_MSG  = name => `§d${name} §7fell into §l§cD§6/§eD§2X §bA§9S§5S§dH§c0§6L§eE`;
 
 export const INDICATOR_FN = (player) => {
   spawnIndicator(player, 5);

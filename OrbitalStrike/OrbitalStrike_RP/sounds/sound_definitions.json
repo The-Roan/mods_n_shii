@@ -140,6 +140,26 @@
           "pitch": 0.25
         }
       ]
+    },
+    "orbital.end_of_integrals.song": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/orbital/end_of_integrals_song",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
+    },
+    "orbital.end_of_integrals.bang": {
+      "category": "hostile",
+      "sounds": [
+        {
+          "name": "sounds/orbital/singularity_explode",
+          "volume": 1.0,
+          "pitch": 0.15
+        }
+      ]
     }
   }
 }

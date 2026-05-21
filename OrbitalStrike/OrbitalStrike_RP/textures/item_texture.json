@@ -139,6 +139,15 @@
     },
     "recipe_detail_event_horizon": {
       "textures": "textures/items/recipe_detail_event_horizon"
+    },
+    "end_of_integrals_beacon": {
+      "textures": "textures/items/end_of_integrals_beacon"
+    },
+    "recipe_page_end_of_integrals": {
+      "textures": "textures/items/recipe_page_end_of_integrals"
+    },
+    "recipe_detail_end_of_integrals": {
+      "textures": "textures/items/recipe_detail_end_of_integrals"
     }
   }
 }

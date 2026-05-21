@@ -218,6 +218,21 @@ const RECIPES = [
       O: { label: "Orbital Strike Beacon", id: "orbital:strike_beacon",  count: 1 },
       I: { label: "Instant Strike Beacon", id: "orbital:instant_beacon", count: 2 }
     }
+  },
+  {
+    name:       "End of Integrals Strike Beacon",
+    color:      "§c",
+    pageIcon:   "textures/items/recipe_page_end_of_integrals",
+    detailIcon: "textures/items/recipe_detail_end_of_integrals",
+    desc:       "Omega Hel Fire gets obliterated by D/DX",
+    pattern:    ["NON", "DOI", "ROR"],
+    key: {
+      N: { label: "Nether Star",            id: "minecraft:nether_star"          },
+      O: { label: "Optimization Beacon",    id: "orbital:optimization_beacon"    },
+      D: { label: "Derivatives Beacon",     id: "orbital:ddx_beacon"             },
+      I: { label: "Implicit Beacon",        id: "orbital:implicit_beacon"        },
+      R: { label: "Related Rates Beacon",   id: "orbital:related_rates_beacon"   }
+    }
   }
 ];
 
@@ -245,8 +260,8 @@ const TIERS = [
   {
     color: "§f",
     label: "Tier 4  §l— §cU§6l§et§2i§bm§9a§5t§de",
-    //       Event Horizon
-    items: [RECIPES[10]]
+    //       Event Horizon   End of Integrals
+    items: [RECIPES[10], RECIPES[12]]
   }
 ];
 
