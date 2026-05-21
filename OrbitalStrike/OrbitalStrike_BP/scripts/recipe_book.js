@@ -190,11 +190,27 @@ const RECIPES = [
     }
   },
   {
+    name:       "Ultimate D/DX Singularity Strike Beacon",
+    color:      "§0",
+    pageIcon:   "textures/items/recipe_page_event_horizon",
+    detailIcon: "textures/items/recipe_detail_event_horizon",
+    desc:       "Don't get sucked into the D/DX Ásshole...",
+    pattern:    ["DNI", "NSN", "RNO"],
+    key: {
+      D: { label: "Derivatives Beacon",    id: "orbital:ddx_beacon"           },
+      N: { label: "Nether Star",           id: "minecraft:nether_star"         },
+      I: { label: "Implicit Beacon",       id: "orbital:implicit_beacon"       },
+      S: { label: "Singularity Beacon",    id: "orbital:singularity_beacon"    },
+      R: { label: "Related Rates Beacon",  id: "orbital:related_rates_beacon"  },
+      O: { label: "Optimization Beacon",   id: "orbital:optimization_beacon"   }
+    }
+  },
+  {
     name:       "Bitcoin Strike Beacon",
     color:      "§6",
     pageIcon:   "textures/items/recipe_page_bitcoin",
     detailIcon: "textures/items/recipe_detail_bitcoin",
-    desc:       "JE STEAL ALL ZE BITCOIN",
+    desc:       "JE STE AL ALL ZE BITCOIN",
     pattern:    ["DGD", "GOG", "IGI"],
     key: {
       D: { label: "D/DX Strike Beacon",    id: "orbital:ddx_beacon",     count: 2 },
@@ -202,6 +218,35 @@ const RECIPES = [
       O: { label: "Orbital Strike Beacon", id: "orbital:strike_beacon",  count: 1 },
       I: { label: "Instant Strike Beacon", id: "orbital:instant_beacon", count: 2 }
     }
+  }
+];
+
+// ─── Tier pages ───────────────────────────────────────────────────────────────
+// Each tier references entries from RECIPES by index.
+const TIERS = [
+  {
+    color: "§f",
+    label: "Tier 1  §l— Basic",
+    //       Orbital        D/DX group     Instant        Big
+    items: [RECIPES[0], RECIPES[1], RECIPES[2], RECIPES[3]]
+  },
+  {
+    color: "§f",
+    label: "Tier 2  §l§a— Super",
+    //       Throwable      Laser          Void           Heal           Napalm
+    items: [RECIPES[4], RECIPES[5], RECIPES[6], RECIPES[7], RECIPES[8]]
+  },
+  {
+    color: "§f",
+    label: "Tier 3  §l§d— Master",
+    //       Singularity    Bitcoin
+    items: [RECIPES[9], RECIPES[11]]
+  },
+  {
+    color: "§f",
+    label: "Tier 4  §l— §cU§6l§et§2i§bm§9a§5t§de",
+    //       Event Horizon
+    items: [RECIPES[10]]
   }
 ];
 
@@ -215,30 +260,24 @@ function buildRecipeBody(recipe) {
   return recipe.desc ? `${grid}\n\n§8§o"${recipe.desc}"` : grid;
 }
 
-// ─── Ingredients for the base orbital beacon (substituted when another recipe needs it) ──
+// ─── Ingredient expansion constants ──────────────────────────────────────────
 const ORBITAL_BASE_INGREDIENTS = [
   { id: "minecraft:end_crystal", count: 6 },
   { id: "minecraft:nether_star", count: 2 },
   { id: "minecraft:beacon",      count: 1 }
 ];
-
-// ─── Ingredients for the D/DX beacon (substituted when another recipe needs it) ──
 const DDX_BASE_INGREDIENTS = [
   { id: "minecraft:gold_ingot",  count: 8 },
   { id: "minecraft:end_crystal", count: 6 },
   { id: "minecraft:nether_star", count: 2 },
   { id: "minecraft:beacon",      count: 1 }
 ];
-
-// ─── Ingredients for the Big beacon (orbital:strike_beacon expanded) ──
 const BIG_BASE_INGREDIENTS = [
   { id: "minecraft:end_crystal",    count: 12 },
   { id: "minecraft:amethyst_shard", count: 2 },
   { id: "minecraft:nether_star",    count: 2 },
   { id: "minecraft:beacon",         count: 1 }
 ];
-
-// ─── Ingredients for the Instant beacon (orbital:strike_beacon expanded) ──
 const INSTANT_BASE_INGREDIENTS = [
   { id: "minecraft:redstone",    count: 7 },
   { id: "minecraft:clock",       count: 1 },
@@ -246,8 +285,21 @@ const INSTANT_BASE_INGREDIENTS = [
   { id: "minecraft:nether_star", count: 2 },
   { id: "minecraft:beacon",      count: 1 }
 ];
-
-// ─── Ingredients for the Void beacon (orbital:strike_beacon expanded) ──
+const IMPLICIT_BASE_INGREDIENTS = [
+  { id: "minecraft:diamond_sword", count: 4 },
+  { id: "minecraft:lapis_lazuli",  count: 4 },
+  ...DDX_BASE_INGREDIENTS
+];
+const RELATED_RATES_BASE_INGREDIENTS = [
+  { id: "minecraft:diamond_sword", count: 4 },
+  { id: "minecraft:redstone",      count: 4 },
+  ...DDX_BASE_INGREDIENTS
+];
+const OPTIMIZATION_BASE_INGREDIENTS = [
+  { id: "minecraft:diamond_sword", count: 4 },
+  { id: "minecraft:diamond",       count: 4 },
+  ...DDX_BASE_INGREDIENTS
+];
 const VOID_BASE_INGREDIENTS = [
   { id: "minecraft:ender_pearl",             count: 3 },
   { id: "minecraft:bedrock",                 count: 2 },
@@ -258,36 +310,60 @@ const VOID_BASE_INGREDIENTS = [
   { id: "minecraft:repeating_command_block", count: 1 },
   { id: "minecraft:chain_command_block",     count: 1 }
 ];
+const SINGULARITY_BASE_INGREDIENTS = [
+  { id: "minecraft:nether_star",              count: 14 },
+  { id: "minecraft:end_crystal",              count: 54 },
+  { id: "minecraft:amethyst_shard",           count: 8  },
+  { id: "minecraft:beacon",                   count: 5  },
+  { id: "minecraft:ender_pearl",              count: 3  },
+  { id: "minecraft:bedrock",                  count: 2  },
+  { id: "minecraft:command_block",            count: 1  },
+  { id: "minecraft:repeating_command_block",  count: 1  },
+  { id: "minecraft:chain_command_block",      count: 1  }
+];
 
 // ─── Open book on use ─────────────────────────────────────────────────────────
 world.afterEvents.itemUse.subscribe(ev => {
   if (ev.itemStack.typeId !== BOOK_ID) return;
-  showMainMenu(ev.source);
+  showTierPage(ev.source, 0);
 });
 
-// ─── Main menu ────────────────────────────────────────────────────────────────
-function showMainMenu(player) {
+// ─── Tier page ────────────────────────────────────────────────────────────────
+function showTierPage(player, tierIndex) {
+  const tier    = TIERS[tierIndex];
+  const hasPrev = tierIndex > 0;
+  const hasNext = tierIndex < TIERS.length - 1;
+
   const form = new ActionFormData()
     .title("§8§lStrike Recipe Book")
-    .body("§fSelect a strike to view its recipe.");
+    .body(`${tier.color}§l${tier.label}\n§7Page ${tierIndex + 1} of ${TIERS.length}`);
 
-  for (const r of RECIPES) {
+  for (const r of tier.items) {
     form.button(`${r.color}§l${r.name}`, r.pageIcon);
   }
+  if (hasPrev) form.button("§0◀ Previous");
+  if (hasNext) form.button("§0Next ▶");
 
   form.show(player).then(result => {
     if (result.canceled || result.selection === undefined) return;
-    const r = RECIPES[result.selection];
-    if (r.type === "group") {
-      showGroupMenu(player, r);
+    const sel = result.selection;
+
+    if (sel < tier.items.length) {
+      // Recipe button
+      const r = tier.items[sel];
+      if (r.type === "group") showGroupMenu(player, r, tierIndex);
+      else                    showRecipePage(player, r, null, tierIndex);
     } else {
-      showRecipePage(player, r, null);
+      // Navigation button
+      const navIndex = sel - tier.items.length;
+      if (hasPrev && navIndex === 0) showTierPage(player, tierIndex - 1);
+      else                           showTierPage(player, tierIndex + 1);
     }
   }).catch(() => {});
 }
 
 // ─── D/DX group submenu ───────────────────────────────────────────────────────
-function showGroupMenu(player, group) {
+function showGroupMenu(player, group, tierIndex) {
   const form = new ActionFormData()
     .title(`${group.color}§l${group.name}`)
     .body("§fSelect a strike to view its recipe.");
@@ -297,16 +373,14 @@ function showGroupMenu(player, group) {
   }
 
   form.show(player).then(result => {
-    if (result.canceled) { showMainMenu(player); return; }
+    if (result.canceled) { showTierPage(player, tierIndex); return; }
     if (result.selection === undefined) return;
-    showRecipePage(player, group.strikes[result.selection], group);
+    showRecipePage(player, group.strikes[result.selection], group, tierIndex);
   }).catch(() => {});
 }
 
 // ─── Recipe detail page ───────────────────────────────────────────────────────
-// Button 0: detail icon + "Give Ingredients" — gives one of each ingredient
-// Button 1: Back
-function showRecipePage(player, recipe, parentGroup) {
+function showRecipePage(player, recipe, parentGroup, tierIndex) {
   new ActionFormData()
     .title(`${recipe.color}§l${recipe.name}`)
     .body(buildRecipeBody(recipe))
@@ -320,33 +394,40 @@ function showRecipePage(player, recipe, parentGroup) {
         for (const [letter, item] of Object.entries(recipe.key)) {
           const count = [...flat].filter(c => c === letter).length;
           if (item.id === "orbital:strike_beacon") {
-            for (const base of ORBITAL_BASE_INGREDIENTS) {
-              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch { /* ignore */ }
-            }
+            for (const base of ORBITAL_BASE_INGREDIENTS)
+              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch {}
           } else if (item.id === "orbital:ddx_beacon") {
-            for (const base of DDX_BASE_INGREDIENTS) {
-              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch { /* ignore */ }
-            }
+            for (const base of DDX_BASE_INGREDIENTS)
+              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch {}
           } else if (item.id === "orbital:big_beacon") {
-            for (const base of BIG_BASE_INGREDIENTS) {
-              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch { /* ignore */ }
-            }
+            for (const base of BIG_BASE_INGREDIENTS)
+              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch {}
           } else if (item.id === "orbital:instant_beacon") {
-            for (const base of INSTANT_BASE_INGREDIENTS) {
-              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch { /* ignore */ }
-            }
+            for (const base of INSTANT_BASE_INGREDIENTS)
+              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch {}
           } else if (item.id === "orbital:void_beacon") {
-            for (const base of VOID_BASE_INGREDIENTS) {
-              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch { /* ignore */ }
-            }
+            for (const base of VOID_BASE_INGREDIENTS)
+              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch {}
+          } else if (item.id === "orbital:implicit_beacon") {
+            for (const base of IMPLICIT_BASE_INGREDIENTS)
+              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch {}
+          } else if (item.id === "orbital:related_rates_beacon") {
+            for (const base of RELATED_RATES_BASE_INGREDIENTS)
+              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch {}
+          } else if (item.id === "orbital:optimization_beacon") {
+            for (const base of OPTIMIZATION_BASE_INGREDIENTS)
+              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch {}
+          } else if (item.id === "orbital:singularity_beacon") {
+            for (const base of SINGULARITY_BASE_INGREDIENTS)
+              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch {}
           } else {
-            try { player.runCommand(`give @s ${item.id} ${count}`); } catch { /* ignore */ }
+            try { player.runCommand(`give @s ${item.id} ${count}`); } catch {}
           }
         }
-        showRecipePage(player, recipe, parentGroup);
+        showRecipePage(player, recipe, parentGroup, tierIndex);
       } else {
-        if (parentGroup) showGroupMenu(player, parentGroup);
-        else showMainMenu(player);
+        if (parentGroup) showGroupMenu(player, parentGroup, tierIndex);
+        else             showTierPage(player, tierIndex);
       }
     })
     .catch(() => {});
@@ -360,5 +441,5 @@ world.afterEvents.entitySpawn.subscribe(ev => {
     if (comp?.itemStack?.typeId === BOOK_ID) {
       ev.entity.remove();
     }
-  } catch { /* ignore */ }
+  } catch {}
 });

@@ -1,0 +1,24 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.event_horizon_entity.scale_rot": {
+      "loop": true,
+      "bones": {
+        "root": {
+          "scale": "v.ct > 0 ? math.max(0, v.bh_scale * (1.0 - v.ct)) : v.bh_scale * v.smooth",
+          "rotation": [
+            "v.ct * 180.0 - (1.0 - v.smooth) * 45.0",
+            0,
+            "v.ct * -120.0 + (1.0 - v.smooth) * 30.0"
+          ]
+        },
+        "cube_bone": {
+          "rotation": ["q.life_time * 45", "q.life_time * 60", "q.life_time * 30"]
+        },
+        "disc_bone": {
+          "rotation": [0, "q.life_time * 120", 0]
+        }
+      }
+    }
+  }
+}

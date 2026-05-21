@@ -1,0 +1,43 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "orbital:event_horizon_entity",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false,
+      "properties": {
+        "orbital:bh_radius": {
+          "type": "float",
+          "default": 5.0,
+          "range": [0.0, 100.0],
+          "client_sync": true
+        },
+        "orbital:collapse_t": {
+          "type": "float",
+          "default": 0.0,
+          "range": [0.0, 1.0],
+          "client_sync": true
+        }
+      }
+    },
+    "components": {
+      "minecraft:health": {
+        "value": 20,
+        "max": 20
+      },
+      "minecraft:physics": {
+        "has_gravity": false,
+        "has_collision": false
+      },
+      "minecraft:collision_box": {
+        "width": 0.1,
+        "height": 0.1
+      },
+      "minecraft:pushable": {
+        "is_pushable": false,
+        "is_pushable_by_piston": false
+      }
+    }
+  }
+}

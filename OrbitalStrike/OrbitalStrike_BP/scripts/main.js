@@ -13,10 +13,11 @@ import * as napalm        from "./strikes/napalm.js";
 import * as implicit      from "./strikes/implicit.js";
 import * as relatedRates  from "./strikes/related_rates.js";
 import * as optimization  from "./strikes/optimization.js";
-import * as singularity  from "./strikes/singularity.js";
-import * as bitcoin      from "./strikes/bitcoin.js";
+import * as singularity   from "./strikes/singularity.js";
+import * as bitcoin       from "./strikes/bitcoin.js";
+import * as eventHorizon  from "./strikes/event_horizon.js";
 
-const ALL_STRIKES = [orbital, ddx, instant, big, throwable, laser, voidStrike, heal, napalm, implicit, relatedRates, optimization, singularity, bitcoin];
+const ALL_STRIKES = [orbital, ddx, instant, big, throwable, laser, voidStrike, heal, napalm, implicit, relatedRates, optimization, singularity, bitcoin, eventHorizon];
 
 // Built automatically from each strike's exported ITEM_ID and RADIUS
 const BEACON_STRIKE = Object.fromEntries(ALL_STRIKES.map(s => [s.ITEM_ID, s]));

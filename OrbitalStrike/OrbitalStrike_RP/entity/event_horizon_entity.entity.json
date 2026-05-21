@@ -1,0 +1,30 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "orbital:event_horizon_entity",
+      "materials": {
+        "default": "entity_emissive_alpha"
+      },
+      "textures": {
+        "default": "textures/entity/event_horizon_entity"
+      },
+      "geometry": {
+        "default": "geometry.event_horizon_entity"
+      },
+      "animations": {
+        "scale_rot": "animation.event_horizon_entity.scale_rot"
+      },
+      "scripts": {
+        "pre_animation": [
+          "v.bh_scale = q.property('orbital:bh_radius') / 5.0;",
+          "v.ct = q.property('orbital:collapse_t');",
+          "v.st = math.min(1.0, q.life_time / 2.0);",
+          "v.smooth = v.st * v.st * (3.0 - 2.0 * v.st);"
+        ],
+        "animate": ["scale_rot"]
+      },
+      "render_controllers": ["controller.render.event_horizon_entity"]
+    }
+  }
+}

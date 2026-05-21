@@ -13,4 +13,5 @@ item.orbital:related_rates_beacon.name=Related Rates Strike Beacon
 item.orbital:optimization_beacon.name=Optimization Strike Beacon
 item.orbital:singularity_beacon.name=Singularity Strike Beacon
 item.orbital:bitcoin_beacon.name=Bitcoin Strike Beacon
+item.orbital:ultimate_ddx_singularity_beacon.name=Ultimate D/DX Singularity Strike Beacon
 item.orbital:recipe_book.name=Strike Recipe Book

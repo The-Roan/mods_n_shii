@@ -1,0 +1,53 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [{
+    "description": {
+      "identifier": "geometry.event_horizon_entity",
+      "texture_width": 128,
+      "texture_height": 64,
+      "visible_bounds_width": 64,
+      "visible_bounds_height": 64,
+      "visible_bounds_offset": [0, 0, 0]
+    },
+    "bones": [
+      {
+        "name": "root",
+        "pivot": [0, 0, 0]
+      },
+      {
+        "name": "cube_bone",
+        "parent": "root",
+        "pivot": [0, 0, 0],
+        "cubes": [{
+          "origin": [-12, -12, -12],
+          "size": [24, 24, 24],
+          "uv": {
+            "north": { "uv": [64, 0], "uv_size": [64, 64] },
+            "south": { "uv": [64, 0], "uv_size": [64, 64] },
+            "east":  { "uv": [64, 0], "uv_size": [64, 64] },
+            "west":  { "uv": [64, 0], "uv_size": [64, 64] },
+            "up":    { "uv": [64, 0], "uv_size": [64, 64] },
+            "down":  { "uv": [64, 0], "uv_size": [64, 64] }
+          }
+        }]
+      },
+      {
+        "name": "disc_bone",
+        "parent": "root",
+        "pivot": [0, 0, 0],
+        "cubes": [{
+          "origin": [-80, -2, -80],
+          "size": [160, 4, 160],
+          "uv": {
+            "up":    { "uv": [0, 0], "uv_size": [64, 64] },
+            "down":  { "uv": [0, 0], "uv_size": [64, 64] },
+            "north": { "uv": [0, 0], "uv_size": [64,  4] },
+            "south": { "uv": [0, 0], "uv_size": [64,  4] },
+            "east":  { "uv": [0, 0], "uv_size": [4,   4] },
+            "west":  { "uv": [0, 0], "uv_size": [4,   4] }
+          }
+        }]
+      }
+    ]
+  }]
+}

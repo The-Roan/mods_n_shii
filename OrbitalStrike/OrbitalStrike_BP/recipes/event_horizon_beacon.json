@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shaped": {
+    "description": { "identifier": "orbital:event_horizon_beacon_recipe" },
+    "tags": ["crafting_table"],
+    "unlock": [
+      { "item": "orbital:ddx_beacon" },
+      { "item": "orbital:singularity_beacon" },
+      { "item": "orbital:implicit_beacon" }
+    ],
+    "pattern": ["DNI", "NSN", "RNO"],
+    "key": {
+      "D": { "item": "orbital:ddx_beacon" },
+      "N": { "item": "minecraft:nether_star" },
+      "I": { "item": "orbital:implicit_beacon" },
+      "S": { "item": "orbital:singularity_beacon" },
+      "R": { "item": "orbital:related_rates_beacon" },
+      "O": { "item": "orbital:optimization_beacon" }
+    },
+    "result": { "item": "orbital:ultimate_ddx_singularity_beacon", "count": 1 }
+  }
+}

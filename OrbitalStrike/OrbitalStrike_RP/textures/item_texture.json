@@ -130,6 +130,15 @@
     },
     "recipe_detail_bitcoin": {
       "textures": "textures/items/recipe_detail_bitcoin"
+    },
+    "event_horizon_beacon": {
+      "textures": "textures/items/event_horizon_beacon"
+    },
+    "recipe_page_event_horizon": {
+      "textures": "textures/items/recipe_page_event_horizon"
+    },
+    "recipe_detail_event_horizon": {
+      "textures": "textures/items/recipe_detail_event_horizon"
     }
   }
 }

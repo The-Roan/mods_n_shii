@@ -100,6 +100,46 @@
           "pitch": 0.5
         }
       ]
+    },
+    "orbital.event_horizon.spawn": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/orbital/singularity_spawn",
+          "volume": 1.0,
+          "pitch": 1.1
+        }
+      ]
+    },
+    "orbital.event_horizon.loop": {
+      "category": "ambient",
+      "sounds": [
+        {
+          "name": "sounds/orbital/singularity_loop",
+          "volume": 1.0,
+          "pitch": 0.85
+        }
+      ]
+    },
+    "orbital.event_horizon.song": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/orbital/event_horizon_song",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
+    },
+    "orbital.event_horizon.collapse": {
+      "category": "hostile",
+      "sounds": [
+        {
+          "name": "sounds/orbital/singularity_explode",
+          "volume": 1.0,
+          "pitch": 0.25
+        }
+      ]
     }
   }
 }
