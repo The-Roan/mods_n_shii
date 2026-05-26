@@ -360,23 +360,25 @@ function startCleanupLoop() {
   // Nextbot kill-on-contact (shitrooms players only)
   const KILL_RANGE    = 2.5;
   const NEXTBOT_TYPES = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5"];
-  const NEXTBOT_NAMES = {
-    "shitrooms:nextbot":  "Derivatives",
-    "shitrooms:nextbot2": "Logan",
-    "shitrooms:nextbot3": "Juan Boitcoin Hacker",
-    "shitrooms:nextbot4": "67",
-    "shitrooms:nextbot5": "Niggertrump",
+
+  // Custom death message per nextbot. n = player name.
+  const DEATH_MSGS = {
+    "shitrooms:nextbot":  n => `§7${n} §fwas §cdifferentiated §fby §eHuntr/x`,
+    "shitrooms:nextbot2": n => `§7${n} §fwas §nshítted §fon by §nLogan`,
+    "shitrooms:nextbot3": n => `§7${n}'s §fbitcoin was §chacked§f by §6Juan`,
+    "shitrooms:nextbot4": n => `§7${n} §fgot §c67§f'd`,
+    "shitrooms:nextbot5": n => `§7${n} §fwas §elaunched into the sun§f by §cNiggertrump`,
   };
 
-  // Same pattern as Orbital Strike: stash the killer name in a dynamic property
-  // BEFORE calling kill(), then broadcast the custom message in entityDie.
+  // Stash the killer typeId before kill(), broadcast the custom message in entityDie.
   world.afterEvents.entityDie.subscribe(ev => {
     if (ev.deadEntity.typeId !== "minecraft:player") return;
     const key    = `shitrooms:killed_by:${ev.deadEntity.name}`;
-    const killer = world.getDynamicProperty(key);
-    if (!killer) return;
-    try { world.setDynamicProperty(key, ""); } catch {} // clear
-    world.sendMessage(`§7${ev.deadEntity.name} §fwas killed by §c${killer}`);
+    const typeId = world.getDynamicProperty(key);
+    if (!typeId) return;
+    try { world.setDynamicProperty(key, ""); } catch {}
+    const msgFn = DEATH_MSGS[typeId];
+    world.sendMessage(msgFn ? msgFn(ev.deadEntity.name) : `§7${ev.deadEntity.name} §fwas killed`);
   });
 
   system.runInterval(() => {
@@ -390,7 +392,7 @@ function startCleanupLoop() {
           const dy = p.location.y - entity.location.y;
           const dz = p.location.z - entity.location.z;
           if (Math.sqrt(dx * dx + dy * dy + dz * dz) <= KILL_RANGE) {
-            try { world.setDynamicProperty(`shitrooms:killed_by:${p.name}`, NEXTBOT_NAMES[typeId] ?? typeId); } catch {}
+            try { world.setDynamicProperty(`shitrooms:killed_by:${p.name}`, typeId); } catch {}
             try { p.kill(); } catch {}
             try { entity.kill(); } catch {}
             break;
