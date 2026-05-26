@@ -1,0 +1,12 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "shitrooms:trump",
+      "materials": { "default": "entity_alphatest" },
+      "textures": { "default": "textures/entity/trump" },
+      "geometry": { "default": "geometry.trump" },
+      "render_controllers": ["controller.render.trump"]
+    }
+  }
+}

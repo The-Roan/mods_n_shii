@@ -1,7 +1,47 @@
 import { world, system } from "@minecraft/server";
 import { generateInitial, startExplorationLoop, startSpawnLoop, resetState, getOrigin, restoreState } from "./generator.js";
 
-const INIT_PROP = "shitrooms:initialized";
+const INIT_PROP  = "shitrooms:initialized";
+const SCORE_OBJ  = "sr_time";
+const SCORE_BEST = "sr_best";
+
+// ─── Shitrooms entry helpers ──────────────────────────────────────────────────
+
+function isInShitrooms(player) {
+  return !!world.getDynamicProperty(`shitrooms:in_shitrooms:${player.name}`);
+}
+
+// Called when a player touches Trump. Marks them as entered, applies effects,
+// sets their spawn point inside the maze, then TPs them down.
+function enterShitrooms(player) {
+  world.setDynamicProperty(`shitrooms:in_shitrooms:${player.name}`, true);
+  const o = getOrigin();
+  if (o.x === 0 && o.y === 0 && o.z === 0) return; // maze not ready yet
+
+  const dim = world.getDimension("overworld");
+  const dest = { x: o.x + 2.5, y: o.y + 1, z: o.z + 2.5 };
+
+  // Clear a 3×3 column at the spawn point so the player never lands in bedrock.
+  const sx = Math.floor(o.x + 1), sz = Math.floor(o.z + 1);
+  const ex = Math.floor(o.x + 3), ez = Math.floor(o.z + 3);
+  try { dim.runCommand(`fill ${sx} ${o.y + 1} ${sz} ${ex} ${o.y + 3} ${ez} air`); } catch {}
+
+  try { player.addEffect("blindness", 100, { amplifier: 0, showParticles: false }); } catch {}
+  try { player.addEffect("slowness",  100, { amplifier: 99, showParticles: false }); } catch {}
+  try {
+    player.setSpawnPoint({ x: Math.floor(o.x + 2), y: o.y + 1, z: Math.floor(o.z + 2), dimension: dim });
+  } catch {}
+
+  // Show the best-times sidebar — this is global but only triggered once the
+  // first player enters, so pre-entry players just see an empty board briefly.
+  try { dim.runCommand(`scoreboard objectives setdisplay sidebar ${SCORE_BEST}`); } catch {}
+
+  system.runTimeout(() => {
+    try { player.teleport(dest, { dimension: dim }); } catch {}
+  }, 5);
+}
+
+// ─── Block events ─────────────────────────────────────────────────────────────
 
 world.beforeEvents.playerBreakBlock.subscribe(ev => {
   if (ev.block.typeId === "minecraft:sea_lantern") { ev.cancel = true; return; }
@@ -26,22 +66,43 @@ world.afterEvents.playerBreakBlock.subscribe(ev => {
   }
 });
 
+// ─── World init ───────────────────────────────────────────────────────────────
+
 world.afterEvents.worldInitialize.subscribe(() => {
   world.sendMessage("§8[The Shitrooms] §7Loaded. Don't look behind you.");
-  try { world.getDimension("overworld").runCommand("gamerule doMobSpawning false"); } catch { }
+  try { world.getDimension("overworld").runCommand("gamerule doMobSpawning false"); } catch {}
   if (world.getDynamicProperty(INIT_PROP)) restoreState();
   startExplorationLoop();
   startSpawnLoop();
   startCleanupLoop();
   startNavmeshLoop();
+  startTrumpSpawnLoop();
   setupScoreboard();
 });
 
-// ─── Block-level A* pathfinding ───────────────────────────────────────────────
+// ─── Ground helpers ───────────────────────────────────────────────────────────
 
-const BOT_SPEED     = 0.3;  // blocks per tick (~Speed II player)
-const PATH_RETICK   = 10;   // recompute path every N ticks
-const ASTAR_BUDGET  = 500;  // max nodes A* explores before giving up
+// Scan downward from (currentY + 5) to find the first solid block,
+// then return the Y directly above it. Limits scan to 24 blocks so it's
+// cheap per tick. Falls back to currentY if nothing solid is found.
+function getGroundY(dim, x, currentY, z) {
+  const startY = Math.floor(currentY) + 5;
+  const endY   = Math.max(startY - 24, -64);
+  for (let by = startY; by >= endY; by--) {
+    try {
+      const block = dim.getBlock({ x: Math.floor(x), y: by, z: Math.floor(z) });
+      if (block && !block.isAir) return by + 1;
+    } catch {}
+  }
+  return currentY;
+}
+
+// ─── A* pathfinding ───────────────────────────────────────────────────────────
+
+const BOT_SPEED    = 0.3;   // blocks per tick in the shitrooms
+const TRUMP_SPEED  = 0.22;  // slightly slower for dread
+const PATH_RETICK  = 10;
+const ASTAR_BUDGET = 500;
 
 function isWalkable(dim, bx, bz, floorY) {
   try {
@@ -51,7 +112,6 @@ function isWalkable(dim, bx, bz, floorY) {
   } catch { return false; }
 }
 
-// A* on the block grid. Returns [{x,z},...] from first step to goal, or null.
 function astar(dim, sx, sz, ex, ez, floorY) {
   if (sx === ex && sz === ez) return [];
   const key = (x, z) => `${x},${z}`;
@@ -64,7 +124,6 @@ function astar(dim, sx, sz, ex, ez, floorY) {
   const gCost = new Map([[startKey, 0]]);
 
   while (open.length > 0 && prev.size <= ASTAR_BUDGET) {
-    // Pop lowest-f (linear scan is fine for budgets under ~1000)
     let bi = 0;
     for (let i = 1; i < open.length; i++) if (open[i].f < open[bi].f) bi = i;
     const { x: cx, z: cz } = open.splice(bi, 1)[0];
@@ -96,106 +155,139 @@ function astar(dim, sx, sz, ex, ez, floorY) {
   return path;
 }
 
-const botCache = new Map(); // entityId -> { path: [{x,z}]|null, nextRecalc: number }
+const botCache = new Map(); // entityId -> { path, nextRecalc }
 
 function startNavmeshLoop() {
-  const TYPES = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5"];
+  const NEXTBOT_TYPES = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5"];
 
   system.runInterval(() => {
+    const dim = world.getDimension("overworld");
+
+    // ── Trump: direct movement toward nearest surface player ──────────────
+    for (const trump of dim.getEntities({ type: "shitrooms:trump" })) {
+      let nearest = null, nearDist = Infinity;
+      for (const p of world.getPlayers()) {
+        if (isInShitrooms(p)) continue; // only chase overworld players
+        const d = Math.hypot(p.location.x - trump.location.x, p.location.z - trump.location.z);
+        if (d < nearDist) { nearDist = d; nearest = p; }
+      }
+      if (!nearest) continue;
+
+      try {
+        trump.setRotation({
+          x: 0,
+          y: -Math.atan2(nearest.location.x - trump.location.x,
+                         nearest.location.z - trump.location.z) * (180 / Math.PI) + 180
+        });
+      } catch {}
+
+      const dx = nearest.location.x - trump.location.x;
+      const dz = nearest.location.z - trump.location.z;
+      const dist = Math.sqrt(dx * dx + dz * dz);
+      if (dist < 0.1) continue;
+      const step = Math.min(TRUMP_SPEED, dist);
+      try {
+        const newX = trump.location.x + (dx / dist) * step;
+        const newZ = trump.location.z + (dz / dist) * step;
+        const newY = getGroundY(dim, newX, trump.location.y, newZ);
+        trump.teleport(
+          { x: newX, y: newY, z: newZ },
+          { dimension: dim, checkForBlocks: false }
+        );
+      } catch {}
+    }
+
+    // ── Nextbots: A* pathfinding inside the shitrooms ─────────────────────
     const origin = getOrigin();
     if (origin.x === 0 && origin.y === 0 && origin.z === 0) return;
     const floorY = origin.y;
     const tick   = system.currentTick;
 
-    const dimsMap = new Map();
-    for (const player of world.getPlayers()) dimsMap.set(player.dimension.id, player.dimension);
+    const shitroomsPlayers = world.getPlayers().filter(p => isInShitrooms(p));
+    if (shitroomsPlayers.length === 0) return;
 
-    for (const [, dim] of dimsMap) {
-      const players = dim.getPlayers();
-      if (players.length === 0) continue;
-
-      for (const typeId of TYPES) {
-        for (const entity of dim.getEntities({ type: typeId })) {
-          // Nearest player
-          let nearest = null, nearDist = Infinity;
-          for (const p of players) {
-            const d = Math.hypot(p.location.x - entity.location.x, p.location.z - entity.location.z);
-            if (d < nearDist) { nearDist = d; nearest = p; }
-          }
-          if (!nearest) continue;
-
-          // Always face the player
-          try {
-            entity.setRotation({
-              x: 0,
-              y: -Math.atan2(nearest.location.x - entity.location.x,
-                             nearest.location.z - entity.location.z) * (180 / Math.PI)
-            });
-          } catch { }
-
-          let cache = botCache.get(entity.id) ?? { path: null, nextRecalc: 0 };
-
-          // Advance path when entity enters the current waypoint block
-          if (cache.path?.length > 0) {
-            const wp = cache.path[0];
-            if (Math.hypot(entity.location.x - (wp.x + 0.5),
-                           entity.location.z - (wp.z + 0.5)) < 0.6) {
-              cache.path.shift();
-            }
-          }
-
-          // Recompute when path is exhausted or timer fires
-          if (!cache.path?.length || tick >= cache.nextRecalc) {
-            const sx = Math.floor(entity.location.x);
-            const sz = Math.floor(entity.location.z);
-            const ex = Math.floor(nearest.location.x);
-            const ez = Math.floor(nearest.location.z);
-            cache = { path: astar(dim, sx, sz, ex, ez, floorY) ?? [], nextRecalc: tick + PATH_RETICK };
-            botCache.set(entity.id, cache);
-          }
-
-          // Move toward next block waypoint, or directly to player when path is empty
-          let wx, wz;
-          if (cache.path.length === 0) {
-            wx = nearest.location.x; wz = nearest.location.z;
-          } else {
-            wx = cache.path[0].x + 0.5; wz = cache.path[0].z + 0.5;
-          }
-
-          const dx = wx - entity.location.x;
-          const dz = wz - entity.location.z;
-          const dist = Math.sqrt(dx * dx + dz * dz);
-          if (dist < 0.05) continue;
-
-          const step = Math.min(BOT_SPEED, dist);
-          try {
-            entity.teleport(
-              { x: entity.location.x + (dx / dist) * step, y: floorY + 1, z: entity.location.z + (dz / dist) * step },
-              { dimension: dim, checkForBlocks: false }
-            );
-          } catch { }
+    for (const typeId of NEXTBOT_TYPES) {
+      for (const entity of dim.getEntities({ type: typeId })) {
+        let nearest = null, nearDist = Infinity;
+        for (const p of shitroomsPlayers) {
+          const d = Math.hypot(p.location.x - entity.location.x, p.location.z - entity.location.z);
+          if (d < nearDist) { nearDist = d; nearest = p; }
         }
+        if (!nearest) continue;
+
+        try {
+          entity.setRotation({
+            x: 0,
+            y: -Math.atan2(nearest.location.x - entity.location.x,
+                           nearest.location.z - entity.location.z) * (180 / Math.PI)
+          });
+        } catch {}
+
+        let cache = botCache.get(entity.id) ?? { path: null, nextRecalc: 0 };
+
+        if (cache.path?.length > 0) {
+          const wp = cache.path[0];
+          if (Math.hypot(entity.location.x - (wp.x + 0.5),
+                         entity.location.z - (wp.z + 0.5)) < 0.6) {
+            cache.path.shift();
+          }
+        }
+
+        if (!cache.path?.length || tick >= cache.nextRecalc) {
+          const sx = Math.floor(entity.location.x);
+          const sz = Math.floor(entity.location.z);
+          const ex = Math.floor(nearest.location.x);
+          const ez = Math.floor(nearest.location.z);
+          cache = { path: astar(dim, sx, sz, ex, ez, floorY) ?? [], nextRecalc: tick + PATH_RETICK };
+          botCache.set(entity.id, cache);
+        }
+
+        let wx, wz;
+        if (cache.path.length === 0) {
+          wx = nearest.location.x; wz = nearest.location.z;
+        } else {
+          wx = cache.path[0].x + 0.5; wz = cache.path[0].z + 0.5;
+        }
+
+        const dx = wx - entity.location.x;
+        const dz = wz - entity.location.z;
+        const dist = Math.sqrt(dx * dx + dz * dz);
+        if (dist < 0.05) continue;
+
+        const step = Math.min(BOT_SPEED, dist);
+        try {
+          entity.teleport(
+            { x: entity.location.x + (dx / dist) * step, y: floorY + 1, z: entity.location.z + (dz / dist) * step },
+            { dimension: dim, checkForBlocks: false }
+          );
+        } catch {}
       }
     }
   }, 1);
 }
 
+// ─── Cleanup / combat / effects ───────────────────────────────────────────────
+
 function startCleanupLoop() {
   const LIQUIDS = ["minecraft:water", "minecraft:lava", "minecraft:flowing_water", "minecraft:flowing_lava"];
+
+  // Liquid cleanup — only matters inside the shitrooms
   system.runInterval(() => {
     for (const player of world.getPlayers()) {
+      if (!isInShitrooms(player)) continue;
       for (const liquid of LIQUIDS) {
-        try { player.runCommand(`fill ~-25 ~-3 ~-25 ~25 ~5 ~25 air replace ${liquid}`); } catch { }
+        try { player.runCommand(`fill ~-25 ~-3 ~-25 ~25 ~5 ~25 air replace ${liquid}`); } catch {}
       }
     }
   }, 10);
-  // Play ambient sounds for each nextbot every second via command (bypasses RP sound event system)
+
+  // Ambient sounds for each nextbot type
   const NEXTBOT_SEGMENT_COUNT = 39;
-  const NEXTBOT_SEG_TICKS = 100; // 5 seconds per segment
-  const NEXTBOT2_SOUND = "mob.nextbot2.ambient";
-  const NEXTBOT2_TICKS = 38; // ~2 seconds
-  // entityId -> { seg: number, tick: number }
+  const NEXTBOT_SEG_TICKS     = 100;
+  const NEXTBOT2_SOUND        = "mob.nextbot2.ambient";
+  const NEXTBOT2_TICKS        = 38;
   const soundState = new Map();
+
   system.runInterval(() => {
     const seen = new Set();
     const tick = system.currentTick;
@@ -211,7 +303,7 @@ function startCleanupLoop() {
         try {
           dim.runCommand(`playsound mob.nextbot.seg.${seg} @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 1.6 1 0`);
           soundState.set(entity.id, { seg, tick });
-        } catch { }
+        } catch {}
       }
       for (const entity of dim.getEntities({ type: "shitrooms:nextbot2" })) {
         const s = soundState.get(entity.id) ?? { seg: 0, tick: 0 };
@@ -220,7 +312,7 @@ function startCleanupLoop() {
         try {
           dim.runCommand(`playsound ${NEXTBOT2_SOUND} @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 1.6 1 0`);
           soundState.set(entity.id, { seg: 0, tick });
-        } catch { }
+        } catch {}
       }
       for (const entity of dim.getEntities({ type: "shitrooms:nextbot3" })) {
         const s = soundState.get(entity.id) ?? { seg: 0, tick: 0 };
@@ -230,7 +322,7 @@ function startCleanupLoop() {
         try {
           dim.runCommand(`playsound mob.nextbot3.seg.${seg} @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 1.6 1 0`);
           soundState.set(entity.id, { seg, tick });
-        } catch { }
+        } catch {}
       }
       for (const entity of dim.getEntities({ type: "shitrooms:nextbot4" })) {
         const s = soundState.get(entity.id) ?? { seg: 0, tick: 0 };
@@ -240,7 +332,7 @@ function startCleanupLoop() {
         try {
           dim.runCommand(`playsound mob.nextbot4.seg.${seg} @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 1.6 1 0`);
           soundState.set(entity.id, { seg, tick });
-        } catch { }
+        } catch {}
       }
       for (const entity of dim.getEntities({ type: "shitrooms:nextbot5" })) {
         const s = soundState.get(entity.id) ?? { seg: 0, tick: 0 };
@@ -250,163 +342,215 @@ function startCleanupLoop() {
         try {
           dim.runCommand(`playsound mob.nextbot5.seg.${seg} @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 1.6 1 0`);
           soundState.set(entity.id, { seg, tick });
-        } catch { }
+        } catch {}
+      }
+      for (const entity of dim.getEntities({ type: "shitrooms:trump" })) {
+        const s = soundState.get(entity.id) ?? { seg: 0, tick: 0 };
+        if (tick - s.tick < NEXTBOT_SEG_TICKS) continue;
+        const seg = (s.seg % 12) + 1;
+        const { x, y, z } = entity.location;
+        try {
+          dim.runCommand(`playsound mob.nextbot5.seg.${seg} @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 1.6 1 0`);
+          soundState.set(entity.id, { seg, tick });
+        } catch {}
       }
     }
   }, 20);
 
-  // Script-driven combat: steer nextbots toward the nearest player and deal damage.
-  const KILL_RANGE = 2.5;
+  // Nextbot kill-on-contact (shitrooms players only)
+  const KILL_RANGE    = 2.5;
   const NEXTBOT_TYPES = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5"];
+  const NEXTBOT_NAMES = {
+    "shitrooms:nextbot":  "Derivatives",
+    "shitrooms:nextbot2": "Logan",
+    "shitrooms:nextbot3": "Juan Boitcoin Hacker",
+    "shitrooms:nextbot4": "67",
+    "shitrooms:nextbot5": "Niggertrump",
+  };
+
+  // Same pattern as Orbital Strike: stash the killer name in a dynamic property
+  // BEFORE calling kill(), then broadcast the custom message in entityDie.
+  world.afterEvents.entityDie.subscribe(ev => {
+    if (ev.deadEntity.typeId !== "minecraft:player") return;
+    const key    = `shitrooms:killed_by:${ev.deadEntity.name}`;
+    const killer = world.getDynamicProperty(key);
+    if (!killer) return;
+    try { world.setDynamicProperty(key, ""); } catch {} // clear
+    world.sendMessage(`§7${ev.deadEntity.name} §fwas killed by §c${killer}`);
+  });
 
   system.runInterval(() => {
-    const dimsMap = new Map();
-    for (const player of world.getPlayers()) dimsMap.set(player.dimension.id, player.dimension);
-
-    for (const [, dim] of dimsMap) {
-      const players = dim.getPlayers();
-      if (players.length === 0) continue;
-
-      for (const typeId of NEXTBOT_TYPES) {
-        for (const entity of dim.getEntities({ type: typeId })) {
-          for (const p of players) {
-            const dx = p.location.x - entity.location.x;
-            const dy = p.location.y - entity.location.y;
-            const dz = p.location.z - entity.location.z;
-            if (Math.sqrt(dx * dx + dy * dy + dz * dz) <= KILL_RANGE) {
-              try { p.kill(); } catch { }
-              try { entity.kill(); } catch { }
-              break;
-            }
+    const dim = world.getDimension("overworld");
+    const shitroomsPlayers = world.getPlayers().filter(p => isInShitrooms(p));
+    if (shitroomsPlayers.length === 0) return;
+    for (const typeId of NEXTBOT_TYPES) {
+      for (const entity of dim.getEntities({ type: typeId })) {
+        for (const p of shitroomsPlayers) {
+          const dx = p.location.x - entity.location.x;
+          const dy = p.location.y - entity.location.y;
+          const dz = p.location.z - entity.location.z;
+          if (Math.sqrt(dx * dx + dy * dy + dz * dz) <= KILL_RANGE) {
+            try { world.setDynamicProperty(`shitrooms:killed_by:${p.name}`, NEXTBOT_NAMES[typeId] ?? typeId); } catch {}
+            try { p.kill(); } catch {}
+            try { entity.kill(); } catch {}
+            break;
           }
         }
       }
     }
   }, 2);
 
-  // Keep Speed II and Saturation X on all players permanently
+  // Trump contact: surface player touches Trump → enter the shitrooms
+  const TRUMP_RANGE = 2.0;
+  system.runInterval(() => {
+    const dim = world.getDimension("overworld");
+    for (const trump of dim.getEntities({ type: "shitrooms:trump" })) {
+      for (const p of world.getPlayers()) {
+        if (isInShitrooms(p)) continue;
+        const dx = p.location.x - trump.location.x;
+        const dy = p.location.y - trump.location.y;
+        const dz = p.location.z - trump.location.z;
+        if (Math.sqrt(dx * dx + dy * dy + dz * dz) <= TRUMP_RANGE) {
+          try { trump.kill(); } catch {}
+          enterShitrooms(p);
+          break;
+        }
+      }
+    }
+  }, 2);
+
+  // Speed II + Saturation — shitrooms players only
   system.runInterval(() => {
     for (const player of world.getPlayers()) {
-      try { player.addEffect("speed",      100, { amplifier: 1, showParticles: false }); } catch { }
-      try { player.addEffect("saturation", 100, { amplifier: 9, showParticles: false }); } catch { }
+      if (!isInShitrooms(player)) continue;
+      try { player.addEffect("speed",      100, { amplifier: 1, showParticles: false }); } catch {}
+      try { player.addEffect("saturation", 100, { amplifier: 9, showParticles: false }); } catch {}
     }
   }, 60);
 
-  const KILL_IGNORE = new Set([
-    "minecraft:player",
-    "shitrooms:nextbot",
-    "shitrooms:nextbot2",
-    "shitrooms:nextbot3",
-    "shitrooms:nextbot4",
-    "shitrooms:nextbot5",
-  ]);
-
-  // Kill all mobs and item drops every 5 seconds, sparing ignored types
+  // Only kill bats — everything else is fine at the bottom of the world.
   system.runInterval(() => {
     const seen = new Set();
     for (const player of world.getPlayers()) {
       if (seen.has(player.dimension.id)) continue;
       seen.add(player.dimension.id);
-      for (const entity of player.dimension.getEntities()) {
-        if (KILL_IGNORE.has(entity.typeId)) continue;
-        try { entity.kill(); } catch { }
+      for (const entity of player.dimension.getEntities({ type: "minecraft:bat" })) {
+        try { entity.kill(); } catch {}
       }
     }
   }, 100);
 }
 
-// ─── Survival time scoreboard ─────────────────────────────────────────────────
-
-const SCORE_OBJ  = "sr_time"; // hidden — tracks current run
-const SCORE_BEST = "sr_best"; // sidebar leaderboard — best times only
+// ─── Scoreboard / survival timer ─────────────────────────────────────────────
 
 function setupScoreboard() {
   let obj = world.scoreboard.getObjective(SCORE_OBJ);
   if (!obj) obj = world.scoreboard.addObjective(SCORE_OBJ, "Time");
-
   let best = world.scoreboard.getObjective(SCORE_BEST);
   if (!best) best = world.scoreboard.addObjective(SCORE_BEST, "§6Best Time §f(s)");
-  try { world.getDimension("overworld").runCommand(`scoreboard objectives setdisplay sidebar ${SCORE_BEST}`); } catch { }
-  // Clear any previous list display so only sidebar shows
-  try { world.getDimension("overworld").runCommand(`scoreboard objectives setdisplay list`); } catch { }
+  // Sidebar is NOT enabled here — it becomes visible when the first player enters
+  // the shitrooms via enterShitrooms(). Pre-entry players see no scoreboard.
+  try { world.getDimension("overworld").runCommand(`scoreboard objectives setdisplay list`); } catch {}
 
   system.runInterval(() => {
     const o = world.scoreboard.getObjective(SCORE_OBJ);
     const b = world.scoreboard.getObjective(SCORE_BEST);
     if (!o) return;
     for (const player of world.getPlayers()) {
+      if (!isInShitrooms(player)) continue; // only track shitrooms players
       let cur = 0;
-      try { cur = o.getScore(player) ?? 0; } catch { }
+      try { cur = o.getScore(player) ?? 0; } catch {}
       const next = cur + 1;
-      try { o.setScore(player, next); } catch { }
+      try { o.setScore(player, next); } catch {}
       if (b) {
         let pb = 0;
-        try { pb = b.getScore(player) ?? 0; } catch { }
-        if (next > pb) try { b.setScore(player, next); } catch { }
+        try { pb = b.getScore(player) ?? 0; } catch {}
+        if (next > pb) try { b.setScore(player, next); } catch {}
       }
-      // Show current run time above the hotbar
-      try { player.onScreenDisplay.setActionBar(`§7Current: §f${next}s`); } catch { }
+      try { player.onScreenDisplay.setActionBar(`§7Current: §f${next}s`); } catch {}
     }
   }, 20);
 }
 
-// Reset timer on death (respawn fires after death)
+// Reset timer on death (shitrooms players only)
 world.afterEvents.playerSpawn.subscribe(ev => {
   if (ev.initialSpawn) return;
+  if (!isInShitrooms(ev.player)) return;
   const o = world.scoreboard.getObjective(SCORE_OBJ);
   if (!o) return;
-  try { o.setScore(ev.player, 0); } catch { }
+  try { o.setScore(ev.player, 0); } catch {}
 });
 
-// Generate on the first player to ever join; teleport brand-new players into the maze
+// ─── Player spawn handling ────────────────────────────────────────────────────
+
+// First-ever player triggers maze generation (but is NOT teleported into it).
 world.afterEvents.playerSpawn.subscribe(ev => {
   if (!ev.initialSpawn) return;
-  try { ev.player.runCommand("gamemode survival"); } catch { }
+  try { ev.player.runCommand("gamemode survival"); } catch {}
 
-  // Returning players already have their position saved — don't move them
   const seenKey = "shitrooms:seen:" + ev.player.name;
-  if (world.getDynamicProperty(seenKey)) return;
+  if (world.getDynamicProperty(seenKey)) return; // returning player, nothing to do
   world.setDynamicProperty(seenKey, true);
 
-  if (world.getDynamicProperty(INIT_PROP)) {
-    // New player joining an existing maze — send them to the spawn room
-    const o = getOrigin();
-    if (o.x !== 0 || o.y !== 0 || o.z !== 0) {
-      system.runTimeout(() => {
-        try {
-          ev.player.teleport(
-            { x: o.x + 2.5, y: o.y + 1, z: o.z + 2.5 },
-            { dimension: ev.player.dimension }
-          );
-        } catch { }
-      }, 40);
-    }
-    return;
-  }
+  if (world.getDynamicProperty(INIT_PROP)) return; // maze already exists
+
+  // Very first player: generate the maze deep underground, no TP
   world.setDynamicProperty(INIT_PROP, true);
-  const player = ev.player;
-  player.addEffect("blindness", 100, { amplifier: 0, showParticles: false });
-  player.addEffect("slowness", 100, { amplifier: 99, showParticles: false });
-  system.runTimeout(() => generateInitial(player), 40);
+  system.runTimeout(() => generateInitial(ev.player), 40);
 });
 
-// On death, teleport the player back to the start room instead of the surface
+// After death: respawn shitrooms players back into the maze.
+// (Surface players respawn normally at their bed / world spawn.)
 world.afterEvents.playerSpawn.subscribe(ev => {
   if (ev.initialSpawn) return;
+  if (!isInShitrooms(ev.player)) return;
   const o = getOrigin();
-  if (o.x === 0 && o.y === 0 && o.z === 0) return; // maze not generated yet
+  if (o.x === 0 && o.y === 0 && o.z === 0) return;
   system.runTimeout(() => {
     try {
       ev.player.teleport(
         { x: o.x + 2.5, y: o.y + 1, z: o.z + 2.5 },
-        { dimension: ev.player.dimension }
+        { dimension: world.getDimension("overworld") }
       );
-    } catch { }
+    } catch {}
   }, 2);
 });
 
-// /scriptevent shitrooms:reset
-// Clears the init flag and regenerates the maze at your current position.
+// ─── Trump spawner ────────────────────────────────────────────────────────────
+
+function startTrumpSpawnLoop() {
+  const INTERVAL   = 1200; // check every 60 seconds
+  const CHANCE     = 0.5;  // 50% per check → expected spawn every ~30 s
+  const MIN_DIST   = 20;
+  const MAX_DIST   = 45;
+
+  system.runInterval(() => {
+    const dim = world.getDimension("overworld");
+
+    // Only one Trump allowed at a time
+    if (dim.getEntities({ type: "shitrooms:trump" }).length > 0) return;
+
+    // Need at least one surface (pre-entry) player to target
+    const surfacePlayers = world.getPlayers().filter(p => !isInShitrooms(p));
+    if (surfacePlayers.length === 0) return;
+
+    if (Math.random() > CHANCE) return;
+
+    const target = surfacePlayers[Math.floor(Math.random() * surfacePlayers.length)];
+    const angle  = Math.random() * Math.PI * 2;
+    const dist   = MIN_DIST + Math.random() * (MAX_DIST - MIN_DIST);
+    const spawnX = target.location.x + Math.cos(angle) * dist;
+    const spawnZ = target.location.z + Math.sin(angle) * dist;
+    const spawnY = target.location.y;
+
+    try {
+      dim.spawnEntity("shitrooms:trump", { x: spawnX, y: spawnY, z: spawnZ });
+    } catch {}
+  }, INTERVAL);
+}
+
+// ─── /scriptevent shitrooms:reset ────────────────────────────────────────────
+
 system.afterEvents.scriptEventReceive.subscribe(ev => {
   if (ev.id !== "shitrooms:reset") return;
   const player = ev.sourceEntity;

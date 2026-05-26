@@ -10,8 +10,8 @@ export const ROOMS = [
   { id: "shitrooms:open",       exits: ["north", "south", "east", "west"], weight: 3   },
   { id: "shitrooms:corridors",  exits: ["north", "south", "east", "west"], weight: 1,   clusterBonus: 2   },
   { id: "shitrooms:cross",      exits: ["north", "south", "east", "west"], weight: 1,   clusterBonus: 1.5 },
-  { id: "shitrooms:x",         exits: ["north", "south", "east", "west"], weight: 1,   clusterBonus: 1.5 },
-  { id: "shitrooms:pickaxe",   exits: ["north", "south", "east", "west"], weight: 0.05 },
+  { id: "shitrooms:x",          exits: ["north", "south", "east", "west"], weight: 1,   clusterBonus: 1.5 },
+  { id: "shitrooms:pickaxe",    exits: ["north", "south", "east", "west"], weight: 0.05 },
 ];
 
 export const START_ROOM = { id: "shitrooms:shitstart", exits: ["north", "south", "east", "west"] };

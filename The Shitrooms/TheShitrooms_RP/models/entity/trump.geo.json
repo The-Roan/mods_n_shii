@@ -1,0 +1,105 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.trump",
+        "texture_width": 128,
+        "texture_height": 64,
+        "visible_bounds_width": 1.5,
+        "visible_bounds_height": 3.5,
+        "visible_bounds_offset": [0, 1.75, 0]
+      },
+      "bones": [
+        {
+          "name": "root",
+          "pivot": [0, 0, 0],
+          "cubes": [
+
+            { "comment": "SHOE LEFT",
+              "origin": [-5, 0, -3], "size": [5, 4, 7],
+              "uv": { "north": {"uv":[40,0],"uv_size":[8,8]}, "south": {"uv":[40,0],"uv_size":[8,8]}, "east": {"uv":[40,0],"uv_size":[8,8]}, "west": {"uv":[40,0],"uv_size":[8,8]}, "up": {"uv":[40,0],"uv_size":[8,8]}, "down": {"uv":[40,0],"uv_size":[8,8]} } },
+            { "comment": "SHOE RIGHT",
+              "origin": [0, 0, -3], "size": [5, 4, 7],
+              "uv": { "north": {"uv":[40,0],"uv_size":[8,8]}, "south": {"uv":[40,0],"uv_size":[8,8]}, "east": {"uv":[40,0],"uv_size":[8,8]}, "west": {"uv":[40,0],"uv_size":[8,8]}, "up": {"uv":[40,0],"uv_size":[8,8]}, "down": {"uv":[40,0],"uv_size":[8,8]} } },
+
+            { "comment": "LEFT TROUSER LEG",
+              "origin": [-4, 4, -2], "size": [4, 14, 4],
+              "uv": { "north": {"uv":[16,0],"uv_size":[8,8]}, "south": {"uv":[16,0],"uv_size":[8,8]}, "east": {"uv":[16,0],"uv_size":[8,8]}, "west": {"uv":[16,0],"uv_size":[8,8]}, "up": {"uv":[16,0],"uv_size":[8,8]}, "down": {"uv":[16,0],"uv_size":[8,8]} } },
+            { "comment": "RIGHT TROUSER LEG",
+              "origin": [0, 4, -2], "size": [4, 14, 4],
+              "uv": { "north": {"uv":[16,0],"uv_size":[8,8]}, "south": {"uv":[16,0],"uv_size":[8,8]}, "east": {"uv":[16,0],"uv_size":[8,8]}, "west": {"uv":[16,0],"uv_size":[8,8]}, "up": {"uv":[16,0],"uv_size":[8,8]}, "down": {"uv":[16,0],"uv_size":[8,8]} } },
+
+            { "comment": "JACKET BODY",
+              "origin": [-5, 18, -2], "size": [10, 16, 5],
+              "uv": { "north": {"uv":[16,0],"uv_size":[8,8]}, "south": {"uv":[16,0],"uv_size":[8,8]}, "east": {"uv":[16,0],"uv_size":[8,8]}, "west": {"uv":[16,0],"uv_size":[8,8]}, "up": {"uv":[16,0],"uv_size":[8,8]}, "down": {"uv":[16,0],"uv_size":[8,8]} } },
+
+            { "comment": "WHITE SHIRT STRIP",
+              "origin": [-2, 18, 3], "size": [4, 15, 1],
+              "uv": { "north": {"uv":[24,0],"uv_size":[8,8]}, "south": {"uv":[24,0],"uv_size":[8,8]}, "east": {"uv":[24,0],"uv_size":[8,8]}, "west": {"uv":[24,0],"uv_size":[8,8]}, "up": {"uv":[24,0],"uv_size":[8,8]}, "down": {"uv":[24,0],"uv_size":[8,8]} } },
+
+            { "comment": "TIE BODY (upper half, visible above clasped hands)",
+              "origin": [-1, 26, 4], "size": [2, 5, 1],
+              "uv": { "north": {"uv":[32,0],"uv_size":[8,8]}, "south": {"uv":[32,0],"uv_size":[8,8]}, "east": {"uv":[32,0],"uv_size":[8,8]}, "west": {"uv":[32,0],"uv_size":[8,8]}, "up": {"uv":[32,0],"uv_size":[8,8]}, "down": {"uv":[32,0],"uv_size":[8,8]} } },
+            { "comment": "TIE KNOT",
+              "origin": [-1, 31, 4], "size": [2, 2, 1],
+              "uv": { "north": {"uv":[32,0],"uv_size":[8,8]}, "south": {"uv":[32,0],"uv_size":[8,8]}, "east": {"uv":[32,0],"uv_size":[8,8]}, "west": {"uv":[32,0],"uv_size":[8,8]}, "up": {"uv":[32,0],"uv_size":[8,8]}, "down": {"uv":[32,0],"uv_size":[8,8]} } },
+
+            { "comment": "LEFT UPPER ARM (shoulder, blends with jacket)",
+              "origin": [-9, 28, -2], "size": [4, 6, 4],
+              "uv": { "north": {"uv":[16,0],"uv_size":[8,8]}, "south": {"uv":[16,0],"uv_size":[8,8]}, "east": {"uv":[16,0],"uv_size":[8,8]}, "west": {"uv":[16,0],"uv_size":[8,8]}, "up": {"uv":[16,0],"uv_size":[8,8]}, "down": {"uv":[16,0],"uv_size":[8,8]} } },
+            { "comment": "LEFT FOREARM (goes down AND forward toward center)",
+              "origin": [-7, 21, 0], "size": [3, 7, 5],
+              "uv": { "north": {"uv":[16,0],"uv_size":[8,8]}, "south": {"uv":[16,0],"uv_size":[8,8]}, "east": {"uv":[16,0],"uv_size":[8,8]}, "west": {"uv":[16,0],"uv_size":[8,8]}, "up": {"uv":[16,0],"uv_size":[8,8]}, "down": {"uv":[16,0],"uv_size":[8,8]} } },
+            { "comment": "LEFT SHIRT CUFF (at wrist, visible beside clasped hand)",
+              "origin": [-7, 21, 5], "size": [3, 3, 2],
+              "uv": { "north": {"uv":[24,0],"uv_size":[8,8]}, "south": {"uv":[24,0],"uv_size":[8,8]}, "east": {"uv":[24,0],"uv_size":[8,8]}, "west": {"uv":[24,0],"uv_size":[8,8]}, "up": {"uv":[24,0],"uv_size":[8,8]}, "down": {"uv":[24,0],"uv_size":[8,8]} } },
+            { "comment": "LEFT HAND (clasped center-front)",
+              "origin": [-4, 20, 4], "size": [4, 5, 4],
+              "uv": { "north": {"uv":[0,0],"uv_size":[8,8]}, "south": {"uv":[0,0],"uv_size":[8,8]}, "east": {"uv":[0,0],"uv_size":[8,8]}, "west": {"uv":[0,0],"uv_size":[8,8]}, "up": {"uv":[0,0],"uv_size":[8,8]}, "down": {"uv":[0,0],"uv_size":[8,8]} } },
+
+            { "comment": "RIGHT UPPER ARM (shoulder, blends with jacket)",
+              "origin": [5, 28, -2], "size": [4, 6, 4],
+              "uv": { "north": {"uv":[16,0],"uv_size":[8,8]}, "south": {"uv":[16,0],"uv_size":[8,8]}, "east": {"uv":[16,0],"uv_size":[8,8]}, "west": {"uv":[16,0],"uv_size":[8,8]}, "up": {"uv":[16,0],"uv_size":[8,8]}, "down": {"uv":[16,0],"uv_size":[8,8]} } },
+            { "comment": "RIGHT FOREARM (goes down AND forward toward center)",
+              "origin": [4, 21, 0], "size": [3, 7, 5],
+              "uv": { "north": {"uv":[16,0],"uv_size":[8,8]}, "south": {"uv":[16,0],"uv_size":[8,8]}, "east": {"uv":[16,0],"uv_size":[8,8]}, "west": {"uv":[16,0],"uv_size":[8,8]}, "up": {"uv":[16,0],"uv_size":[8,8]}, "down": {"uv":[16,0],"uv_size":[8,8]} } },
+            { "comment": "RIGHT SHIRT CUFF",
+              "origin": [4, 21, 5], "size": [3, 3, 2],
+              "uv": { "north": {"uv":[24,0],"uv_size":[8,8]}, "south": {"uv":[24,0],"uv_size":[8,8]}, "east": {"uv":[24,0],"uv_size":[8,8]}, "west": {"uv":[24,0],"uv_size":[8,8]}, "up": {"uv":[24,0],"uv_size":[8,8]}, "down": {"uv":[24,0],"uv_size":[8,8]} } },
+            { "comment": "RIGHT HAND (clasped center-front)",
+              "origin": [0, 20, 4], "size": [4, 5, 4],
+              "uv": { "north": {"uv":[0,0],"uv_size":[8,8]}, "south": {"uv":[0,0],"uv_size":[8,8]}, "east": {"uv":[0,0],"uv_size":[8,8]}, "west": {"uv":[0,0],"uv_size":[8,8]}, "up": {"uv":[0,0],"uv_size":[8,8]}, "down": {"uv":[0,0],"uv_size":[8,8]} } },
+
+            { "comment": "WHITE COLLAR",
+              "origin": [-3, 33, 3], "size": [6, 3, 1],
+              "uv": { "north": {"uv":[24,0],"uv_size":[8,8]}, "south": {"uv":[24,0],"uv_size":[8,8]}, "east": {"uv":[24,0],"uv_size":[8,8]}, "west": {"uv":[24,0],"uv_size":[8,8]}, "up": {"uv":[24,0],"uv_size":[8,8]}, "down": {"uv":[24,0],"uv_size":[8,8]} } },
+            { "comment": "NECK",
+              "origin": [-2, 34, -1], "size": [4, 3, 3],
+              "uv": { "north": {"uv":[0,0],"uv_size":[8,8]}, "south": {"uv":[0,0],"uv_size":[8,8]}, "east": {"uv":[0,0],"uv_size":[8,8]}, "west": {"uv":[0,0],"uv_size":[8,8]}, "up": {"uv":[0,0],"uv_size":[8,8]}, "down": {"uv":[0,0],"uv_size":[8,8]} } },
+            { "comment": "HEAD — south face = Trump face texture, rest = flat skin",
+              "origin": [-4, 37, -4], "size": [8, 8, 8],
+              "uv": {
+                "south": {"uv":[64,0],"uv_size":[64,64]},
+                "north": {"uv":[0,0],"uv_size":[8,8]},
+                "east":  {"uv":[0,0],"uv_size":[8,8]},
+                "west":  {"uv":[0,0],"uv_size":[8,8]},
+                "up":    {"uv":[0,0],"uv_size":[8,8]},
+                "down":  {"uv":[0,0],"uv_size":[8,8]}
+              } },
+            { "comment": "HAIR top cap",
+              "origin": [-4, 45, -4], "size": [8, 3, 8],
+              "uv": { "north": {"uv":[8,0],"uv_size":[8,8]}, "south": {"uv":[8,0],"uv_size":[8,8]}, "east": {"uv":[8,0],"uv_size":[8,8]}, "west": {"uv":[8,0],"uv_size":[8,8]}, "up": {"uv":[8,0],"uv_size":[8,8]}, "down": {"uv":[8,0],"uv_size":[8,8]} } },
+            { "comment": "HAIR left side",
+              "origin": [-5, 42, -3], "size": [2, 3, 7],
+              "uv": { "north": {"uv":[8,0],"uv_size":[8,8]}, "south": {"uv":[8,0],"uv_size":[8,8]}, "east": {"uv":[8,0],"uv_size":[8,8]}, "west": {"uv":[8,0],"uv_size":[8,8]}, "up": {"uv":[8,0],"uv_size":[8,8]}, "down": {"uv":[8,0],"uv_size":[8,8]} } },
+            { "comment": "HAIR right side",
+              "origin": [3, 42, -3], "size": [2, 3, 7],
+              "uv": { "north": {"uv":[8,0],"uv_size":[8,8]}, "south": {"uv":[8,0],"uv_size":[8,8]}, "east": {"uv":[8,0],"uv_size":[8,8]}, "west": {"uv":[8,0],"uv_size":[8,8]}, "up": {"uv":[8,0],"uv_size":[8,8]}, "down": {"uv":[8,0],"uv_size":[8,8]} } }
+
+          ]
+        }
+      ]
+    }
+  ]
+}

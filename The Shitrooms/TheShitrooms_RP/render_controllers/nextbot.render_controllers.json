@@ -5,6 +5,11 @@
       "geometry": "Geometry.default",
       "materials": [{ "*": "Material.default" }],
       "textures": ["Texture.default"]
+    },
+    "controller.render.trump": {
+      "geometry": "Geometry.default",
+      "materials": [{ "*": "Material.default" }],
+      "textures": ["Texture.default"]
     }
   }
 }

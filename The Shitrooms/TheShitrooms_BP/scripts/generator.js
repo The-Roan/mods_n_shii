@@ -2,17 +2,20 @@ import { world, system } from "@minecraft/server";
 import { ROOMS, OPEN_ROOM, CELL_SIZE } from "./rooms.js";
 
 // ─── Config ───────────────────────────────────────────────────────────────────
-const INITIAL_ROOMS  = 50;   // rooms carved on first join (DFS maze)
-const EXPLORE_ROOMS  = 80;   // max new rooms per exploration tick
-const EXPLORE_AHEAD  = 10;   // cell radius to keep frontier ahead of player
-const CHECK_INTERVAL = 10;   // ticks between exploration scans
+const INITIAL_ROOMS  = 50;
+const EXPLORE_ROOMS  = 80;
+const EXPLORE_AHEAD  = 10;
+const CHECK_INTERVAL = 10;
 
-const NEXTBOT_TYPES   = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5"];
-const MAX_PER_TYPE    = 3;
-const SPAWN_DELAY     = 600;  // ticks before first spawn (~30 seconds)
-const SPAWN_INTERVAL  = 600;  // ticks between spawn attempts (~30 seconds)
-const SPAWN_MIN_DIST  = 10;   // minimum cell distance from any player to spawn
-const SPAWN_MAX_DIST  = 20;   // maximum cell distance — beyond this chunks are likely unloaded
+const SHITROOMS_Y   = -64;  // Floor replaces the bottom bedrock layer
+const ROOF_Y_OFFSET = CELL_SIZE; // Bedrock cap 1 block above room ceiling (Y = -64+5 = -59)
+
+const NEXTBOT_TYPES  = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5"];
+const MAX_PER_TYPE   = 3;
+const SPAWN_DELAY    = 600;
+const SPAWN_INTERVAL = 600;
+const SPAWN_MIN_DIST = 10;
+const SPAWN_MAX_DIST = 20;
 
 const DIRS = [
   { dx:  0, dz: -1, face: "north", opp: "south" },
@@ -21,12 +24,16 @@ const DIRS = [
   { dx: -1, dz:  0, face: "west",  opp: "east"  },
 ];
 
-
 const placedCells = new Map(); // cellKey -> Set<exitFace>
 const placedRooms = new Map(); // cellKey -> roomId
 let originX = 0, originY = 0, originZ = 0;
 
 function cellKey(gx, gz) { return `${gx},${gz}`; }
+
+// Mirrors the same helper in main.js (can't import across without circular deps)
+function isInShitrooms(player) {
+  return !!world.getDynamicProperty(`shitrooms:in_shitrooms:${player.name}`);
+}
 
 export function resetState() {
   placedCells.clear(); placedRooms.clear(); originX = 0; originY = 0; originZ = 0;
@@ -77,8 +84,6 @@ export function restoreState() {
   }
 }
 
-// Pick a room that has all required exits, boosting rooms whose type already
-// appears in a neighbour cell (clusterBonus drives same-type clustering).
 function pickRoom(exits, neighborIds = []) {
   const need = new Set(exits);
   const valid = ROOMS.filter(r => [...need].every(e => new Set(r.exits).has(e)));
@@ -95,8 +100,33 @@ function pickRoom(exits, neighborIds = []) {
   return valid[valid.length - 1];
 }
 
+// Rooms with no unlit variant — always stay lit regardless of distance.
+const NO_UNLIT = new Set(["shitrooms:pickaxe"]);
+
 function placeRoom(dim, room, wx, wy, wz) {
-  dim.runCommand(`structure load ${room.id} ${wx} ${wy} ${wz}`);
+  // Pre-fill the entire cell with air so that natural bedrock layers
+  // (Y=-63, -62, etc.) are cleared before the structure is placed.
+  try {
+    dim.runCommand(`fill ${wx} ${wy} ${wz} ${wx + CELL_SIZE - 1} ${wy + CELL_SIZE - 1} ${wz + CELL_SIZE - 1} air`);
+  } catch {}
+
+  // Farther from the maze entrance → higher chance of unlit room.
+  // At 0 blocks: 0% unlit. At 1000+ blocks: 100% unlit.
+  // Unlit variants are named <id>_unlit, e.g. shitrooms:open_unlit.
+  const dist        = Math.sqrt((wx - originX) ** 2 + (wz - originZ) ** 2);
+  const unlitChance = Math.min(dist / 500, 1.0);
+  const useUnlit    = Math.random() < unlitChance && !NO_UNLIT.has(room.id);
+  const id          = useUnlit ? room.id + "_unlit" : room.id;
+  dim.runCommand(`structure load ${id} ${wx} ${wy} ${wz}`);
+}
+
+// Place a 1-block-thick bedrock layer above the room ceiling so players
+// digging down see bedrock instead of the shitrooms from above.
+function sealRoof(dim, wx, wz) {
+  const ry = originY + ROOF_Y_OFFSET;
+  try {
+    dim.runCommand(`fill ${wx} ${ry} ${wz} ${wx + CELL_SIZE - 1} ${ry} ${wz + CELL_SIZE - 1} bedrock`);
+  } catch { }
 }
 
 // ─── Iterative DFS maze carver ────────────────────────────────────────────────
@@ -134,7 +164,10 @@ function commitCells(newCells, dim) {
         .map(d => placedRooms.get(cellKey(gx + d.dx, gz + d.dz)))
         .filter(Boolean);
       const room = pickRoom([...exits], neighborIds);
-      placeRoom(dim, room, originX + gx * CELL_SIZE, originY, originZ + gz * CELL_SIZE);
+      const wx = originX + gx * CELL_SIZE;
+      const wz = originZ + gz * CELL_SIZE;
+      placeRoom(dim, room, wx, originY, wz);
+      sealRoof(dim, wx, wz);  // bedrock cap above every placed cell
       placedCells.set(key, exits);
       placedRooms.set(key, room.id);
     } catch { }
@@ -144,36 +177,35 @@ function commitCells(newCells, dim) {
 
 // ─── Public API ───────────────────────────────────────────────────────────────
 
+// Generates the maze at the bottom of the world (Y = SHITROOMS_Y) centered on
+// the given player's XZ position. Does NOT teleport the player — that happens
+// in main.js when the player touches Trump.
 export function generateInitial(player) {
   const loc = player.location;
   originX = Math.floor(loc.x) - 2;
-  originY = Math.floor(loc.y) - 1;
+  originY = SHITROOMS_Y;   // fixed deep underground — replaces natural bedrock
   originZ = Math.floor(loc.z) - 2;
 
-  // Pre-place a 3x3 open area so the player is never boxed in at spawn
+  const dim = world.getDimension("overworld");
+
+  // Pre-place a 3×3 open area so the player is never boxed in at spawn
   for (let gx = -1; gx <= 1; gx++) {
     for (let gz = -1; gz <= 1; gz++) {
-      placeRoom(player.dimension, OPEN_ROOM, originX + gx * CELL_SIZE, originY, originZ + gz * CELL_SIZE);
+      const wx = originX + gx * CELL_SIZE;
+      const wz = originZ + gz * CELL_SIZE;
+      placeRoom(dim, OPEN_ROOM, wx, originY, wz);
+      sealRoof(dim, wx, wz);
       placedCells.set(cellKey(gx, gz), new Set(["north", "south", "east", "west"]));
       placedRooms.set(cellKey(gx, gz), OPEN_ROOM.id);
     }
   }
 
-  // Carve outward from each corner so the maze expands in all four directions
+  // Carve outward from each corner
   for (const [sgx, sgz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
     const newCells = carveMaze(sgx, sgz, Math.ceil(INITIAL_ROOMS / 4));
-    if (newCells.size > 0) commitCells(newCells, player.dimension);
+    if (newCells.size > 0) commitCells(newCells, dim);
   }
-
-  // Settle player into the center of the open spawn area
-  system.runTimeout(() => {
-    try {
-      player.teleport(
-        { x: originX + 2.5, y: originY + 1, z: originZ + 2.5 },
-        { dimension: player.dimension }
-      );
-    } catch {}
-  }, 5);
+  // Player is NOT teleported here — enterShitrooms() in main.js handles that.
 }
 
 // ─── Nextbot Spawner ──────────────────────────────────────────────────────────
@@ -182,15 +214,18 @@ export function startSpawnLoop() {
   system.runTimeout(() => {
     system.runInterval(() => {
       if (placedCells.size === 0) return;
-      const players = world.getPlayers();
-      if (players.length === 0) return;
-      const dim = players[0].dimension;
+
+      // Only spawn nextbots when at least one player is inside the shitrooms
+      const shitroomsPlayers = world.getPlayers().filter(p => isInShitrooms(p));
+      if (shitroomsPlayers.length === 0) return;
+
+      const dim = world.getDimension("overworld");
 
       const NO_SPAWN_ROOMS = new Set(["shitrooms:corridors", "shitrooms:cross", "shitrooms:x"]);
       const validKeys = [...placedCells.keys()].filter(k => {
         if (NO_SPAWN_ROOMS.has(placedRooms.get(k))) return false;
         const [gx, gz] = k.split(",").map(Number);
-        return players.every(p => {
+        return shitroomsPlayers.every(p => {
           const pgx = Math.round((p.location.x - originX) / CELL_SIZE);
           const pgz = Math.round((p.location.z - originZ) / CELL_SIZE);
           const dist = Math.abs(gx - pgx) + Math.abs(gz - pgz);
@@ -220,14 +255,17 @@ export function startExplorationLoop() {
   system.runInterval(() => {
     if (placedCells.size === 0) return;
 
-    for (const player of world.getPlayers()) {
+    // Only extend the maze for players who are actually inside it
+    const shitroomsPlayers = world.getPlayers().filter(p => isInShitrooms(p));
+    if (shitroomsPlayers.length === 0) return;
+
+    const dim = world.getDimension("overworld");
+
+    for (const player of shitroomsPlayers) {
       const loc = player.location;
       const pgx = Math.floor((loc.x - originX) / CELL_SIZE);
       const pgz = Math.floor((loc.z - originZ) / CELL_SIZE);
-      const dim = player.dimension;
 
-      // Collect every placed cell that has at least one unplaced neighbour within radius.
-      // These are the frontier seeds from which DFS can expand.
       const seeds = [];
       for (let dgx = -EXPLORE_AHEAD; dgx <= EXPLORE_AHEAD; dgx++) {
         for (let dgz = -EXPLORE_AHEAD; dgz <= EXPLORE_AHEAD; dgz++) {
@@ -242,15 +280,13 @@ export function startExplorationLoop() {
         }
       }
 
-      if (seeds.length === 0) continue; // area fully covered
+      if (seeds.length === 0) continue;
 
-      // Shuffle so all directions get a fair shot each tick.
       for (let i = seeds.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [seeds[i], seeds[j]] = [seeds[j], seeds[i]];
       }
 
-      // Run DFS from each seed, sharing the EXPLORE_ROOMS budget.
       let remaining = EXPLORE_ROOMS;
       for (const { gx, gz } of seeds) {
         if (remaining <= 0) break;
