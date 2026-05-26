@@ -36,7 +36,7 @@ function enterShitrooms(player) {
   // first player enters, so pre-entry players just see an empty board briefly.
   try { dim.runCommand(`scoreboard objectives setdisplay sidebar ${SCORE_BEST}`); } catch {}
 
-  world.sendMessage(`§fhas §cnoclipped §finto the §n§lShitrooms`);
+  world.sendMessage(`§7${player.name}§f has §cnoclipped §finto the §n§lShitrooms`);
 
   system.runTimeout(() => {
     try { player.teleport(dest, { dimension: dim }); } catch {}
@@ -373,25 +373,79 @@ function startCleanupLoop() {
   const KILL_RANGE    = 2.5;
   const NEXTBOT_TYPES = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5", "shitrooms:nextbot6"];
 
-  // Custom death message per nextbot. n = player name.
+  // Custom death message pools per nextbot. n = player name. One is chosen at random.
   const DEATH_MSGS = {
-    "shitrooms:nextbot":  n => `§7${n} §fwas §cdifferentiated §fby §e§lHuntr/x`,
-    "shitrooms:nextbot2": n => `§7${n} §fwas §nshítted §fon by §n§lLogan`,
-    "shitrooms:nextbot3": n => `§7${n}'s §fbitcoin was §chacked§f by §6§lJuan`,
-    "shitrooms:nextbot4": n => `§7${n} §fgot §l§c67§f'd`,
-    "shitrooms:nextbot5": n => `§7${n} §fwas §elaunched into the sun§f by §c§lNiggertrump`,
-    "shitrooms:nextbot6": n => `§7${n} §fwas §cintegrated §fby §d§lGay§b People`,
+    "shitrooms:nextbot": [
+      n => `§7${n} §fwas §cdifferentiated §fby §e§lHuntr/x`,
+      n => `§7${n} §fwas sent §cup, up, up §fby §e§lHuntr/x`,
+      n => `§7${n} §fgot §coptimized §fby §e§lHuntr/x`,
+      n => `§7${n} §fwas brutally §cáss ráped§f by §e§lHuntr/x`,
+    ],
+    "shitrooms:nextbot2": [
+      n => `§7${n} §fwas §nshítted §fon by §n§lLogan`,
+      n => `§7${n}'s nostrils §fgot filled with §nshit §fby §n§lLogan`,
+      n => `§7${n} §fwas §ccrushed §fby §n§lLogan`,
+      n => `§7${n} §fhas been §ceaten §fby §n§lLogan`,
+    ],
+    "shitrooms:nextbot3": [
+      n => `§7${n}'s §fbitcoin was §chacked§f by §6§lJuan`,
+      n => `§7${n} §fgot §cdeported §fby §6§lJuan`,
+      n => `§7${n}'s §fcryptowallet was §cdrained §fby §6§lJuan`,
+      n => `§7${n} §fwas §cliquidated §fby §6§lJuan`,
+    ],
+    "shitrooms:nextbot4": [
+      n => `§7${n} §fgot §l§c67§f'd`,
+    ],
+    "shitrooms:nextbot5": [
+      n => `§7${n} §fwas §4killed §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §4beheaded §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §4roundhouse kicked §finto §7concrete §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §6slam dunked §finto a §2trash can §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §4crucified §fby §c§lNiggertrump`,
+      n => `§7${n} §fhad his food §ndefecated in §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §elaunched into the sun §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §6stir-fried in a wok §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §ctossed §finto an §4active volcano §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §ckicked §fin the §4testícles §fby §c§lNiggertrump`,
+      n => `§7${n} §fhad his §ngas tank §eurinated in §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §4judo thrown §finto a §4wood chipper §fby §c§lNiggertrump`,
+      n => `§7${n} §fhad his head §4twisted off §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §creported §fto the §4I§fR§9S §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §4karate chopped in half §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §4curb stomped §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §ctrapped §fin §nquicksand §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §4crushed §fin a §2trash compactor §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §3liquefied §fin a §2vat of acid §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §4eaten §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §4dissected §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §4exterminated §fin the §2gas chamber §fby §c§lNiggertrump`,
+      n => `§7${n} §fhad his skull §4stomped §fwith §7steel-toed boots §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §6cremated §fin the §4oven §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §4lobotomized §fby §c§lNiggertrump`,
+      n => `§7${n}'s child §fwas §caborted §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §4ground §fin the §2garbage disposal §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §3drowned §fin §6fried chicken grease §fby §c§lNiggertrump`,
+      n => `§7${n} §fwas §bvaporized §fwith a §3ray gun §fby §c§lNiggertrump`,
+    ],
+    "shitrooms:nextbot6": [
+      n => `§7${n} §fwas §cintegrated §fby §d§lGay§b People`,
+    ],
   };
 
-  // Stash the killer typeId before kill(), broadcast the custom message in entityDie.
+  // Stash the killer typeId before kill(), broadcast a random custom message in entityDie.
   world.afterEvents.entityDie.subscribe(ev => {
     if (ev.deadEntity.typeId !== "minecraft:player") return;
     const key    = `shitrooms:killed_by:${ev.deadEntity.name}`;
     const typeId = world.getDynamicProperty(key);
     if (!typeId) return;
     try { world.setDynamicProperty(key, ""); } catch {}
-    const msgFn = DEATH_MSGS[typeId];
-    world.sendMessage(msgFn ? msgFn(ev.deadEntity.name) : `§7${ev.deadEntity.name} §fwas killed`);
+    const pool = DEATH_MSGS[typeId];
+    if (pool) {
+      const msgFn = pool[Math.floor(Math.random() * pool.length)];
+      world.sendMessage(msgFn(ev.deadEntity.name));
+    } else {
+      world.sendMessage(`§7${ev.deadEntity.name} §fwas killed`);
+    }
   });
 
   system.runInterval(() => {
