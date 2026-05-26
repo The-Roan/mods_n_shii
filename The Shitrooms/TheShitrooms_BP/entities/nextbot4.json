@@ -9,7 +9,7 @@
     },
     "components": {
       "minecraft:type_family": { "family": ["mob", "nextbot"] },
-      "minecraft:health": { "value": 100, "max": 100 },
+      "minecraft:health": { "value": 20000, "max": 20000 },
       "minecraft:attack": { "damage": 0 },
       "minecraft:scale": { "value": 1.0 },
       "minecraft:movement": { "value": 0.4 },
