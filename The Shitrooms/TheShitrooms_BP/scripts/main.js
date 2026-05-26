@@ -36,6 +36,8 @@ function enterShitrooms(player) {
   // first player enters, so pre-entry players just see an empty board briefly.
   try { dim.runCommand(`scoreboard objectives setdisplay sidebar ${SCORE_BEST}`); } catch {}
 
+  world.sendMessage(`§fhas §cnoclipped §finto the §n§lShitrooms`);
+
   system.runTimeout(() => {
     try { player.teleport(dest, { dimension: dim }); } catch {}
   }, 5);
@@ -363,11 +365,11 @@ function startCleanupLoop() {
 
   // Custom death message per nextbot. n = player name.
   const DEATH_MSGS = {
-    "shitrooms:nextbot":  n => `§7${n} §fwas §cdifferentiated §fby §eHuntr/x`,
-    "shitrooms:nextbot2": n => `§7${n} §fwas §nshítted §fon by §nLogan`,
-    "shitrooms:nextbot3": n => `§7${n}'s §fbitcoin was §chacked§f by §6Juan`,
-    "shitrooms:nextbot4": n => `§7${n} §fgot §c67§f'd`,
-    "shitrooms:nextbot5": n => `§7${n} §fwas §elaunched into the sun§f by §cNiggertrump`,
+    "shitrooms:nextbot":  n => `§7${n} §fwas §cdifferentiated §fby §e§lHuntr/x`,
+    "shitrooms:nextbot2": n => `§7${n} §fwas §nshítted §fon by §n§lLogan`,
+    "shitrooms:nextbot3": n => `§7${n}'s §fbitcoin was §chacked§f by §6§lJuan`,
+    "shitrooms:nextbot4": n => `§7${n} §fgot §l§c67§f'd`,
+    "shitrooms:nextbot5": n => `§7${n} §fwas §elaunched into the sun§f by §c§lNiggertrump`,
   };
 
   // Stash the killer typeId before kill(), broadcast the custom message in entityDie.
