@@ -160,7 +160,7 @@ function astar(dim, sx, sz, ex, ez, floorY) {
 const botCache = new Map(); // entityId -> { path, nextRecalc }
 
 function startNavmeshLoop() {
-  const NEXTBOT_TYPES = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5"];
+  const NEXTBOT_TYPES = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5", "shitrooms:nextbot6"];
 
   system.runInterval(() => {
     const dim = world.getDimension("overworld");
@@ -346,6 +346,16 @@ function startCleanupLoop() {
           soundState.set(entity.id, { seg, tick });
         } catch {}
       }
+      for (const entity of dim.getEntities({ type: "shitrooms:nextbot6" })) {
+        const s = soundState.get(entity.id) ?? { seg: 0, tick: 0 };
+        if (tick - s.tick < NEXTBOT_SEG_TICKS) continue;
+        const seg = (s.seg % 31) + 1;
+        const { x, y, z } = entity.location;
+        try {
+          dim.runCommand(`playsound mob.nextbot6.seg.${seg} @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 1.6 1 0`);
+          soundState.set(entity.id, { seg, tick });
+        } catch {}
+      }
       for (const entity of dim.getEntities({ type: "shitrooms:trump" })) {
         const s = soundState.get(entity.id) ?? { seg: 0, tick: 0 };
         if (tick - s.tick < NEXTBOT_SEG_TICKS) continue;
@@ -361,7 +371,7 @@ function startCleanupLoop() {
 
   // Nextbot kill-on-contact (shitrooms players only)
   const KILL_RANGE    = 2.5;
-  const NEXTBOT_TYPES = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5"];
+  const NEXTBOT_TYPES = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5", "shitrooms:nextbot6"];
 
   // Custom death message per nextbot. n = player name.
   const DEATH_MSGS = {
@@ -370,6 +380,7 @@ function startCleanupLoop() {
     "shitrooms:nextbot3": n => `§7${n}'s §fbitcoin was §chacked§f by §6§lJuan`,
     "shitrooms:nextbot4": n => `§7${n} §fgot §l§c67§f'd`,
     "shitrooms:nextbot5": n => `§7${n} §fwas §elaunched into the sun§f by §c§lNiggertrump`,
+    "shitrooms:nextbot6": n => `§7${n} §fwas §cintegrated §fby §d§lGay§b People`,
   };
 
   // Stash the killer typeId before kill(), broadcast the custom message in entityDie.
