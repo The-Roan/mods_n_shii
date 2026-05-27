@@ -380,6 +380,7 @@ function startCleanupLoop() {
       n => `§7${n} §fwas sent §cup, up, up §fby §e§lHuntr/x`,
       n => `§7${n} §fgot §coptimized §fby §e§lHuntr/x`,
       n => `§7${n} §fwas brutally §cáss ráped§f by §e§lHuntr/x`,
+      n => `§7${n} §fwas §cslain §fusing §bUltimate Derivatives Sword §fby §e§lHuntr/x`,
     ],
     "shitrooms:nextbot2": [
       n => `§7${n} §fwas §nshítted §fon by §n§lLogan`,
@@ -397,6 +398,7 @@ function startCleanupLoop() {
       n => `§7${n} §fgot §l§c67§f'd`,
     ],
     "shitrooms:nextbot5": [
+      n => `§7${n} §fwas a §4victim §fof §c§lTotal Nígger Death`,
       n => `§7${n} §fwas §4killed §fby §c§lNiggertrump`,
       n => `§7${n} §fwas §4beheaded §fby §c§lNiggertrump`,
       n => `§7${n} §fwas §4roundhouse kicked §finto §7concrete §fby §c§lNiggertrump`,
@@ -429,6 +431,7 @@ function startCleanupLoop() {
     ],
     "shitrooms:nextbot6": [
       n => `§7${n} §fwas §cintegrated §fby §d§lGay§b People`,
+      n => `§7${n} §fwas §dcarbonated §fby §d§lGay§b People`,
     ],
   };
 
