@@ -4,6 +4,9 @@
   "texture_data": {
     "wall_pickaxe": {
       "textures": "textures/items/wall_pickaxe"
+    },
+    "flashlight": {
+      "textures": "textures/items/flashlight"
     }
   }
 }

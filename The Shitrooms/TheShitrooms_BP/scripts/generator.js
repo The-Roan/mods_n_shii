@@ -101,7 +101,7 @@ function pickRoom(exits, neighborIds = []) {
 }
 
 // Rooms with no unlit variant — always stay lit regardless of distance.
-const NO_UNLIT = new Set(["shitrooms:pickaxe"]);
+const NO_UNLIT = new Set(["shitrooms:pickaxe", "shitrooms:flashlight"]);
 
 function placeRoom(dim, room, wx, wy, wz) {
   // Pre-fill the entire cell with air so that natural bedrock layers

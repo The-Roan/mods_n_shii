@@ -1,0 +1,16 @@
+{
+  "format_version": "1.20.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "shitrooms:flashlight",
+      "menu_category": { "category": "items" }
+    },
+    "components": {
+      "minecraft:display_name": { "value": "Flashlight" },
+      "minecraft:icon": { "texture": "flashlight" },
+      "minecraft:hand_equipped": true,
+      "minecraft:max_stack_size": 1,
+      "minecraft:durability": { "max_durability": 120 }
+    }
+  }
+}

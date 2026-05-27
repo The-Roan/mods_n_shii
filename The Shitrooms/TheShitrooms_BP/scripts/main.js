@@ -1,4 +1,4 @@
-import { world, system } from "@minecraft/server";
+import { world, system, BlockPermutation } from "@minecraft/server";
 import { generateInitial, startExplorationLoop, startSpawnLoop, resetState, getOrigin, restoreState } from "./generator.js";
 
 const INIT_PROP  = "shitrooms:initialized";
@@ -79,6 +79,7 @@ world.afterEvents.worldInitialize.subscribe(() => {
   startCleanupLoop();
   startNavmeshLoop();
   startTrumpSpawnLoop();
+  startFlashlightLoop();
   setupScoreboard();
 });
 
@@ -539,7 +540,17 @@ function setupScoreboard() {
         try { pb = b.getScore(player) ?? 0; } catch {}
         if (next > pb) try { b.setScore(player, next); } catch {}
       }
-      try { player.onScreenDisplay.setActionBar(`§7Current: §f${next}s`); } catch {}
+      const heldItem = player.getComponent("minecraft:equippable")?.getEquipment("Mainhand");
+      let bar = `§7Current Time: §f${next}s`;
+      if (heldItem?.typeId === "shitrooms:flashlight") {
+        const dur = heldItem.getComponent("minecraft:durability");
+        if (dur) {
+          const pct   = Math.round((1 - dur.damage / dur.maxDurability) * 100);
+          const color = pct > 50 ? "§a" : pct > 20 ? "§e" : "§c";
+          bar += ` §7| §7Battery Left: ${color}${pct}%`;
+        }
+      }
+      try { player.onScreenDisplay.setActionBar(bar); } catch {}
     }
   }, 20);
 }
@@ -619,6 +630,90 @@ function startTrumpSpawnLoop() {
       dim.spawnEntity("shitrooms:trump", { x: spawnX, y: spawnY, z: spawnZ });
     } catch {}
   }, INTERVAL);
+}
+
+// ─── Flashlight ───────────────────────────────────────────────────────────────
+
+function startFlashlightLoop() {
+  const lightPos   = new Map(); // playerId -> { x, y, z }
+  const drainTick  = new Map(); // playerId -> last tick durability was drained
+  const DRAIN_INTERVAL = 20;   // 1 drain per second
+
+  system.runInterval(() => {
+    const dim  = world.getDimension("overworld");
+    const tick = system.currentTick;
+
+    for (const player of world.getPlayers()) {
+      const prev  = lightPos.get(player.id);
+      const equip = player.getComponent("minecraft:equippable");
+      const item  = equip?.getEquipment("Mainhand");
+      const holding = item?.typeId === "shitrooms:flashlight";
+
+      if (!holding) {
+        if (prev) {
+          try { dim.runCommand(`setblock ${prev.x} ${prev.y} ${prev.z} air`); } catch {}
+          lightPos.delete(player.id);
+        }
+        drainTick.delete(player.id);
+        continue;
+      }
+
+      // ── Durability drain: 1 per second ───────────────────────────────────
+      if (!drainTick.has(player.id)) drainTick.set(player.id, tick);
+      const last = drainTick.get(player.id);
+      if (tick - last >= DRAIN_INTERVAL) {
+        drainTick.set(player.id, tick);
+        const dur = item.getComponent("minecraft:durability");
+        if (dur) {
+          if (dur.damage + 1 >= dur.maxDurability) {
+            // Flashlight dead — remove it and kill the light
+            try { equip.setEquipment("Mainhand", undefined); } catch {}
+            if (prev) {
+              try { dim.runCommand(`setblock ${prev.x} ${prev.y} ${prev.z} air`); } catch {}
+              lightPos.delete(player.id);
+            }
+            drainTick.delete(player.id);
+            continue;
+          }
+          dur.damage += 1;
+          try { equip.setEquipment("Mainhand", item); } catch {}
+        }
+      }
+
+      // ── Raycast from eye along view direction ─────────────────────────────
+      const loc  = player.location;
+      const dir  = player.getViewDirection();
+      const eyeX = loc.x, eyeY = loc.y + 1.62, eyeZ = loc.z;
+      let lx = Math.floor(eyeX), ly = Math.floor(eyeY), lz = Math.floor(eyeZ);
+      for (let i = 1; i <= 24; i++) {
+        const t  = i * 0.5;
+        const bx = Math.floor(eyeX + dir.x * t);
+        const by = Math.floor(eyeY + dir.y * t);
+        const bz = Math.floor(eyeZ + dir.z * t);
+        try {
+          const block = dim.getBlock({ x: bx, y: by, z: bz });
+          if (!block) break;
+          if (block.typeId !== "minecraft:air" && block.typeId !== "minecraft:cave_air" && block.typeId !== "minecraft:light_block_10") break;
+          lx = bx; ly = by; lz = bz;
+        } catch { break; }
+      }
+
+      // Place the light 1 block above the raycast hit position
+      const px = lx, py = ly + 1, pz = lz;
+
+      // Only update if the target block changed
+      if (prev && prev.x === px && prev.y === py && prev.z === pz) continue;
+
+      // Remove old light, place new one
+      if (prev) {
+        try { dim.runCommand(`setblock ${prev.x} ${prev.y} ${prev.z} air`); } catch {}
+      }
+      try {
+        dim.runCommand(`setblock ${px} ${py} ${pz} minecraft:light_block_10`);
+        lightPos.set(player.id, { x: px, y: py, z: pz });
+      } catch {}
+    }
+  }, 2);
 }
 
 // ─── /scriptevent shitrooms:reset ────────────────────────────────────────────
