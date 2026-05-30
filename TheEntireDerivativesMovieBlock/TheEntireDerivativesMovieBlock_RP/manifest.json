@@ -1,0 +1,16 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "The Entire Derivatives Movie Block RP",
+    "description": "Plays the entire Derivatives movie as a block.",
+    "uuid": "f3c8e2a1-5b7d-4e9f-8c2a-e8f0a2c4d4b6",
+    "version": [1, 2, 0],
+    "min_engine_version": [1, 21, 0]
+  },
+  "modules": [
+    { "type": "resources", "uuid": "e2a1f3c8-7d5b-9f4e-2a8c-f0a2c4d4b6e8", "version": [1, 2, 0] }
+  ],
+  "dependencies": [
+    { "uuid": "a1f3c8e2-5b7d-4e9f-8c2a-d4b6e8f0a2c4", "version": [1, 2, 0] }
+  ]
+}

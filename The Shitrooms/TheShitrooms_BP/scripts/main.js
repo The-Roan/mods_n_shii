@@ -431,8 +431,8 @@ function startCleanupLoop() {
       n => `§7${n} §fwas §bvaporized §fwith a §3ray gun §fby §c§lNiggertrump`,
     ],
     "shitrooms:nextbot6": [
-      n => `§7${n} §fwas §cintegrated §fby §d§lGay§b People`,
-      n => `§7${n} §fwas §dcarbonated §fby §d§lGay§b People`,
+      n => `§7${n} §fwas §cintegrated §fby the §d§lGay§b Club`,
+      n => `§7${n} §fwas §dcarbonated §fby the §d§lGay§b Club`,
     ],
   };
 
@@ -715,6 +715,9 @@ function startFlashlightLoop() {
     }
   }, 2);
 }
+
+// ─── Video block cycling ─────────────────────────────────────────────────────
+// Handled by the TheEntireDerivativesMovieBlock addon's own scripts/main.js
 
 // ─── /scriptevent shitrooms:reset ────────────────────────────────────────────
 

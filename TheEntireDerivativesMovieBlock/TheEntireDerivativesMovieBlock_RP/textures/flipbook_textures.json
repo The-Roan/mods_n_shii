@@ -1,0 +1,5700 @@
+[
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0001",
+        "atlas_tile":  "video_0001",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0002",
+        "atlas_tile":  "video_0002",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0003",
+        "atlas_tile":  "video_0003",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0004",
+        "atlas_tile":  "video_0004",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0005",
+        "atlas_tile":  "video_0005",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0006",
+        "atlas_tile":  "video_0006",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0007",
+        "atlas_tile":  "video_0007",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0008",
+        "atlas_tile":  "video_0008",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0009",
+        "atlas_tile":  "video_0009",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0010",
+        "atlas_tile":  "video_0010",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0011",
+        "atlas_tile":  "video_0011",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0012",
+        "atlas_tile":  "video_0012",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0013",
+        "atlas_tile":  "video_0013",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0014",
+        "atlas_tile":  "video_0014",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0015",
+        "atlas_tile":  "video_0015",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0016",
+        "atlas_tile":  "video_0016",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0017",
+        "atlas_tile":  "video_0017",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0018",
+        "atlas_tile":  "video_0018",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0019",
+        "atlas_tile":  "video_0019",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0020",
+        "atlas_tile":  "video_0020",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0021",
+        "atlas_tile":  "video_0021",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0022",
+        "atlas_tile":  "video_0022",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0023",
+        "atlas_tile":  "video_0023",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0024",
+        "atlas_tile":  "video_0024",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0025",
+        "atlas_tile":  "video_0025",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0026",
+        "atlas_tile":  "video_0026",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0027",
+        "atlas_tile":  "video_0027",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0028",
+        "atlas_tile":  "video_0028",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0029",
+        "atlas_tile":  "video_0029",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0030",
+        "atlas_tile":  "video_0030",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0031",
+        "atlas_tile":  "video_0031",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0032",
+        "atlas_tile":  "video_0032",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0033",
+        "atlas_tile":  "video_0033",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0034",
+        "atlas_tile":  "video_0034",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0035",
+        "atlas_tile":  "video_0035",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0036",
+        "atlas_tile":  "video_0036",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0037",
+        "atlas_tile":  "video_0037",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0038",
+        "atlas_tile":  "video_0038",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0039",
+        "atlas_tile":  "video_0039",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0040",
+        "atlas_tile":  "video_0040",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0041",
+        "atlas_tile":  "video_0041",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0042",
+        "atlas_tile":  "video_0042",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0043",
+        "atlas_tile":  "video_0043",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0044",
+        "atlas_tile":  "video_0044",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0045",
+        "atlas_tile":  "video_0045",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0046",
+        "atlas_tile":  "video_0046",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0047",
+        "atlas_tile":  "video_0047",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0048",
+        "atlas_tile":  "video_0048",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0049",
+        "atlas_tile":  "video_0049",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0050",
+        "atlas_tile":  "video_0050",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0051",
+        "atlas_tile":  "video_0051",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0052",
+        "atlas_tile":  "video_0052",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0053",
+        "atlas_tile":  "video_0053",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0054",
+        "atlas_tile":  "video_0054",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0055",
+        "atlas_tile":  "video_0055",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0056",
+        "atlas_tile":  "video_0056",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0057",
+        "atlas_tile":  "video_0057",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0058",
+        "atlas_tile":  "video_0058",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0059",
+        "atlas_tile":  "video_0059",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0060",
+        "atlas_tile":  "video_0060",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0061",
+        "atlas_tile":  "video_0061",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0062",
+        "atlas_tile":  "video_0062",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0063",
+        "atlas_tile":  "video_0063",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0064",
+        "atlas_tile":  "video_0064",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0065",
+        "atlas_tile":  "video_0065",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0066",
+        "atlas_tile":  "video_0066",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0067",
+        "atlas_tile":  "video_0067",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0068",
+        "atlas_tile":  "video_0068",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0069",
+        "atlas_tile":  "video_0069",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0070",
+        "atlas_tile":  "video_0070",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0071",
+        "atlas_tile":  "video_0071",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0072",
+        "atlas_tile":  "video_0072",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0073",
+        "atlas_tile":  "video_0073",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0074",
+        "atlas_tile":  "video_0074",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0075",
+        "atlas_tile":  "video_0075",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0076",
+        "atlas_tile":  "video_0076",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0077",
+        "atlas_tile":  "video_0077",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0078",
+        "atlas_tile":  "video_0078",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0079",
+        "atlas_tile":  "video_0079",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0080",
+        "atlas_tile":  "video_0080",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0081",
+        "atlas_tile":  "video_0081",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0082",
+        "atlas_tile":  "video_0082",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0083",
+        "atlas_tile":  "video_0083",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0084",
+        "atlas_tile":  "video_0084",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0085",
+        "atlas_tile":  "video_0085",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0086",
+        "atlas_tile":  "video_0086",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0087",
+        "atlas_tile":  "video_0087",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0088",
+        "atlas_tile":  "video_0088",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0089",
+        "atlas_tile":  "video_0089",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0090",
+        "atlas_tile":  "video_0090",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0091",
+        "atlas_tile":  "video_0091",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0092",
+        "atlas_tile":  "video_0092",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0093",
+        "atlas_tile":  "video_0093",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0094",
+        "atlas_tile":  "video_0094",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0095",
+        "atlas_tile":  "video_0095",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0096",
+        "atlas_tile":  "video_0096",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0097",
+        "atlas_tile":  "video_0097",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0098",
+        "atlas_tile":  "video_0098",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0099",
+        "atlas_tile":  "video_0099",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0100",
+        "atlas_tile":  "video_0100",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0101",
+        "atlas_tile":  "video_0101",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0102",
+        "atlas_tile":  "video_0102",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0103",
+        "atlas_tile":  "video_0103",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0104",
+        "atlas_tile":  "video_0104",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0105",
+        "atlas_tile":  "video_0105",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0106",
+        "atlas_tile":  "video_0106",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0107",
+        "atlas_tile":  "video_0107",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0108",
+        "atlas_tile":  "video_0108",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0109",
+        "atlas_tile":  "video_0109",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0110",
+        "atlas_tile":  "video_0110",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0111",
+        "atlas_tile":  "video_0111",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0112",
+        "atlas_tile":  "video_0112",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0113",
+        "atlas_tile":  "video_0113",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0114",
+        "atlas_tile":  "video_0114",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0115",
+        "atlas_tile":  "video_0115",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0116",
+        "atlas_tile":  "video_0116",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0117",
+        "atlas_tile":  "video_0117",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0118",
+        "atlas_tile":  "video_0118",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0119",
+        "atlas_tile":  "video_0119",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0120",
+        "atlas_tile":  "video_0120",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0121",
+        "atlas_tile":  "video_0121",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0122",
+        "atlas_tile":  "video_0122",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0123",
+        "atlas_tile":  "video_0123",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0124",
+        "atlas_tile":  "video_0124",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0125",
+        "atlas_tile":  "video_0125",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0126",
+        "atlas_tile":  "video_0126",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0127",
+        "atlas_tile":  "video_0127",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0128",
+        "atlas_tile":  "video_0128",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0129",
+        "atlas_tile":  "video_0129",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0130",
+        "atlas_tile":  "video_0130",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0131",
+        "atlas_tile":  "video_0131",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0132",
+        "atlas_tile":  "video_0132",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0133",
+        "atlas_tile":  "video_0133",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0134",
+        "atlas_tile":  "video_0134",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0135",
+        "atlas_tile":  "video_0135",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0136",
+        "atlas_tile":  "video_0136",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0137",
+        "atlas_tile":  "video_0137",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0138",
+        "atlas_tile":  "video_0138",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0139",
+        "atlas_tile":  "video_0139",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0140",
+        "atlas_tile":  "video_0140",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0141",
+        "atlas_tile":  "video_0141",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0142",
+        "atlas_tile":  "video_0142",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0143",
+        "atlas_tile":  "video_0143",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0144",
+        "atlas_tile":  "video_0144",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0145",
+        "atlas_tile":  "video_0145",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0146",
+        "atlas_tile":  "video_0146",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0147",
+        "atlas_tile":  "video_0147",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0148",
+        "atlas_tile":  "video_0148",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0149",
+        "atlas_tile":  "video_0149",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0150",
+        "atlas_tile":  "video_0150",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0151",
+        "atlas_tile":  "video_0151",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0152",
+        "atlas_tile":  "video_0152",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0153",
+        "atlas_tile":  "video_0153",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0154",
+        "atlas_tile":  "video_0154",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0155",
+        "atlas_tile":  "video_0155",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0156",
+        "atlas_tile":  "video_0156",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0157",
+        "atlas_tile":  "video_0157",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0158",
+        "atlas_tile":  "video_0158",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0159",
+        "atlas_tile":  "video_0159",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0160",
+        "atlas_tile":  "video_0160",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0161",
+        "atlas_tile":  "video_0161",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0162",
+        "atlas_tile":  "video_0162",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0163",
+        "atlas_tile":  "video_0163",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0164",
+        "atlas_tile":  "video_0164",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0165",
+        "atlas_tile":  "video_0165",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0166",
+        "atlas_tile":  "video_0166",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0167",
+        "atlas_tile":  "video_0167",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0168",
+        "atlas_tile":  "video_0168",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0169",
+        "atlas_tile":  "video_0169",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0170",
+        "atlas_tile":  "video_0170",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0171",
+        "atlas_tile":  "video_0171",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0172",
+        "atlas_tile":  "video_0172",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0173",
+        "atlas_tile":  "video_0173",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0174",
+        "atlas_tile":  "video_0174",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0175",
+        "atlas_tile":  "video_0175",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0176",
+        "atlas_tile":  "video_0176",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0177",
+        "atlas_tile":  "video_0177",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0178",
+        "atlas_tile":  "video_0178",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0179",
+        "atlas_tile":  "video_0179",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0180",
+        "atlas_tile":  "video_0180",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0181",
+        "atlas_tile":  "video_0181",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0182",
+        "atlas_tile":  "video_0182",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0183",
+        "atlas_tile":  "video_0183",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0184",
+        "atlas_tile":  "video_0184",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0185",
+        "atlas_tile":  "video_0185",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0186",
+        "atlas_tile":  "video_0186",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0187",
+        "atlas_tile":  "video_0187",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0188",
+        "atlas_tile":  "video_0188",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0189",
+        "atlas_tile":  "video_0189",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0190",
+        "atlas_tile":  "video_0190",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0191",
+        "atlas_tile":  "video_0191",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0192",
+        "atlas_tile":  "video_0192",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0193",
+        "atlas_tile":  "video_0193",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0194",
+        "atlas_tile":  "video_0194",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0195",
+        "atlas_tile":  "video_0195",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0196",
+        "atlas_tile":  "video_0196",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0197",
+        "atlas_tile":  "video_0197",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0198",
+        "atlas_tile":  "video_0198",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0199",
+        "atlas_tile":  "video_0199",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0200",
+        "atlas_tile":  "video_0200",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0201",
+        "atlas_tile":  "video_0201",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0202",
+        "atlas_tile":  "video_0202",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0203",
+        "atlas_tile":  "video_0203",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0204",
+        "atlas_tile":  "video_0204",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0205",
+        "atlas_tile":  "video_0205",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0206",
+        "atlas_tile":  "video_0206",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0207",
+        "atlas_tile":  "video_0207",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0208",
+        "atlas_tile":  "video_0208",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0209",
+        "atlas_tile":  "video_0209",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0210",
+        "atlas_tile":  "video_0210",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0211",
+        "atlas_tile":  "video_0211",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0212",
+        "atlas_tile":  "video_0212",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0213",
+        "atlas_tile":  "video_0213",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0214",
+        "atlas_tile":  "video_0214",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0215",
+        "atlas_tile":  "video_0215",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0216",
+        "atlas_tile":  "video_0216",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0217",
+        "atlas_tile":  "video_0217",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0218",
+        "atlas_tile":  "video_0218",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0219",
+        "atlas_tile":  "video_0219",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0220",
+        "atlas_tile":  "video_0220",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0221",
+        "atlas_tile":  "video_0221",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0222",
+        "atlas_tile":  "video_0222",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0223",
+        "atlas_tile":  "video_0223",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0224",
+        "atlas_tile":  "video_0224",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0225",
+        "atlas_tile":  "video_0225",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0226",
+        "atlas_tile":  "video_0226",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0227",
+        "atlas_tile":  "video_0227",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0228",
+        "atlas_tile":  "video_0228",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0229",
+        "atlas_tile":  "video_0229",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0230",
+        "atlas_tile":  "video_0230",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0231",
+        "atlas_tile":  "video_0231",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0232",
+        "atlas_tile":  "video_0232",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0233",
+        "atlas_tile":  "video_0233",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0234",
+        "atlas_tile":  "video_0234",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0235",
+        "atlas_tile":  "video_0235",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0236",
+        "atlas_tile":  "video_0236",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0237",
+        "atlas_tile":  "video_0237",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0238",
+        "atlas_tile":  "video_0238",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0239",
+        "atlas_tile":  "video_0239",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0240",
+        "atlas_tile":  "video_0240",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0241",
+        "atlas_tile":  "video_0241",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0242",
+        "atlas_tile":  "video_0242",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0243",
+        "atlas_tile":  "video_0243",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0244",
+        "atlas_tile":  "video_0244",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0245",
+        "atlas_tile":  "video_0245",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0246",
+        "atlas_tile":  "video_0246",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0247",
+        "atlas_tile":  "video_0247",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0248",
+        "atlas_tile":  "video_0248",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0249",
+        "atlas_tile":  "video_0249",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0250",
+        "atlas_tile":  "video_0250",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0251",
+        "atlas_tile":  "video_0251",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0252",
+        "atlas_tile":  "video_0252",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0253",
+        "atlas_tile":  "video_0253",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0254",
+        "atlas_tile":  "video_0254",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0255",
+        "atlas_tile":  "video_0255",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0256",
+        "atlas_tile":  "video_0256",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0257",
+        "atlas_tile":  "video_0257",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0258",
+        "atlas_tile":  "video_0258",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0259",
+        "atlas_tile":  "video_0259",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0260",
+        "atlas_tile":  "video_0260",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0261",
+        "atlas_tile":  "video_0261",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0262",
+        "atlas_tile":  "video_0262",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0263",
+        "atlas_tile":  "video_0263",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0264",
+        "atlas_tile":  "video_0264",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0265",
+        "atlas_tile":  "video_0265",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0266",
+        "atlas_tile":  "video_0266",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0267",
+        "atlas_tile":  "video_0267",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0268",
+        "atlas_tile":  "video_0268",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0269",
+        "atlas_tile":  "video_0269",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0270",
+        "atlas_tile":  "video_0270",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0271",
+        "atlas_tile":  "video_0271",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0272",
+        "atlas_tile":  "video_0272",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0273",
+        "atlas_tile":  "video_0273",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0274",
+        "atlas_tile":  "video_0274",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0275",
+        "atlas_tile":  "video_0275",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0276",
+        "atlas_tile":  "video_0276",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0277",
+        "atlas_tile":  "video_0277",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0278",
+        "atlas_tile":  "video_0278",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0279",
+        "atlas_tile":  "video_0279",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0280",
+        "atlas_tile":  "video_0280",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0281",
+        "atlas_tile":  "video_0281",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0282",
+        "atlas_tile":  "video_0282",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0283",
+        "atlas_tile":  "video_0283",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0284",
+        "atlas_tile":  "video_0284",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0285",
+        "atlas_tile":  "video_0285",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0286",
+        "atlas_tile":  "video_0286",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0287",
+        "atlas_tile":  "video_0287",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0288",
+        "atlas_tile":  "video_0288",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0289",
+        "atlas_tile":  "video_0289",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0290",
+        "atlas_tile":  "video_0290",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0291",
+        "atlas_tile":  "video_0291",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0292",
+        "atlas_tile":  "video_0292",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0293",
+        "atlas_tile":  "video_0293",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0294",
+        "atlas_tile":  "video_0294",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0295",
+        "atlas_tile":  "video_0295",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0296",
+        "atlas_tile":  "video_0296",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0297",
+        "atlas_tile":  "video_0297",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0298",
+        "atlas_tile":  "video_0298",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0299",
+        "atlas_tile":  "video_0299",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0300",
+        "atlas_tile":  "video_0300",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0301",
+        "atlas_tile":  "video_0301",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0302",
+        "atlas_tile":  "video_0302",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0303",
+        "atlas_tile":  "video_0303",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0304",
+        "atlas_tile":  "video_0304",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0305",
+        "atlas_tile":  "video_0305",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0306",
+        "atlas_tile":  "video_0306",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0307",
+        "atlas_tile":  "video_0307",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0308",
+        "atlas_tile":  "video_0308",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0309",
+        "atlas_tile":  "video_0309",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0310",
+        "atlas_tile":  "video_0310",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0311",
+        "atlas_tile":  "video_0311",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0312",
+        "atlas_tile":  "video_0312",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0313",
+        "atlas_tile":  "video_0313",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0314",
+        "atlas_tile":  "video_0314",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0315",
+        "atlas_tile":  "video_0315",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0316",
+        "atlas_tile":  "video_0316",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0317",
+        "atlas_tile":  "video_0317",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0318",
+        "atlas_tile":  "video_0318",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0319",
+        "atlas_tile":  "video_0319",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0320",
+        "atlas_tile":  "video_0320",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0321",
+        "atlas_tile":  "video_0321",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0322",
+        "atlas_tile":  "video_0322",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0323",
+        "atlas_tile":  "video_0323",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0324",
+        "atlas_tile":  "video_0324",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0325",
+        "atlas_tile":  "video_0325",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0326",
+        "atlas_tile":  "video_0326",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0327",
+        "atlas_tile":  "video_0327",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0328",
+        "atlas_tile":  "video_0328",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0329",
+        "atlas_tile":  "video_0329",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0330",
+        "atlas_tile":  "video_0330",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0331",
+        "atlas_tile":  "video_0331",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0332",
+        "atlas_tile":  "video_0332",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0333",
+        "atlas_tile":  "video_0333",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0334",
+        "atlas_tile":  "video_0334",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0335",
+        "atlas_tile":  "video_0335",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0336",
+        "atlas_tile":  "video_0336",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0337",
+        "atlas_tile":  "video_0337",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0338",
+        "atlas_tile":  "video_0338",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0339",
+        "atlas_tile":  "video_0339",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0340",
+        "atlas_tile":  "video_0340",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0341",
+        "atlas_tile":  "video_0341",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0342",
+        "atlas_tile":  "video_0342",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0343",
+        "atlas_tile":  "video_0343",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0344",
+        "atlas_tile":  "video_0344",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0345",
+        "atlas_tile":  "video_0345",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0346",
+        "atlas_tile":  "video_0346",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0347",
+        "atlas_tile":  "video_0347",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0348",
+        "atlas_tile":  "video_0348",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0349",
+        "atlas_tile":  "video_0349",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0350",
+        "atlas_tile":  "video_0350",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0351",
+        "atlas_tile":  "video_0351",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0352",
+        "atlas_tile":  "video_0352",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0353",
+        "atlas_tile":  "video_0353",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0354",
+        "atlas_tile":  "video_0354",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0355",
+        "atlas_tile":  "video_0355",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0356",
+        "atlas_tile":  "video_0356",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0357",
+        "atlas_tile":  "video_0357",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0358",
+        "atlas_tile":  "video_0358",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0359",
+        "atlas_tile":  "video_0359",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0360",
+        "atlas_tile":  "video_0360",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0361",
+        "atlas_tile":  "video_0361",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0362",
+        "atlas_tile":  "video_0362",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0363",
+        "atlas_tile":  "video_0363",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0364",
+        "atlas_tile":  "video_0364",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0365",
+        "atlas_tile":  "video_0365",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0366",
+        "atlas_tile":  "video_0366",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0367",
+        "atlas_tile":  "video_0367",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0368",
+        "atlas_tile":  "video_0368",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0369",
+        "atlas_tile":  "video_0369",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0370",
+        "atlas_tile":  "video_0370",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0371",
+        "atlas_tile":  "video_0371",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0372",
+        "atlas_tile":  "video_0372",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0373",
+        "atlas_tile":  "video_0373",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0374",
+        "atlas_tile":  "video_0374",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0375",
+        "atlas_tile":  "video_0375",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0376",
+        "atlas_tile":  "video_0376",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0377",
+        "atlas_tile":  "video_0377",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0378",
+        "atlas_tile":  "video_0378",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0379",
+        "atlas_tile":  "video_0379",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0380",
+        "atlas_tile":  "video_0380",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0381",
+        "atlas_tile":  "video_0381",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0382",
+        "atlas_tile":  "video_0382",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0383",
+        "atlas_tile":  "video_0383",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0384",
+        "atlas_tile":  "video_0384",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0385",
+        "atlas_tile":  "video_0385",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0386",
+        "atlas_tile":  "video_0386",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0387",
+        "atlas_tile":  "video_0387",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0388",
+        "atlas_tile":  "video_0388",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0389",
+        "atlas_tile":  "video_0389",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0390",
+        "atlas_tile":  "video_0390",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0391",
+        "atlas_tile":  "video_0391",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0392",
+        "atlas_tile":  "video_0392",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0393",
+        "atlas_tile":  "video_0393",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0394",
+        "atlas_tile":  "video_0394",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0395",
+        "atlas_tile":  "video_0395",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0396",
+        "atlas_tile":  "video_0396",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0397",
+        "atlas_tile":  "video_0397",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0398",
+        "atlas_tile":  "video_0398",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0399",
+        "atlas_tile":  "video_0399",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0400",
+        "atlas_tile":  "video_0400",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0401",
+        "atlas_tile":  "video_0401",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0402",
+        "atlas_tile":  "video_0402",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0403",
+        "atlas_tile":  "video_0403",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0404",
+        "atlas_tile":  "video_0404",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0405",
+        "atlas_tile":  "video_0405",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0406",
+        "atlas_tile":  "video_0406",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0407",
+        "atlas_tile":  "video_0407",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0408",
+        "atlas_tile":  "video_0408",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0409",
+        "atlas_tile":  "video_0409",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0410",
+        "atlas_tile":  "video_0410",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0411",
+        "atlas_tile":  "video_0411",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0412",
+        "atlas_tile":  "video_0412",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0413",
+        "atlas_tile":  "video_0413",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0414",
+        "atlas_tile":  "video_0414",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0415",
+        "atlas_tile":  "video_0415",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0416",
+        "atlas_tile":  "video_0416",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0417",
+        "atlas_tile":  "video_0417",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0418",
+        "atlas_tile":  "video_0418",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0419",
+        "atlas_tile":  "video_0419",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0420",
+        "atlas_tile":  "video_0420",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0421",
+        "atlas_tile":  "video_0421",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0422",
+        "atlas_tile":  "video_0422",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0423",
+        "atlas_tile":  "video_0423",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0424",
+        "atlas_tile":  "video_0424",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0425",
+        "atlas_tile":  "video_0425",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0426",
+        "atlas_tile":  "video_0426",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0427",
+        "atlas_tile":  "video_0427",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0428",
+        "atlas_tile":  "video_0428",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0429",
+        "atlas_tile":  "video_0429",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0430",
+        "atlas_tile":  "video_0430",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0431",
+        "atlas_tile":  "video_0431",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0432",
+        "atlas_tile":  "video_0432",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0433",
+        "atlas_tile":  "video_0433",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0434",
+        "atlas_tile":  "video_0434",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0435",
+        "atlas_tile":  "video_0435",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0436",
+        "atlas_tile":  "video_0436",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0437",
+        "atlas_tile":  "video_0437",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0438",
+        "atlas_tile":  "video_0438",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0439",
+        "atlas_tile":  "video_0439",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0440",
+        "atlas_tile":  "video_0440",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0441",
+        "atlas_tile":  "video_0441",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0442",
+        "atlas_tile":  "video_0442",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0443",
+        "atlas_tile":  "video_0443",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0444",
+        "atlas_tile":  "video_0444",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0445",
+        "atlas_tile":  "video_0445",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0446",
+        "atlas_tile":  "video_0446",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0447",
+        "atlas_tile":  "video_0447",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0448",
+        "atlas_tile":  "video_0448",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0449",
+        "atlas_tile":  "video_0449",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0450",
+        "atlas_tile":  "video_0450",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0451",
+        "atlas_tile":  "video_0451",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0452",
+        "atlas_tile":  "video_0452",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0453",
+        "atlas_tile":  "video_0453",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0454",
+        "atlas_tile":  "video_0454",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0455",
+        "atlas_tile":  "video_0455",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0456",
+        "atlas_tile":  "video_0456",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0457",
+        "atlas_tile":  "video_0457",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0458",
+        "atlas_tile":  "video_0458",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0459",
+        "atlas_tile":  "video_0459",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0460",
+        "atlas_tile":  "video_0460",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0461",
+        "atlas_tile":  "video_0461",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0462",
+        "atlas_tile":  "video_0462",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0463",
+        "atlas_tile":  "video_0463",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0464",
+        "atlas_tile":  "video_0464",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0465",
+        "atlas_tile":  "video_0465",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0466",
+        "atlas_tile":  "video_0466",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0467",
+        "atlas_tile":  "video_0467",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0468",
+        "atlas_tile":  "video_0468",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0469",
+        "atlas_tile":  "video_0469",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0470",
+        "atlas_tile":  "video_0470",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0471",
+        "atlas_tile":  "video_0471",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0472",
+        "atlas_tile":  "video_0472",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0473",
+        "atlas_tile":  "video_0473",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0474",
+        "atlas_tile":  "video_0474",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0475",
+        "atlas_tile":  "video_0475",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0476",
+        "atlas_tile":  "video_0476",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0477",
+        "atlas_tile":  "video_0477",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0478",
+        "atlas_tile":  "video_0478",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0479",
+        "atlas_tile":  "video_0479",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0480",
+        "atlas_tile":  "video_0480",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0481",
+        "atlas_tile":  "video_0481",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0482",
+        "atlas_tile":  "video_0482",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0483",
+        "atlas_tile":  "video_0483",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0484",
+        "atlas_tile":  "video_0484",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0485",
+        "atlas_tile":  "video_0485",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0486",
+        "atlas_tile":  "video_0486",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0487",
+        "atlas_tile":  "video_0487",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0488",
+        "atlas_tile":  "video_0488",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0489",
+        "atlas_tile":  "video_0489",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0490",
+        "atlas_tile":  "video_0490",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0491",
+        "atlas_tile":  "video_0491",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0492",
+        "atlas_tile":  "video_0492",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0493",
+        "atlas_tile":  "video_0493",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0494",
+        "atlas_tile":  "video_0494",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0495",
+        "atlas_tile":  "video_0495",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0496",
+        "atlas_tile":  "video_0496",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0497",
+        "atlas_tile":  "video_0497",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0498",
+        "atlas_tile":  "video_0498",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0499",
+        "atlas_tile":  "video_0499",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0500",
+        "atlas_tile":  "video_0500",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0501",
+        "atlas_tile":  "video_0501",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0502",
+        "atlas_tile":  "video_0502",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0503",
+        "atlas_tile":  "video_0503",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0504",
+        "atlas_tile":  "video_0504",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0505",
+        "atlas_tile":  "video_0505",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0506",
+        "atlas_tile":  "video_0506",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0507",
+        "atlas_tile":  "video_0507",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0508",
+        "atlas_tile":  "video_0508",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0509",
+        "atlas_tile":  "video_0509",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0510",
+        "atlas_tile":  "video_0510",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0511",
+        "atlas_tile":  "video_0511",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0512",
+        "atlas_tile":  "video_0512",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0513",
+        "atlas_tile":  "video_0513",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0514",
+        "atlas_tile":  "video_0514",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0515",
+        "atlas_tile":  "video_0515",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0516",
+        "atlas_tile":  "video_0516",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0517",
+        "atlas_tile":  "video_0517",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0518",
+        "atlas_tile":  "video_0518",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0519",
+        "atlas_tile":  "video_0519",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0520",
+        "atlas_tile":  "video_0520",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0521",
+        "atlas_tile":  "video_0521",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0522",
+        "atlas_tile":  "video_0522",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0523",
+        "atlas_tile":  "video_0523",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0524",
+        "atlas_tile":  "video_0524",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0525",
+        "atlas_tile":  "video_0525",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0526",
+        "atlas_tile":  "video_0526",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0527",
+        "atlas_tile":  "video_0527",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0528",
+        "atlas_tile":  "video_0528",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0529",
+        "atlas_tile":  "video_0529",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0530",
+        "atlas_tile":  "video_0530",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0531",
+        "atlas_tile":  "video_0531",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0532",
+        "atlas_tile":  "video_0532",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0533",
+        "atlas_tile":  "video_0533",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0534",
+        "atlas_tile":  "video_0534",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0535",
+        "atlas_tile":  "video_0535",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0536",
+        "atlas_tile":  "video_0536",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0537",
+        "atlas_tile":  "video_0537",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0538",
+        "atlas_tile":  "video_0538",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0539",
+        "atlas_tile":  "video_0539",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0540",
+        "atlas_tile":  "video_0540",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0541",
+        "atlas_tile":  "video_0541",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0542",
+        "atlas_tile":  "video_0542",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0543",
+        "atlas_tile":  "video_0543",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0544",
+        "atlas_tile":  "video_0544",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0545",
+        "atlas_tile":  "video_0545",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0546",
+        "atlas_tile":  "video_0546",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0547",
+        "atlas_tile":  "video_0547",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0548",
+        "atlas_tile":  "video_0548",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0549",
+        "atlas_tile":  "video_0549",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0550",
+        "atlas_tile":  "video_0550",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0551",
+        "atlas_tile":  "video_0551",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0552",
+        "atlas_tile":  "video_0552",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0553",
+        "atlas_tile":  "video_0553",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0554",
+        "atlas_tile":  "video_0554",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0555",
+        "atlas_tile":  "video_0555",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0556",
+        "atlas_tile":  "video_0556",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0557",
+        "atlas_tile":  "video_0557",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0558",
+        "atlas_tile":  "video_0558",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0559",
+        "atlas_tile":  "video_0559",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0560",
+        "atlas_tile":  "video_0560",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0561",
+        "atlas_tile":  "video_0561",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0562",
+        "atlas_tile":  "video_0562",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0563",
+        "atlas_tile":  "video_0563",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0564",
+        "atlas_tile":  "video_0564",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0565",
+        "atlas_tile":  "video_0565",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0566",
+        "atlas_tile":  "video_0566",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0567",
+        "atlas_tile":  "video_0567",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0568",
+        "atlas_tile":  "video_0568",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0569",
+        "atlas_tile":  "video_0569",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0570",
+        "atlas_tile":  "video_0570",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0571",
+        "atlas_tile":  "video_0571",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0572",
+        "atlas_tile":  "video_0572",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0573",
+        "atlas_tile":  "video_0573",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0574",
+        "atlas_tile":  "video_0574",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0575",
+        "atlas_tile":  "video_0575",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0576",
+        "atlas_tile":  "video_0576",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0577",
+        "atlas_tile":  "video_0577",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0578",
+        "atlas_tile":  "video_0578",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0579",
+        "atlas_tile":  "video_0579",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0580",
+        "atlas_tile":  "video_0580",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0581",
+        "atlas_tile":  "video_0581",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0582",
+        "atlas_tile":  "video_0582",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0583",
+        "atlas_tile":  "video_0583",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0584",
+        "atlas_tile":  "video_0584",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0585",
+        "atlas_tile":  "video_0585",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0586",
+        "atlas_tile":  "video_0586",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0587",
+        "atlas_tile":  "video_0587",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0588",
+        "atlas_tile":  "video_0588",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0589",
+        "atlas_tile":  "video_0589",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0590",
+        "atlas_tile":  "video_0590",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0591",
+        "atlas_tile":  "video_0591",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0592",
+        "atlas_tile":  "video_0592",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0593",
+        "atlas_tile":  "video_0593",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0594",
+        "atlas_tile":  "video_0594",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0595",
+        "atlas_tile":  "video_0595",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0596",
+        "atlas_tile":  "video_0596",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0597",
+        "atlas_tile":  "video_0597",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0598",
+        "atlas_tile":  "video_0598",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0599",
+        "atlas_tile":  "video_0599",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0600",
+        "atlas_tile":  "video_0600",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0601",
+        "atlas_tile":  "video_0601",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0602",
+        "atlas_tile":  "video_0602",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0603",
+        "atlas_tile":  "video_0603",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0604",
+        "atlas_tile":  "video_0604",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0605",
+        "atlas_tile":  "video_0605",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0606",
+        "atlas_tile":  "video_0606",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0607",
+        "atlas_tile":  "video_0607",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0608",
+        "atlas_tile":  "video_0608",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0609",
+        "atlas_tile":  "video_0609",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0610",
+        "atlas_tile":  "video_0610",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0611",
+        "atlas_tile":  "video_0611",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0612",
+        "atlas_tile":  "video_0612",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0613",
+        "atlas_tile":  "video_0613",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0614",
+        "atlas_tile":  "video_0614",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0615",
+        "atlas_tile":  "video_0615",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0616",
+        "atlas_tile":  "video_0616",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0617",
+        "atlas_tile":  "video_0617",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0618",
+        "atlas_tile":  "video_0618",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0619",
+        "atlas_tile":  "video_0619",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0620",
+        "atlas_tile":  "video_0620",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0621",
+        "atlas_tile":  "video_0621",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0622",
+        "atlas_tile":  "video_0622",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0623",
+        "atlas_tile":  "video_0623",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0624",
+        "atlas_tile":  "video_0624",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0625",
+        "atlas_tile":  "video_0625",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0626",
+        "atlas_tile":  "video_0626",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0627",
+        "atlas_tile":  "video_0627",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0628",
+        "atlas_tile":  "video_0628",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0629",
+        "atlas_tile":  "video_0629",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0630",
+        "atlas_tile":  "video_0630",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0631",
+        "atlas_tile":  "video_0631",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0632",
+        "atlas_tile":  "video_0632",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0633",
+        "atlas_tile":  "video_0633",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0634",
+        "atlas_tile":  "video_0634",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0635",
+        "atlas_tile":  "video_0635",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0636",
+        "atlas_tile":  "video_0636",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0637",
+        "atlas_tile":  "video_0637",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0638",
+        "atlas_tile":  "video_0638",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0639",
+        "atlas_tile":  "video_0639",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0640",
+        "atlas_tile":  "video_0640",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0641",
+        "atlas_tile":  "video_0641",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0642",
+        "atlas_tile":  "video_0642",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0643",
+        "atlas_tile":  "video_0643",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0644",
+        "atlas_tile":  "video_0644",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0645",
+        "atlas_tile":  "video_0645",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0646",
+        "atlas_tile":  "video_0646",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0647",
+        "atlas_tile":  "video_0647",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0648",
+        "atlas_tile":  "video_0648",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0649",
+        "atlas_tile":  "video_0649",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0650",
+        "atlas_tile":  "video_0650",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0651",
+        "atlas_tile":  "video_0651",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0652",
+        "atlas_tile":  "video_0652",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0653",
+        "atlas_tile":  "video_0653",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0654",
+        "atlas_tile":  "video_0654",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0655",
+        "atlas_tile":  "video_0655",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0656",
+        "atlas_tile":  "video_0656",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0657",
+        "atlas_tile":  "video_0657",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0658",
+        "atlas_tile":  "video_0658",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0659",
+        "atlas_tile":  "video_0659",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0660",
+        "atlas_tile":  "video_0660",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0661",
+        "atlas_tile":  "video_0661",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0662",
+        "atlas_tile":  "video_0662",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0663",
+        "atlas_tile":  "video_0663",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0664",
+        "atlas_tile":  "video_0664",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0665",
+        "atlas_tile":  "video_0665",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0666",
+        "atlas_tile":  "video_0666",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0667",
+        "atlas_tile":  "video_0667",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0668",
+        "atlas_tile":  "video_0668",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0669",
+        "atlas_tile":  "video_0669",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0670",
+        "atlas_tile":  "video_0670",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0671",
+        "atlas_tile":  "video_0671",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0672",
+        "atlas_tile":  "video_0672",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0673",
+        "atlas_tile":  "video_0673",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0674",
+        "atlas_tile":  "video_0674",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0675",
+        "atlas_tile":  "video_0675",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0676",
+        "atlas_tile":  "video_0676",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0677",
+        "atlas_tile":  "video_0677",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0678",
+        "atlas_tile":  "video_0678",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0679",
+        "atlas_tile":  "video_0679",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0680",
+        "atlas_tile":  "video_0680",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0681",
+        "atlas_tile":  "video_0681",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0682",
+        "atlas_tile":  "video_0682",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0683",
+        "atlas_tile":  "video_0683",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0684",
+        "atlas_tile":  "video_0684",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0685",
+        "atlas_tile":  "video_0685",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0686",
+        "atlas_tile":  "video_0686",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0687",
+        "atlas_tile":  "video_0687",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0688",
+        "atlas_tile":  "video_0688",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0689",
+        "atlas_tile":  "video_0689",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0690",
+        "atlas_tile":  "video_0690",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0691",
+        "atlas_tile":  "video_0691",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0692",
+        "atlas_tile":  "video_0692",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0693",
+        "atlas_tile":  "video_0693",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0694",
+        "atlas_tile":  "video_0694",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0695",
+        "atlas_tile":  "video_0695",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0696",
+        "atlas_tile":  "video_0696",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0697",
+        "atlas_tile":  "video_0697",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0698",
+        "atlas_tile":  "video_0698",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0699",
+        "atlas_tile":  "video_0699",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0700",
+        "atlas_tile":  "video_0700",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0701",
+        "atlas_tile":  "video_0701",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0702",
+        "atlas_tile":  "video_0702",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0703",
+        "atlas_tile":  "video_0703",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0704",
+        "atlas_tile":  "video_0704",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0705",
+        "atlas_tile":  "video_0705",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0706",
+        "atlas_tile":  "video_0706",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0707",
+        "atlas_tile":  "video_0707",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0708",
+        "atlas_tile":  "video_0708",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0709",
+        "atlas_tile":  "video_0709",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0710",
+        "atlas_tile":  "video_0710",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0711",
+        "atlas_tile":  "video_0711",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0712",
+        "atlas_tile":  "video_0712",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0713",
+        "atlas_tile":  "video_0713",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0714",
+        "atlas_tile":  "video_0714",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0715",
+        "atlas_tile":  "video_0715",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0716",
+        "atlas_tile":  "video_0716",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0717",
+        "atlas_tile":  "video_0717",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0718",
+        "atlas_tile":  "video_0718",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0719",
+        "atlas_tile":  "video_0719",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0720",
+        "atlas_tile":  "video_0720",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0721",
+        "atlas_tile":  "video_0721",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0722",
+        "atlas_tile":  "video_0722",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0723",
+        "atlas_tile":  "video_0723",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0724",
+        "atlas_tile":  "video_0724",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0725",
+        "atlas_tile":  "video_0725",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0726",
+        "atlas_tile":  "video_0726",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0727",
+        "atlas_tile":  "video_0727",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0728",
+        "atlas_tile":  "video_0728",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0729",
+        "atlas_tile":  "video_0729",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0730",
+        "atlas_tile":  "video_0730",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0731",
+        "atlas_tile":  "video_0731",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0732",
+        "atlas_tile":  "video_0732",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0733",
+        "atlas_tile":  "video_0733",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0734",
+        "atlas_tile":  "video_0734",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0735",
+        "atlas_tile":  "video_0735",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0736",
+        "atlas_tile":  "video_0736",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0737",
+        "atlas_tile":  "video_0737",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0738",
+        "atlas_tile":  "video_0738",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0739",
+        "atlas_tile":  "video_0739",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0740",
+        "atlas_tile":  "video_0740",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0741",
+        "atlas_tile":  "video_0741",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0742",
+        "atlas_tile":  "video_0742",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0743",
+        "atlas_tile":  "video_0743",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0744",
+        "atlas_tile":  "video_0744",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0745",
+        "atlas_tile":  "video_0745",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0746",
+        "atlas_tile":  "video_0746",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0747",
+        "atlas_tile":  "video_0747",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0748",
+        "atlas_tile":  "video_0748",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0749",
+        "atlas_tile":  "video_0749",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0750",
+        "atlas_tile":  "video_0750",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0751",
+        "atlas_tile":  "video_0751",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0752",
+        "atlas_tile":  "video_0752",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0753",
+        "atlas_tile":  "video_0753",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0754",
+        "atlas_tile":  "video_0754",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0755",
+        "atlas_tile":  "video_0755",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0756",
+        "atlas_tile":  "video_0756",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0757",
+        "atlas_tile":  "video_0757",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0758",
+        "atlas_tile":  "video_0758",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0759",
+        "atlas_tile":  "video_0759",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0760",
+        "atlas_tile":  "video_0760",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0761",
+        "atlas_tile":  "video_0761",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0762",
+        "atlas_tile":  "video_0762",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0763",
+        "atlas_tile":  "video_0763",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0764",
+        "atlas_tile":  "video_0764",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0765",
+        "atlas_tile":  "video_0765",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0766",
+        "atlas_tile":  "video_0766",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0767",
+        "atlas_tile":  "video_0767",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0768",
+        "atlas_tile":  "video_0768",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0769",
+        "atlas_tile":  "video_0769",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0770",
+        "atlas_tile":  "video_0770",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0771",
+        "atlas_tile":  "video_0771",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0772",
+        "atlas_tile":  "video_0772",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0773",
+        "atlas_tile":  "video_0773",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0774",
+        "atlas_tile":  "video_0774",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0775",
+        "atlas_tile":  "video_0775",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0776",
+        "atlas_tile":  "video_0776",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0777",
+        "atlas_tile":  "video_0777",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0778",
+        "atlas_tile":  "video_0778",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0779",
+        "atlas_tile":  "video_0779",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0780",
+        "atlas_tile":  "video_0780",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0781",
+        "atlas_tile":  "video_0781",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0782",
+        "atlas_tile":  "video_0782",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0783",
+        "atlas_tile":  "video_0783",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0784",
+        "atlas_tile":  "video_0784",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0785",
+        "atlas_tile":  "video_0785",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0786",
+        "atlas_tile":  "video_0786",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0787",
+        "atlas_tile":  "video_0787",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0788",
+        "atlas_tile":  "video_0788",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0789",
+        "atlas_tile":  "video_0789",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0790",
+        "atlas_tile":  "video_0790",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0791",
+        "atlas_tile":  "video_0791",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0792",
+        "atlas_tile":  "video_0792",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0793",
+        "atlas_tile":  "video_0793",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0794",
+        "atlas_tile":  "video_0794",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0795",
+        "atlas_tile":  "video_0795",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0796",
+        "atlas_tile":  "video_0796",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0797",
+        "atlas_tile":  "video_0797",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0798",
+        "atlas_tile":  "video_0798",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0799",
+        "atlas_tile":  "video_0799",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0800",
+        "atlas_tile":  "video_0800",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0801",
+        "atlas_tile":  "video_0801",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0802",
+        "atlas_tile":  "video_0802",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0803",
+        "atlas_tile":  "video_0803",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0804",
+        "atlas_tile":  "video_0804",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0805",
+        "atlas_tile":  "video_0805",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0806",
+        "atlas_tile":  "video_0806",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0807",
+        "atlas_tile":  "video_0807",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0808",
+        "atlas_tile":  "video_0808",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0809",
+        "atlas_tile":  "video_0809",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0810",
+        "atlas_tile":  "video_0810",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0811",
+        "atlas_tile":  "video_0811",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0812",
+        "atlas_tile":  "video_0812",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0813",
+        "atlas_tile":  "video_0813",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    },
+    {
+        "flipbook_texture":  "textures/blocks/video/video_0814",
+        "atlas_tile":  "video_0814",
+        "atlas_tile_frame_count":  32,
+        "ticks_per_frame":  4,
+        "blend_frames":  false
+    }
+]

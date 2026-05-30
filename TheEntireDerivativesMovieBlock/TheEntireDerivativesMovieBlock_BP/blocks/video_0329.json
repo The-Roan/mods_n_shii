@@ -1,0 +1,13 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:block": {
+    "description": {
+      "identifier": "ddxblock:video_0329",
+      "menu_category": { "category": "construction", "group": "itemGroup.name.ddx_video" }
+    },
+    "components": {
+      "minecraft:destructible_by_mining": { "seconds_to_destroy": 0.5 },
+      "minecraft:destructible_by_explosion": false
+    }
+  }
+}

@@ -10,7 +10,7 @@ const CHECK_INTERVAL = 10;
 const SHITROOMS_Y   = -64;  // Floor replaces the bottom bedrock layer
 const ROOF_Y_OFFSET = CELL_SIZE; // Bedrock cap 1 block above room ceiling (Y = -64+5 = -59)
 
-const NEXTBOT_TYPES  = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5"];
+const NEXTBOT_TYPES  = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5", "shitrooms:nextbot6"];
 const MAX_PER_TYPE   = 3;
 const SPAWN_DELAY    = 600;
 const SPAWN_INTERVAL = 600;
