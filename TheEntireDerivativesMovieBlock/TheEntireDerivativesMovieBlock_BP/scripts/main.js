@@ -1,45 +1,41 @@
-import { world, system, BlockPermutation } from "@minecraft/server";
+import { world, system } from "@minecraft/server";
 
-const BATCH_COUNT    = 814;
-const BATCH_INTERVAL = 128;  // 32 frames x 4 ticks/frame = one batch at 5fps
-const BLOCK_PREFIX   = "ddxblock:video_";
+const FRAMES_PER_BATCH = 32;
+const TICKS_PER_FRAME  = 4;
+const BATCH_COUNT      = 814;
+const TYPE_ID          = "ddxblock:screen";
 
-// pos key -> runTimeout handle; cancelled when the block is broken
-const pendingTimers = new Map();
+const spawnTicks   = new Map();  // id -> spawn tick
+const lastCounters = new Map();  // id -> last seen ddx:seek_counter
 
-function scheduleNext(x, y, z, currentBatch) {
-    const key    = `${x},${y},${z}`;
-    const handle = system.runTimeout(() => {
-        pendingTimers.delete(key);
-        const dim = world.getDimension("overworld");
-        try {
-            const block = dim.getBlock({ x, y, z });
-            if (!block?.typeId.startsWith(BLOCK_PREFIX)) return;
-            const next   = (currentBatch % BATCH_COUNT) + 1;
-            const nextId = BLOCK_PREFIX + String(next).padStart(4, "0");
-            block.setPermutation(BlockPermutation.resolve(nextId));
-            scheduleNext(x, y, z, next);
-        } catch {}
-    }, BATCH_INTERVAL);
-    pendingTimers.set(key, handle);
-}
-
-world.afterEvents.playerPlaceBlock.subscribe(ev => {
-    const id = ev.block.typeId;
-    if (!id.startsWith(BLOCK_PREFIX)) return;
-    const batch = parseInt(id.slice(BLOCK_PREFIX.length), 10);
-    const { x, y, z } = ev.block.location;
-    scheduleNext(x, y, z, batch);
+world.afterEvents.entitySpawn.subscribe(ev => {
+    if (ev.entity.typeId !== TYPE_ID) return;
+    spawnTicks.set(ev.entity.id, system.currentTick);
+    lastCounters.set(ev.entity.id, 0);
 });
 
-world.afterEvents.playerBreakBlock.subscribe(ev => {
-    const id = ev.brokenBlockPermutation.type.id;
-    if (!id.startsWith(BLOCK_PREFIX)) return;
-    const { x, y, z } = ev.block.location;
-    const key    = `${x},${y},${z}`;
-    const handle = pendingTimers.get(key);
-    if (handle !== undefined) {
-        system.clearRun(handle);
-        pendingTimers.delete(key);
-    }
+world.afterEvents.entityDie.subscribe(ev => {
+    if (ev.deadEntity.typeId !== TYPE_ID) return;
+    spawnTicks.delete(ev.deadEntity.id);
+    lastCounters.delete(ev.deadEntity.id);
 });
+
+system.runInterval(() => {
+    try {
+        const entities = world.getDimension("overworld").getEntities({ type: TYPE_ID });
+        for (const entity of entities) {
+            const id = entity.id;
+            if (!spawnTicks.has(id)) {
+                spawnTicks.set(id, system.currentTick);
+                lastCounters.set(id, entity.getProperty("ddx:seek_counter"));
+            }
+            const counter = entity.getProperty("ddx:seek_counter");
+            if (counter === lastCounters.get(id)) continue;
+            lastCounters.set(id, counter);
+            const target      = entity.getProperty("ddx:target_batch");
+            const elapsed     = Math.floor((system.currentTick - spawnTicks.get(id)) / TICKS_PER_FRAME);
+            const targetFrame = (target % BATCH_COUNT) * FRAMES_PER_BATCH;
+            entity.setProperty("ddx:offset", targetFrame - elapsed);
+        }
+    } catch {}
+}, 1);
