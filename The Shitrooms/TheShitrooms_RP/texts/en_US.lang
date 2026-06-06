@@ -2,6 +2,10 @@ tile.shitrooms:backrooms_tile.name=Backrooms Tile
 tile.shitrooms:backrooms_wall.name=Backrooms Wall
 tile.shitrooms:backrooms_floor.name=Backrooms Floor
 tile.shitrooms:backrooms_ceiling.name=Backrooms Ceiling
+tile.shitrooms:level1_ceiling.name=Level 1 Ceiling
+tile.shitrooms:level1_wall.name=Level 1 Wall
+tile.shitrooms:level1_floor.name=Level 1 Floor
+tile.shitrooms:fluorescent_light.name=Fluorescent Light
 
 entity.shitrooms:trump.name=Trump
 entity.shitrooms:nextbot.name=Derivatives

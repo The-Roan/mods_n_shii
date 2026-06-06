@@ -1,0 +1,14 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.exit_music_player.loop": {
+      "loop": true,
+      "animation_length": 250.0,
+      "sound_effects": {
+        "0.0": {
+          "effect": "exit_music"
+        }
+      }
+    }
+  }
+}

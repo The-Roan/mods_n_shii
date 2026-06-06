@@ -1,9 +1,11 @@
-import { world, system, BlockPermutation } from "@minecraft/server";
-import { generateInitial, startExplorationLoop, startSpawnLoop, resetState, getOrigin, restoreState } from "./generator.js";
+import { world, system, BlockPermutation, GameMode } from "@minecraft/server";
+import { generateInitial, startExplorationLoop, startSpawnLoop, resetState, getOrigin, restoreState, getFloor1State, onPlayerReachFloor1, playerFloorOf } from "./generator.js";
+import { CELL_SIZE } from "./rooms.js";
 
 const INIT_PROP  = "shitrooms:initialized";
 const SCORE_OBJ  = "sr_time";
 const SCORE_BEST = "sr_best";
+
 
 // ─── Shitrooms entry helpers ──────────────────────────────────────────────────
 
@@ -46,7 +48,7 @@ function enterShitrooms(player) {
 // ─── Block events ─────────────────────────────────────────────────────────────
 
 world.beforeEvents.playerBreakBlock.subscribe(ev => {
-  if (ev.block.typeId === "minecraft:sea_lantern") { ev.cancel = true; return; }
+  if (ev.block.typeId === "minecraft:sea_lantern" || ev.block.typeId === "minecraft:scaffolding") { ev.cancel = true; return; }
   if (ev.block.typeId === "shitrooms:backrooms_wall") {
     const item = ev.player.getComponent("minecraft:equippable")?.getEquipment("Mainhand");
     if (!item || item.typeId !== "shitrooms:wall_pickaxe") ev.cancel = true;
@@ -68,6 +70,78 @@ world.afterEvents.playerBreakBlock.subscribe(ev => {
   }
 });
 
+// ─── Exit ambient sound ───────────────────────────────────────────────────────
+
+let exitSoundDone = false;
+
+function startExitAmbientLoop() {
+  const SOUND_ID    = "shitrooms.level0_exit";
+  const SOUND_TICKS = 4 * 60 * 20 + 10 * 20; // 4:10 = 5000 ticks
+  const HEAR_RANGE  = 64;                      // volume 4 = 64 block max range
+  const playerSoundTick = new Map();           // playerName -> tick when sound last started
+
+  system.runInterval(() => {
+    if (exitSoundDone) return;
+    const { exitPlaced, exitWX, exitWZ } = getFloor1State();
+    if (!exitPlaced) return;
+    const origin = getOrigin();
+    const tick   = system.currentTick;
+
+    const sx = Math.floor(exitWX + 2);
+    const sy = Math.floor(origin.y + 1);
+    const sz = Math.floor(exitWZ + 2);
+
+    for (const p of world.getPlayers()) {
+      if (!isInShitrooms(p) || playerFloorOf(p) !== 0) continue;
+
+      const lastPlay = playerSoundTick.get(p.name) ?? -SOUND_TICKS;
+      if (tick - lastPlay < SOUND_TICKS) continue; // still playing for this player
+
+      const dx = p.location.x - sx, dz = p.location.z - sz;
+      if (Math.sqrt(dx * dx + dz * dz) > HEAR_RANGE) continue; // out of range, wait
+
+      try {
+        p.runCommand(`playsound ${SOUND_ID} @s ${sx} ${sy} ${sz} 6 1 0`);
+        playerSoundTick.set(p.name, tick);
+      } catch {}
+    }
+  }, 100); // poll every 5 seconds
+}
+
+// ─── Floor transition tracking ────────────────────────────────────────────────
+// Detects when a player moves between floor 0 and floor 1. On first climb up:
+// activates floor 1 generation and sets the player's spawn to the entry point.
+// Tracks current floor per-player so respawn handler knows where to send them.
+
+function startFloorTransitionLoop() {
+  system.runInterval(() => {
+    const dim = world.getDimension("overworld");
+    const origin = getOrigin();
+    if (origin.x === 0 && origin.y === 0 && origin.z === 0) return;
+
+    for (const player of world.getPlayers()) {
+      if (!isInShitrooms(player)) continue;
+      // Skip players not yet teleported into the maze (still at surface Y)
+      const py = player.location.y;
+      if (py < origin.y - 2 || py > origin.y + CELL_SIZE * 2 + 5) continue;
+
+      const curFloor  = playerFloorOf(player);
+      const prevFloor = world.getDynamicProperty(`shitrooms:player_floor:${player.name}`) ?? 0;
+
+      if (curFloor === prevFloor) continue;
+      try { world.setDynamicProperty(`shitrooms:player_floor:${player.name}`, curFloor); } catch {}
+
+      if (curFloor === 1) {
+        const { exitPlaced } = getFloor1State();
+        if (!exitPlaced) continue;
+        onPlayerReachFloor1(player, dim);
+        exitSoundDone = true;
+        try { dim.runCommand("stopsound @a shitrooms.level0_exit"); } catch {}
+      }
+    }
+  }, 5);
+}
+
 // ─── World init ───────────────────────────────────────────────────────────────
 
 world.afterEvents.worldInitialize.subscribe(() => {
@@ -80,6 +154,8 @@ world.afterEvents.worldInitialize.subscribe(() => {
   startNavmeshLoop();
   startTrumpSpawnLoop();
   startFlashlightLoop();
+  startExitAmbientLoop();
+  startFloorTransitionLoop();
   setupScoreboard();
 });
 
@@ -111,6 +187,7 @@ function isWalkable(dim, bx, bz, floorY) {
   try {
     const lo = dim.getBlock({ x: bx, y: floorY + 1, z: bz });
     const hi = dim.getBlock({ x: bx, y: floorY + 2, z: bz });
+    if (lo?.typeId === "minecraft:scaffolding" || hi?.typeId === "minecraft:scaffolding") return false;
     return lo?.isAir && hi?.isAir;
   } catch { return false; }
 }
@@ -203,7 +280,6 @@ function startNavmeshLoop() {
     // ── Nextbots: A* pathfinding inside the shitrooms ─────────────────────
     const origin = getOrigin();
     if (origin.x === 0 && origin.y === 0 && origin.z === 0) return;
-    const floorY = origin.y;
     const tick   = system.currentTick;
 
     const shitroomsPlayers = world.getPlayers().filter(p => isInShitrooms(p));
@@ -211,8 +287,16 @@ function startNavmeshLoop() {
 
     for (const typeId of NEXTBOT_TYPES) {
       for (const entity of dim.getEntities({ type: typeId })) {
+        // Determine which floor this entity is on and lock it to that floor's Y
+        const entFloor = entity.location.y >= origin.y + CELL_SIZE - 0.5 ? 1 : 0;
+        const floorY   = origin.y + (entFloor === 1 ? CELL_SIZE : 0);
+
+        // Only chase players on the same floor
+        const floorPlayers = shitroomsPlayers.filter(p => playerFloorOf(p) === entFloor);
+        if (floorPlayers.length === 0) continue;
+
         let nearest = null, nearDist = Infinity;
-        for (const p of shitroomsPlayers) {
+        for (const p of floorPlayers) {
           const d = Math.hypot(p.location.x - entity.location.x, p.location.z - entity.location.z);
           if (d < nearDist) { nearDist = d; nearest = p; }
         }
@@ -279,10 +363,10 @@ function startCleanupLoop() {
     for (const player of world.getPlayers()) {
       if (!isInShitrooms(player)) continue;
       for (const liquid of LIQUIDS) {
-        try { player.runCommand(`fill ~-25 ~-3 ~-25 ~25 ~5 ~25 air replace ${liquid}`); } catch {}
+        try { player.runCommand(`fill ~-60 ~-8 ~-60 ~60 ~12 ~60 air replace ${liquid}`); } catch {}
       }
     }
-  }, 10);
+  }, 3);
 
   // Ambient sounds for each nextbot type
   const NEXTBOT_SEGMENT_COUNT = 39;
@@ -365,6 +449,15 @@ function startCleanupLoop() {
         try {
           dim.runCommand(`playsound mob.nextbot5.seg.${seg} @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 1.6 1 0`);
           soundState.set(entity.id, { seg, tick });
+        } catch {}
+      }
+      for (const entity of dim.getEntities({ type: "shitrooms:exit_music_player" })) {
+        const s = soundState.get(entity.id) ?? { seg: 0, tick: -5000 };
+        if (tick - s.tick < 5000) continue;
+        const { x, y, z } = entity.location;
+        try {
+          dim.runCommand(`playsound shitrooms.level0_exit @a ${Math.floor(x)} ${Math.floor(y)} ${Math.floor(z)} 3 1 0`);
+          soundState.set(entity.id, { seg: 0, tick });
         } catch {}
       }
     }
@@ -454,7 +547,7 @@ function startCleanupLoop() {
 
   system.runInterval(() => {
     const dim = world.getDimension("overworld");
-    const shitroomsPlayers = world.getPlayers().filter(p => isInShitrooms(p));
+    const shitroomsPlayers = world.getPlayers().filter(p => isInShitrooms(p) && p.getGameMode() !== GameMode.spectator);
     if (shitroomsPlayers.length === 0) return;
     for (const typeId of NEXTBOT_TYPES) {
       for (const entity of dim.getEntities({ type: typeId })) {
@@ -540,14 +633,24 @@ function setupScoreboard() {
         try { pb = b.getScore(player) ?? 0; } catch {}
         if (next > pb) try { b.setScore(player, next); } catch {}
       }
+      // Distance from floor origin — same reference as the lighting calculation
+      const loc = player.location;
+      const curFloor = playerFloorOf(player);
+      const origin = getOrigin();
+      const { exitWX, exitWZ } = getFloor1State();
+      const refX = curFloor === 0 ? origin.x : exitWX;
+      const refZ = curFloor === 0 ? origin.z : exitWZ;
+      const dx = loc.x - refX, dz = loc.z - refZ;
+      const dist = Math.floor(Math.sqrt(dx * dx + dz * dz));
+
       const heldItem = player.getComponent("minecraft:equippable")?.getEquipment("Mainhand");
-      let bar = `§7Current Time: §f${next}s`;
+      let bar = `§7Time: §f${next}s §7| §7Dist: §f${dist}m`;
       if (heldItem?.typeId === "shitrooms:flashlight") {
         const dur = heldItem.getComponent("minecraft:durability");
         if (dur) {
           const pct   = Math.round((1 - dur.damage / dur.maxDurability) * 100);
           const color = pct > 50 ? "§a" : pct > 20 ? "§e" : "§c";
-          bar += ` §7| §7Battery Left: ${color}${pct}%`;
+          bar += ` §7| §7Battery: ${color}${pct}%`;
         }
       }
       try { player.onScreenDisplay.setActionBar(bar); } catch {}
@@ -582,20 +685,27 @@ world.afterEvents.playerSpawn.subscribe(ev => {
   system.runTimeout(() => generateInitial(ev.player), 40);
 });
 
-// After death: respawn shitrooms players back into the maze.
-// (Surface players respawn normally at their bed / world spawn.)
+// After death: respawn shitrooms players back into the maze on the correct floor.
 world.afterEvents.playerSpawn.subscribe(ev => {
   if (ev.initialSpawn) return;
   if (!isInShitrooms(ev.player)) return;
-  const o = getOrigin();
-  if (o.x === 0 && o.y === 0 && o.z === 0) return;
+  const o = world.getDimension("overworld");
+  const origin = getOrigin();
+  if (origin.x === 0 && origin.y === 0 && origin.z === 0) return;
+  const { floor1Active, exitGx, exitGz } = getFloor1State();
+  const pFloor = world.getDynamicProperty(`shitrooms:player_floor:${ev.player.name}`) ?? 0;
+  let dest;
+  if (pFloor === 1 && floor1Active) {
+    dest = {
+      x: origin.x + exitGx * CELL_SIZE + 2.5,
+      y: origin.y + CELL_SIZE + 1,
+      z: origin.z + exitGz * CELL_SIZE + 2.5
+    };
+  } else {
+    dest = { x: origin.x + 2.5, y: origin.y + 1, z: origin.z + 2.5 };
+  }
   system.runTimeout(() => {
-    try {
-      ev.player.teleport(
-        { x: o.x + 2.5, y: o.y + 1, z: o.z + 2.5 },
-        { dimension: world.getDimension("overworld") }
-      );
-    } catch {}
+    try { ev.player.teleport(dest, { dimension: o }); } catch {}
   }, 2);
 });
 
@@ -698,19 +808,21 @@ function startFlashlightLoop() {
         } catch { break; }
       }
 
-      // Place the light 1 block above the raycast hit position
-      const px = lx, py = ly + 1, pz = lz;
+      const px = lx, py = ly, pz = lz;
 
       // Only update if the target block changed
       if (prev && prev.x === px && prev.y === py && prev.z === pz) continue;
 
-      // Remove old light, place new one
+      // Remove old light, place new one (only in air or existing light blocks)
       if (prev) {
         try { dim.runCommand(`setblock ${prev.x} ${prev.y} ${prev.z} air`); } catch {}
       }
       try {
-        dim.runCommand(`setblock ${px} ${py} ${pz} minecraft:light_block_10`);
-        lightPos.set(player.id, { x: px, y: py, z: pz });
+        const target = dim.getBlock({ x: px, y: py, z: pz });
+        if (target && (target.isAir || target.typeId === "minecraft:light_block_10")) {
+          dim.runCommand(`setblock ${px} ${py} ${pz} minecraft:light_block_10`);
+          lightPos.set(player.id, { x: px, y: py, z: pz });
+        }
       } catch {}
     }
   }, 2);

@@ -11,5 +11,21 @@
   "shitrooms:backrooms_ceiling": {
     "textures": "backrooms_tile_top",
     "sound": "stone"
+  },
+  "shitrooms:level1_ceiling": {
+    "textures": "level1_ceiling",
+    "sound": "stone"
+  },
+  "shitrooms:level1_wall": {
+    "textures": "level1_wall",
+    "sound": "stone"
+  },
+  "shitrooms:level1_floor": {
+    "textures": "level1_floor",
+    "sound": "stone"
+  },
+  "shitrooms:fluorescent_light": {
+    "textures": "fluorescent_light",
+    "sound": "stone"
   }
 }

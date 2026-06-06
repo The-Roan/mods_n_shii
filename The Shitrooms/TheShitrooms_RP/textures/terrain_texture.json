@@ -10,6 +10,18 @@
     },
     "backrooms_tile_bottom": {
       "textures": "textures/blocks/backrooms_tile_bottom"
+    },
+    "level1_ceiling": {
+      "textures": "textures/blocks/level1_ceiling"
+    },
+    "level1_wall": {
+      "textures": "textures/blocks/level1_wall"
+    },
+    "level1_floor": {
+      "textures": "textures/blocks/level1_floor"
+    },
+    "fluorescent_light": {
+      "textures": "textures/blocks/fluorescent_light"
     }
   }
 }
