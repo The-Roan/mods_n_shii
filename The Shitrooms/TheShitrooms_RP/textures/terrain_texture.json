@@ -22,6 +22,20 @@
     },
     "fluorescent_light": {
       "textures": "textures/blocks/fluorescent_light"
-    }
+    },
+    "pipe_cross":      { "textures": "textures/blocks/pipe_cross"      },
+    "pipe_corner_ne":  { "textures": "textures/blocks/pipe_corner_ne"  },
+    "pipe_corner_nw":  { "textures": "textures/blocks/pipe_corner_nw"  },
+    "pipe_corner_se":  { "textures": "textures/blocks/pipe_corner_se"  },
+    "pipe_corner_sw":  { "textures": "textures/blocks/pipe_corner_sw"  },
+    "pipe_straight_h": { "textures": "textures/blocks/pipe_straight_h" },
+    "pipe_straight_v": { "textures": "textures/blocks/pipe_straight_v" },
+    "pipe_t_e":        { "textures": "textures/blocks/pipe_t_e"        },
+    "pipe_t_n":        { "textures": "textures/blocks/pipe_t_n"        },
+    "pipe_t_s":        { "textures": "textures/blocks/pipe_t_s"        },
+    "pipe_t_w":        { "textures": "textures/blocks/pipe_t_w"        },
+    "pipe_valve_h":    { "textures": "textures/blocks/pipe_valve_h"    },
+    "pipe_valve_v":          { "textures": "textures/blocks/pipe_valve_v"          },
+    "backrooms_brick_wall":  { "textures": "textures/blocks/backrooms_brick_wall"  }
   }
 }

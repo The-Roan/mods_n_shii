@@ -1,5 +1,5 @@
 import { world, system } from "@minecraft/server";
-import { ROOMS, ROOMS_1, OPEN_ROOM, OPEN_ROOM_1, CELL_SIZE } from "./rooms.js";
+import { ROOMS, ROOMS_1, ROOMS_2, OPEN_ROOM, OPEN_ROOM_1, OPEN_ROOM_2, CELL_SIZE } from "./rooms.js";
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 const INITIAL_ROOMS  = 50;
@@ -10,10 +10,21 @@ const CHECK_INTERVAL = 10;
 const SHITROOMS_Y    = -64;
 const ROOF_Y_OFFSET  = CELL_SIZE;      // bedrock above floor 0: originY + 5
 const ROOF_Y_OFFSET1 = CELL_SIZE * 2;  // bedrock above floor 1: originY + 10
+const ROOF_Y_OFFSET2 = CELL_SIZE * 3;  // bedrock above floor 2: originY + 15
 const EXIT_DIST_MIN  = 650;            // world-block distance at which exit room spawns
+const EXIT1_DIST_MIN = 500;            // floor 1 exit spawns 500 blocks from floor 1 entry
+const EXIT2_DIST_MIN = 650;            // floor 2 exit spawns 650 blocks from floor 2 entry
 const UNLIT_DIST_1   = 300;            // floor 1 goes dark 300 blocks from entry
+const UNLIT_DIST_2   = 300;            // floor 2 goes dark 300 blocks from entry
 
-const NEXTBOT_TYPES  = ["shitrooms:nextbot", "shitrooms:nextbot2", "shitrooms:nextbot3", "shitrooms:nextbot4", "shitrooms:nextbot5", "shitrooms:nextbot6"];
+const NEXTBOT_TYPES = [
+  { id: "shitrooms:nextbot",  minLevel: 0 },
+  { id: "shitrooms:nextbot2", minLevel: 0 },
+  { id: "shitrooms:nextbot3", minLevel: 0 },
+  { id: "shitrooms:nextbot4", minLevel: 0 },
+  { id: "shitrooms:nextbot5", minLevel: 0 },
+  { id: "shitrooms:nextbot6", minLevel: 0 },
+];
 const MAX_PER_TYPE   = 3;
 const SPAWN_DELAY    = 600;
 const SPAWN_INTERVAL = 600;
@@ -28,23 +39,32 @@ const DIRS = [
 ];
 
 // Rooms with no unlit variant
-const NO_UNLIT   = new Set(["shitrooms:pickaxe", "shitrooms:flashlight", "shitrooms:exit"]);
-const NO_UNLIT_1 = new Set(["shitrooms:1_flashlight"]);
+const NO_UNLIT   = new Set(["shitrooms0:pickaxe", "shitrooms0:flashlight", "shitrooms0:exit"]);
+const NO_UNLIT_1 = new Set(["shitrooms1:1_flashlight", "shitrooms1:1_exit"]);
+const NO_UNLIT_2 = new Set(["shitrooms2:enter", "shitrooms2:exit", "shitrooms2:flashlight"]);
 
 // ─── State ────────────────────────────────────────────────────────────────────
 const placedCells  = new Map();
 const placedRooms  = new Map();
 const placedCells1 = new Map();
 const placedRooms1 = new Map();
+const placedCells2 = new Map();
+const placedRooms2 = new Map();
 
 let originX = 0, originY = 0, originZ = 0;
 let floor1Active = false;
 let exitGx = 0, exitGz = 0;
-let exitWX = 0, exitWZ = 0; // world coords of exit room corner
+let exitWX = 0, exitWZ = 0;
 let exitPlaced = false;
 let exitMusicSpawned = false;
+let exit1Placed = false;
+let exit1WX = 0, exit1WZ = 0;
+let floor2Active = false;
+let exit2EntryGx = 0, exit2EntryGz = 0; // grid coords of floor 2 entry (= floor 1 exit grid)
+let exit2Placed = false;
+let exit2WX = 0, exit2WZ = 0;
 
-const playerFloorTracker = new Map(); // playerName -> last known floor (0 or 1)
+const playerFloorTracker = new Map();
 
 function cellKey(gx, gz) { return `${gx},${gz}`; }
 
@@ -52,30 +72,46 @@ function isInShitrooms(player) {
   return !!world.getDynamicProperty(`shitrooms:in_shitrooms:${player.name}`);
 }
 
-// Returns 1 if player is on floor 1 (Y >= originY + CELL_SIZE - 0.5), else 0.
 export function playerFloorOf(player) {
   if (originY === 0 && originX === 0 && originZ === 0) return 0;
-  return player.location.y >= originY + CELL_SIZE - 0.5 ? 1 : 0;
+  const y = player.location.y;
+  if (y >= originY + CELL_SIZE * 2 - 0.5) return 2;
+  if (y >= originY + CELL_SIZE - 0.5) return 1;
+  return 0;
 }
 
 export function getFloor1State() {
-  return { floor1Active, exitGx, exitGz, exitWX, exitWZ, exitPlaced };
+  return { floor1Active, exitGx, exitGz, exitWX, exitWZ, exitPlaced, exit1Placed, exit1WX, exit1WZ,
+           floor2Active, exit2EntryGx, exit2EntryGz, exit2Placed, exit2WX, exit2WZ };
 }
 
 export function resetState() {
   placedCells.clear();  placedRooms.clear();
   placedCells1.clear(); placedRooms1.clear();
+  placedCells2.clear(); placedRooms2.clear();
   originX = 0; originY = 0; originZ = 0;
   floor1Active = false; exitGx = 0; exitGz = 0; exitPlaced = false; exitMusicSpawned = false;
+  exit1Placed = false; exit1WX = 0; exit1WZ = 0;
+  floor2Active = false; exit2EntryGx = 0; exit2EntryGz = 0; exit2Placed = false; exit2WX = 0; exit2WZ = 0;
   playerFloorTracker.clear();
-  try { world.setDynamicProperty("shitrooms:cells_n",      0);     } catch {}
-  try { world.setDynamicProperty("shitrooms:cells1_n",     0);     } catch {}
-  try { world.setDynamicProperty("shitrooms:floor1_active", false); } catch {}
-  try { world.setDynamicProperty("shitrooms:exit_placed",  false); } catch {}
-  try { world.setDynamicProperty("shitrooms:exit_gx",      0);     } catch {}
-  try { world.setDynamicProperty("shitrooms:exit_gz",      0);     } catch {}
-  try { world.setDynamicProperty("shitrooms:exit_wx",      0);     } catch {}
-  try { world.setDynamicProperty("shitrooms:exit_wz",      0);     } catch {}
+  try { world.setDynamicProperty("shitrooms:cells_n",        0);     } catch {}
+  try { world.setDynamicProperty("shitrooms:cells1_n",       0);     } catch {}
+  try { world.setDynamicProperty("shitrooms:cells2_n",       0);     } catch {}
+  try { world.setDynamicProperty("shitrooms:floor1_active",  false); } catch {}
+  try { world.setDynamicProperty("shitrooms:floor2_active",  false); } catch {}
+  try { world.setDynamicProperty("shitrooms:exit_placed",    false); } catch {}
+  try { world.setDynamicProperty("shitrooms:exit_gx",        0);     } catch {}
+  try { world.setDynamicProperty("shitrooms:exit_gz",        0);     } catch {}
+  try { world.setDynamicProperty("shitrooms:exit_wx",        0);     } catch {}
+  try { world.setDynamicProperty("shitrooms:exit_wz",        0);     } catch {}
+  try { world.setDynamicProperty("shitrooms:exit1_placed",   false); } catch {}
+  try { world.setDynamicProperty("shitrooms:exit1_wx",       0);     } catch {}
+  try { world.setDynamicProperty("shitrooms:exit1_wz",       0);     } catch {}
+  try { world.setDynamicProperty("shitrooms:exit2_placed",   false); } catch {}
+  try { world.setDynamicProperty("shitrooms:exit2_entry_gx", 0);     } catch {}
+  try { world.setDynamicProperty("shitrooms:exit2_entry_gz", 0);     } catch {}
+  try { world.setDynamicProperty("shitrooms:exit2_wx",       0);     } catch {}
+  try { world.setDynamicProperty("shitrooms:exit2_wz",       0);     } catch {}
 }
 
 export function getOrigin()      { return { x: originX, y: originY, z: originZ }; }
@@ -92,13 +128,22 @@ function saveState() {
     world.setDynamicProperty("shitrooms:exit_gz",       exitGz);
     world.setDynamicProperty("shitrooms:exit_wx",       exitWX);
     world.setDynamicProperty("shitrooms:exit_wz",       exitWZ);
+    world.setDynamicProperty("shitrooms:exit1_placed",   exit1Placed);
+    world.setDynamicProperty("shitrooms:exit1_wx",       exit1WX);
+    world.setDynamicProperty("shitrooms:exit1_wz",       exit1WZ);
+    world.setDynamicProperty("shitrooms:floor2_active",  floor2Active);
+    world.setDynamicProperty("shitrooms:exit2_placed",   exit2Placed);
+    world.setDynamicProperty("shitrooms:exit2_entry_gx", exit2EntryGx);
+    world.setDynamicProperty("shitrooms:exit2_entry_gz", exit2EntryGz);
+    world.setDynamicProperty("shitrooms:exit2_wx",       exit2WX);
+    world.setDynamicProperty("shitrooms:exit2_wz",       exit2WZ);
 
     const CHUNK = 30000;
 
     // Floor 0
     const parts = [];
     for (const [k] of placedCells) {
-      const suffix = (placedRooms.get(k) ?? "").replace("shitrooms:", "");
+      const suffix = (placedRooms.get(k) ?? "").replace("shitrooms0:", "");
       parts.push(k + "~" + suffix);
     }
     const data = parts.join("|");
@@ -112,7 +157,7 @@ function saveState() {
     // Floor 1
     const parts1 = [];
     for (const [k] of placedCells1) {
-      const suffix = (placedRooms1.get(k) ?? "").replace("shitrooms:", "");
+      const suffix = (placedRooms1.get(k) ?? "").replace("shitrooms1:", "");
       parts1.push(k + "~" + suffix);
     }
     const data1 = parts1.join("|");
@@ -122,6 +167,20 @@ function saveState() {
       chunk1++;
     }
     world.setDynamicProperty("shitrooms:cells1_n", chunk1);
+
+    // Floor 2
+    const parts2 = [];
+    for (const [k] of placedCells2) {
+      const suffix = (placedRooms2.get(k) ?? "").replace("shitrooms2:", "");
+      parts2.push(k + "~" + suffix);
+    }
+    const data2 = parts2.join("|");
+    let chunk2 = 0;
+    for (let i = 0; i < data2.length; i += CHUNK) {
+      world.setDynamicProperty(`shitrooms:cells2_${chunk2}`, data2.slice(i, i + CHUNK));
+      chunk2++;
+    }
+    world.setDynamicProperty("shitrooms:cells2_n", chunk2);
   } catch {}
 }
 
@@ -136,8 +195,17 @@ export function restoreState() {
   exitPlaced   = !!world.getDynamicProperty("shitrooms:exit_placed");
   exitGx       = world.getDynamicProperty("shitrooms:exit_gx") ?? 0;
   exitGz       = world.getDynamicProperty("shitrooms:exit_gz") ?? 0;
-  exitWX       = world.getDynamicProperty("shitrooms:exit_wx") ?? 0;
-  exitWZ       = world.getDynamicProperty("shitrooms:exit_wz") ?? 0;
+  exitWX       = world.getDynamicProperty("shitrooms:exit_wx")  ?? 0;
+  exitWZ       = world.getDynamicProperty("shitrooms:exit_wz")  ?? 0;
+  exit1Placed      = !!world.getDynamicProperty("shitrooms:exit1_placed");
+  exit1WX          = world.getDynamicProperty("shitrooms:exit1_wx") ?? 0;
+  exit1WZ          = world.getDynamicProperty("shitrooms:exit1_wz") ?? 0;
+  floor2Active     = !!world.getDynamicProperty("shitrooms:floor2_active");
+  exit2Placed      = !!world.getDynamicProperty("shitrooms:exit2_placed");
+  exit2EntryGx     = world.getDynamicProperty("shitrooms:exit2_entry_gx") ?? 0;
+  exit2EntryGz     = world.getDynamicProperty("shitrooms:exit2_entry_gz") ?? 0;
+  exit2WX          = world.getDynamicProperty("shitrooms:exit2_wx") ?? 0;
+  exit2WZ          = world.getDynamicProperty("shitrooms:exit2_wz") ?? 0;
   // Old saves don't have exitWX/WZ — reconstruct from grid coords
   if (exitPlaced && exitWX === 0 && exitWZ === 0) {
     exitWX = originX + exitGx * CELL_SIZE;
@@ -156,7 +224,7 @@ export function restoreState() {
       const k = entry.slice(0, tilde);
       const suffix = entry.slice(tilde + 1);
       placedCells.set(k, new Set());
-      if (suffix) placedRooms.set(k, "shitrooms:" + suffix);
+      if (suffix) placedRooms.set(k, "shitrooms0:" + suffix);
     }
   }
 
@@ -172,7 +240,23 @@ export function restoreState() {
       const k = entry.slice(0, tilde);
       const suffix = entry.slice(tilde + 1);
       placedCells1.set(k, new Set());
-      if (suffix) placedRooms1.set(k, "shitrooms:" + suffix);
+      if (suffix) placedRooms1.set(k, "shitrooms1:" + suffix);
+    }
+  }
+
+  // Floor 2
+  const n2 = world.getDynamicProperty("shitrooms:cells2_n");
+  if (typeof n2 === "number" && n2 > 0) {
+    let data2 = "";
+    for (let i = 0; i < n2; i++) data2 += world.getDynamicProperty(`shitrooms:cells2_${i}`) ?? "";
+    for (const entry of data2.split("|")) {
+      if (!entry) continue;
+      const tilde = entry.indexOf("~");
+      if (tilde === -1) continue;
+      const k = entry.slice(0, tilde);
+      const suffix = entry.slice(tilde + 1);
+      placedCells2.set(k, new Set());
+      if (suffix) placedRooms2.set(k, "shitrooms2:" + suffix);
     }
   }
 }
@@ -193,12 +277,11 @@ function pickRoom(exits, roomList, neighborIds = []) {
   return valid[valid.length - 1];
 }
 
+
 // ─── Room placement ───────────────────────────────────────────────────────────
-// floor 0: wy = originY, unlit based on distance from originX/Z (500 blocks)
-// floor 1: wy = originY + CELL_SIZE, unlit based on distance from exit cell (300 blocks)
 function placeRoom(dim, room, wx, wz, floor) {
-  const wy      = floor === 0 ? originY : originY + CELL_SIZE;
-  const noUnlit = floor === 0 ? NO_UNLIT : NO_UNLIT_1;
+  const wy      = originY + floor * CELL_SIZE;
+  const noUnlit = floor === 0 ? NO_UNLIT : floor === 1 ? NO_UNLIT_1 : NO_UNLIT_2;
 
   try {
     dim.runCommand(`fill ${wx} ${wy} ${wz} ${wx + CELL_SIZE - 1} ${wy + CELL_SIZE - 1} ${wz + CELL_SIZE - 1} air`);
@@ -208,11 +291,16 @@ function placeRoom(dim, room, wx, wz, floor) {
   if (floor === 0) {
     const dist = Math.sqrt((wx - originX) ** 2 + (wz - originZ) ** 2);
     unlitChance = Math.min(dist / 500, 1.0);
-  } else {
+  } else if (floor === 1) {
     const entryWX = originX + exitGx * CELL_SIZE;
     const entryWZ = originZ + exitGz * CELL_SIZE;
     const dist = Math.sqrt((wx - entryWX) ** 2 + (wz - entryWZ) ** 2);
     unlitChance = Math.min(dist / UNLIT_DIST_1, 1.0);
+  } else {
+    const entryWX = originX + exit2EntryGx * CELL_SIZE;
+    const entryWZ = originZ + exit2EntryGz * CELL_SIZE;
+    const dist = Math.sqrt((wx - entryWX) ** 2 + (wz - entryWZ) ** 2);
+    unlitChance = Math.min(dist / UNLIT_DIST_2, 1.0);
   }
 
   const useUnlit = Math.random() < unlitChance && !noUnlit.has(room.id);
@@ -225,71 +313,104 @@ function placeRoom(dim, room, wx, wz, floor) {
 }
 
 function sealRoof(dim, wx, wz, floor) {
-  if (floor === 0) return; // bedrock only above floor 1, not floor 0
-  const ry = originY + ROOF_Y_OFFSET1;
+  if (floor !== 2) return;
+  const ry = originY + ROOF_Y_OFFSET2;
   try {
     dim.runCommand(`fill ${wx} ${ry} ${wz} ${wx + CELL_SIZE - 1} ${ry} ${wz + CELL_SIZE - 1} bedrock`);
   } catch {}
 }
 
 // ─── Maze carver ──────────────────────────────────────────────────────────────
-// cells = placedCells (floor 0) or placedCells1 (floor 1)
-function carveMaze(startGx, startGz, maxNew, cells) {
+
+// DFS carver for floors 0 and 1
+function carveMaze(startGx, startGz, maxNew, cells, floor = 0) {
   const newCells = new Map();
   const stack = [{ gx: startGx, gz: startGz }];
   if (!cells.has(cellKey(startGx, startGz))) {
     newCells.set(cellKey(startGx, startGz), new Set());
   }
-
   while (stack.length > 0 && newCells.size < maxNew) {
     const { gx, gz } = stack[stack.length - 1];
+    const ck = cellKey(gx, gz);
     const unvisited = DIRS.filter(d =>
       !newCells.has(cellKey(gx + d.dx, gz + d.dz)) &&
       !cells.has(cellKey(gx + d.dx, gz + d.dz))
     );
     if (unvisited.length === 0) { stack.pop(); continue; }
-
     const dir = unvisited[Math.floor(Math.random() * unvisited.length)];
     const nx = gx + dir.dx, nz = gz + dir.dz;
-    const curKey = cellKey(gx, gz);
-    if (newCells.has(curKey))  newCells.get(curKey).add(dir.face);
-    else if (cells.has(curKey)) cells.get(curKey).add(dir.face);
+    if (newCells.has(ck))   newCells.get(ck).add(dir.face);
+    else if (cells.has(ck)) cells.get(ck).add(dir.face);
     newCells.set(cellKey(nx, nz), new Set([dir.opp]));
     stack.push({ gx: nx, gz: nz });
   }
   return newCells;
 }
 
+
 // ─── Cell commit ─────────────────────────────────────────────────────────────
 function commitCells(newCells, dim, floor) {
-  const cells    = floor === 0 ? placedCells  : placedCells1;
-  const roomsMap = floor === 0 ? placedRooms  : placedRooms1;
-  const roomList = floor === 0 ? ROOMS        : ROOMS_1;
+  const cells    = floor === 0 ? placedCells  : floor === 1 ? placedCells1  : placedCells2;
+  const roomsMap = floor === 0 ? placedRooms  : floor === 1 ? placedRooms1  : placedRooms2;
+  const roomList = floor === 0 ? ROOMS : floor === 1 ? ROOMS_1 : ROOMS_2;
 
   for (const [key, exits] of newCells) {
     const [gx, gz] = key.split(",").map(Number);
     const wx = originX + gx * CELL_SIZE;
     const wz = originZ + gz * CELL_SIZE;
     try {
-      // Inject exit room on floor 0 when distance threshold is met (once only)
+      // Floor 0 exit injection
       if (floor === 0 && !exitPlaced) {
         const dist = Math.sqrt((wx - originX) ** 2 + (wz - originZ) ** 2);
         if (dist >= EXIT_DIST_MIN) {
           const wy = originY;
           dim.runCommand(`fill ${wx} ${wy} ${wz} ${wx + CELL_SIZE - 1} ${wy + CELL_SIZE - 1} ${wz + CELL_SIZE - 1} air`);
-          dim.runCommand(`structure load shitrooms:exit ${wx} ${wy} ${wz}`);
+          dim.runCommand(`structure load shitrooms0:exit ${wx} ${wy} ${wz}`);
           sealRoof(dim, wx, wz, 0);
           cells.set(key, exits);
-          roomsMap.set(key, "shitrooms:exit");
+          roomsMap.set(key, "shitrooms0:exit");
           exitGx = gx; exitGz = gz; exitWX = wx; exitWZ = wz; exitPlaced = true;
-          _buildFloor1(dim); // generate floor 1 immediately
+          _buildFloor1(dim);
           continue;
         }
       }
 
-      const neighborIds = DIRS
-        .map(d => roomsMap.get(cellKey(gx + d.dx, gz + d.dz)))
-        .filter(Boolean);
+      // Floor 1 exit injection
+      if (floor === 1 && !exit1Placed) {
+        const entryWX = originX + exitGx * CELL_SIZE;
+        const entryWZ = originZ + exitGz * CELL_SIZE;
+        const dist = Math.sqrt((wx - entryWX) ** 2 + (wz - entryWZ) ** 2);
+        if (dist >= EXIT1_DIST_MIN) {
+          const wy = originY + CELL_SIZE;
+          dim.runCommand(`fill ${wx} ${wy} ${wz} ${wx + CELL_SIZE - 1} ${wy + CELL_SIZE - 1} ${wz + CELL_SIZE - 1} air`);
+          dim.runCommand(`structure load shitrooms1:1_exit ${wx} ${wy} ${wz}`);
+          sealRoof(dim, wx, wz, 1);
+          cells.set(key, exits);
+          roomsMap.set(key, "shitrooms1:1_exit");
+          exit1Placed = true; exit1WX = wx; exit1WZ = wz;
+          _buildFloor2(dim);
+          continue;
+        }
+      }
+
+      // Floor 2 exit injection
+      if (floor === 2 && !exit2Placed) {
+        const entryWX = originX + exit2EntryGx * CELL_SIZE;
+        const entryWZ = originZ + exit2EntryGz * CELL_SIZE;
+        const dist = Math.sqrt((wx - entryWX) ** 2 + (wz - entryWZ) ** 2);
+        if (dist >= EXIT2_DIST_MIN) {
+          const wy = originY + CELL_SIZE * 2;
+          dim.runCommand(`fill ${wx} ${wy} ${wz} ${wx + CELL_SIZE - 1} ${wy + CELL_SIZE - 1} ${wz + CELL_SIZE - 1} air`);
+          dim.runCommand(`structure load shitrooms2:exit ${wx} ${wy} ${wz}`);
+          sealRoof(dim, wx, wz, 2);
+          cells.set(key, exits);
+          roomsMap.set(key, "shitrooms2:exit");
+          exit2Placed = true; exit2WX = wx; exit2WZ = wz;
+          continue;
+        }
+      }
+
+      const neighborIds = DIRS.map(d => roomsMap.get(cellKey(gx + d.dx, gz + d.dz))).filter(Boolean);
       const room = pickRoom([...exits], roomList, neighborIds);
       placeRoom(dim, room, wx, wz, floor);
       sealRoof(dim, wx, wz, floor);
@@ -328,14 +449,53 @@ function _buildFloor1(dim) {
   // Overwrite the entry cell with 1_enter
   try {
     dim.runCommand(`fill ${entryWX} ${entryWY} ${entryWZ} ${entryWX + CELL_SIZE - 1} ${entryWY + CELL_SIZE - 1} ${entryWZ + CELL_SIZE - 1} air`);
-    dim.runCommand(`structure load shitrooms:1_enter ${entryWX} ${entryWY} ${entryWZ}`);
+    dim.runCommand(`structure load shitrooms1:1_enter ${entryWX} ${entryWY} ${entryWZ}`);
   } catch {}
-  placedRooms1.set(cellKey(exitGx, exitGz), "shitrooms:1_enter");
+  placedRooms1.set(cellKey(exitGx, exitGz), "shitrooms1:1_enter");
 
   // Initial carve outward from 4 corners
   for (const [dgx, dgz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
-    const nc = carveMaze(exitGx + dgx, exitGz + dgz, Math.ceil(INITIAL_ROOMS / 4), placedCells1);
+    const nc = carveMaze(exitGx + dgx, exitGz + dgz, Math.ceil(INITIAL_ROOMS / 4), placedCells1, 1);
     if (nc.size > 0) commitCells(nc, dim, 1);
+  }
+
+  saveState();
+}
+
+function _buildFloor2(dim) {
+  if (floor2Active) return;
+  floor2Active = true;
+
+  exit2EntryGx = Math.round((exit1WX - originX) / CELL_SIZE);
+  exit2EntryGz = Math.round((exit1WZ - originZ) / CELL_SIZE);
+  const entryWX = originX + exit2EntryGx * CELL_SIZE;
+  const entryWZ = originZ + exit2EntryGz * CELL_SIZE;
+  const entryWY = originY + CELL_SIZE * 2;
+
+  // 3×3 open area around entry
+  for (let dgx = -1; dgx <= 1; dgx++) {
+    for (let dgz = -1; dgz <= 1; dgz++) {
+      const gx = exit2EntryGx + dgx, gz = exit2EntryGz + dgz;
+      const wx = originX + gx * CELL_SIZE;
+      const wz = originZ + gz * CELL_SIZE;
+      placeRoom(dim, OPEN_ROOM_2, wx, wz, 2);
+      sealRoof(dim, wx, wz, 2);
+      placedCells2.set(cellKey(gx, gz), new Set(["north", "south", "east", "west"]));
+      placedRooms2.set(cellKey(gx, gz), OPEN_ROOM_2.id);
+    }
+  }
+
+  // Enter room at entry cell
+  try {
+    dim.runCommand(`fill ${entryWX} ${entryWY} ${entryWZ} ${entryWX + CELL_SIZE - 1} ${entryWY + CELL_SIZE - 1} ${entryWZ + CELL_SIZE - 1} air`);
+    dim.runCommand(`structure load shitrooms2:enter ${entryWX} ${entryWY} ${entryWZ}`);
+  } catch {}
+  placedRooms2.set(cellKey(exit2EntryGx, exit2EntryGz), "shitrooms2:enter");
+
+  // Initial carve outward from 4 corners
+  for (const [dgx, dgz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
+    const nc = carveMaze(exit2EntryGx + dgx, exit2EntryGz + dgz, Math.ceil(INITIAL_ROOMS / 4), placedCells2, 2);
+    if (nc.size > 0) commitCells(nc, dim, 2);
   }
 
   saveState();
@@ -350,6 +510,20 @@ export function onPlayerReachFloor1(player, dim) {
     player.setSpawnPoint({
       x: Math.floor(entryWX + 2),
       y: originY + CELL_SIZE + 1,
+      z: Math.floor(entryWZ + 2),
+      dimension: dim
+    });
+  } catch {}
+}
+
+export function onPlayerReachFloor2(player, dim) {
+  if (!floor2Active || !exit1Placed) return;
+  const entryWX = originX + exit2EntryGx * CELL_SIZE;
+  const entryWZ = originZ + exit2EntryGz * CELL_SIZE;
+  try {
+    player.setSpawnPoint({
+      x: Math.floor(entryWX + 2),
+      y: originY + CELL_SIZE * 2 + 1,
       z: Math.floor(entryWZ + 2),
       dimension: dim
     });
@@ -377,15 +551,16 @@ export function generateInitial(player) {
   }
 
   for (const [sgx, sgz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
-    const nc = carveMaze(sgx, sgz, Math.ceil(INITIAL_ROOMS / 4), placedCells);
+    const nc = carveMaze(sgx, sgz, Math.ceil(INITIAL_ROOMS / 4), placedCells, 0);
     if (nc.size > 0) commitCells(nc, dim, 0);
   }
 }
 
 // ─── Nextbot spawner ──────────────────────────────────────────────────────────
 export function startSpawnLoop() {
-  const NO_SPAWN_0 = new Set(["shitrooms:corridors", "shitrooms:cross", "shitrooms:x", "shitrooms:exit"]);
-  const NO_SPAWN_1 = new Set(["shitrooms:1_corridors", "shitrooms:1_hall_EW", "shitrooms:1_hall_NS", "shitrooms:1_enter"]);
+  const NO_SPAWN_0 = new Set(["shitrooms0:corridors", "shitrooms0:cross", "shitrooms0:x", "shitrooms0:exit"]);
+  const NO_SPAWN_1 = new Set(["shitrooms1:1_corridors", "shitrooms1:1_hall_EW", "shitrooms1:1_hall_NS", "shitrooms1:1_enter", "shitrooms1:1_exit"]);
+  const NO_SPAWN_2 = new Set(["shitrooms2:enter", "shitrooms2:exit", "shitrooms2:flashlight"]);
 
   system.runTimeout(() => {
     system.runInterval(() => {
@@ -397,12 +572,16 @@ export function startSpawnLoop() {
       const dim = world.getDimension("overworld");
 
       const floor0Players = shitroomsPlayers.filter(p => playerFloorOf(p) === 0);
-      const floor1Players = (floor1Active && exitPlaced) ? shitroomsPlayers.filter(p => playerFloorOf(p) === 1) : [];
+      const floor1Players = (floor1Active && exitPlaced)  ? shitroomsPlayers.filter(p => playerFloorOf(p) === 1) : [];
+      const floor2Players = (floor2Active && exit1Placed) ? shitroomsPlayers.filter(p => playerFloorOf(p) === 2) : [];
 
       for (let i = 0; i < 2; i++) {
-        // Pick a floor to spawn on weighted by player count
         let floor, players, cells, roomsMap, noSpawn, spawnY;
-        if (floor1Players.length > 0 && (floor0Players.length === 0 || Math.random() < 0.5)) {
+        const r = Math.random();
+        if (floor2Players.length > 0 && (floor0Players.length === 0 && floor1Players.length === 0 || r < 0.33)) {
+          floor = 2; players = floor2Players; cells = placedCells2; roomsMap = placedRooms2;
+          noSpawn = NO_SPAWN_2; spawnY = originY + CELL_SIZE * 2 + 1;
+        } else if (floor1Players.length > 0 && (floor0Players.length === 0 || r < 0.5)) {
           floor = 1; players = floor1Players; cells = placedCells1; roomsMap = placedRooms1;
           noSpawn = NO_SPAWN_1; spawnY = originY + CELL_SIZE + 1;
         } else {
@@ -423,7 +602,10 @@ export function startSpawnLoop() {
         });
         if (validKeys.length === 0) continue;
 
-        const type = NEXTBOT_TYPES[Math.floor(Math.random() * NEXTBOT_TYPES.length)];
+        const eligible = NEXTBOT_TYPES.filter(e => e.minLevel <= floor);
+        if (eligible.length === 0) continue;
+        const entry = eligible[Math.floor(Math.random() * eligible.length)];
+        const type = entry.id;
         if (dim.getEntities({ type }).length >= MAX_PER_TYPE) continue;
         const key = validKeys[Math.floor(Math.random() * validKeys.length)];
         const [gx, gz] = key.split(",").map(Number);
@@ -450,9 +632,10 @@ export function startExplorationLoop() {
 
     for (const player of shitroomsPlayers) {
       const floor = playerFloorOf(player);
-      const cells = floor === 0 ? placedCells : placedCells1;
+      const cells = floor === 0 ? placedCells : floor === 1 ? placedCells1 : placedCells2;
 
-      if (floor === 1 && (!floor1Active || !exitPlaced)) continue;
+      if (floor === 1 && (!floor1Active || !exitPlaced))  continue;
+      if (floor === 2 && (!floor2Active || !exit1Placed)) continue;
 
       const loc = player.location;
       const pgx = Math.floor((loc.x - originX) / CELL_SIZE);
@@ -481,7 +664,7 @@ export function startExplorationLoop() {
       let remaining = EXPLORE_ROOMS;
       for (const { gx, gz } of seeds) {
         if (remaining <= 0) break;
-        const nc = carveMaze(gx, gz, remaining, cells);
+        const nc = carveMaze(gx, gz, remaining, cells, floor);
         if (nc.size === 0) continue;
         commitCells(nc, dim, floor);
         remaining -= nc.size;

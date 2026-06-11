@@ -1,5 +1,5 @@
 import { world, system, BlockPermutation, GameMode } from "@minecraft/server";
-import { generateInitial, startExplorationLoop, startSpawnLoop, resetState, getOrigin, restoreState, getFloor1State, onPlayerReachFloor1, playerFloorOf } from "./generator.js";
+import { generateInitial, startExplorationLoop, startSpawnLoop, resetState, getOrigin, restoreState, getFloor1State, onPlayerReachFloor1, onPlayerReachFloor2, playerFloorOf } from "./generator.js";
 import { CELL_SIZE } from "./rooms.js";
 
 const INIT_PROP  = "shitrooms:initialized";
@@ -77,35 +77,71 @@ let exitSoundDone = false;
 function startExitAmbientLoop() {
   const SOUND_ID    = "shitrooms.level0_exit";
   const SOUND_TICKS = 4 * 60 * 20 + 10 * 20; // 4:10 = 5000 ticks
-  const HEAR_RANGE  = 64;                      // volume 4 = 64 block max range
-  const playerSoundTick = new Map();           // playerName -> tick when sound last started
+  const HEAR_RANGE  = 64;
+  const playerSoundTick0 = new Map();
+  const playerSoundTick1 = new Map();
+  const playerSoundTick2 = new Map();
 
   system.runInterval(() => {
-    if (exitSoundDone) return;
-    const { exitPlaced, exitWX, exitWZ } = getFloor1State();
-    if (!exitPlaced) return;
+    const { exitPlaced, exitWX, exitWZ, exit1Placed, exit1WX, exit1WZ,
+            exit2Placed, exit2WX, exit2WZ } = getFloor1State();
     const origin = getOrigin();
     const tick   = system.currentTick;
 
-    const sx = Math.floor(exitWX + 2);
-    const sy = Math.floor(origin.y + 1);
-    const sz = Math.floor(exitWZ + 2);
-
-    for (const p of world.getPlayers()) {
-      if (!isInShitrooms(p) || playerFloorOf(p) !== 0) continue;
-
-      const lastPlay = playerSoundTick.get(p.name) ?? -SOUND_TICKS;
-      if (tick - lastPlay < SOUND_TICKS) continue; // still playing for this player
-
-      const dx = p.location.x - sx, dz = p.location.z - sz;
-      if (Math.sqrt(dx * dx + dz * dz) > HEAR_RANGE) continue; // out of range, wait
-
-      try {
-        p.runCommand(`playsound ${SOUND_ID} @s ${sx} ${sy} ${sz} 6 1 0`);
-        playerSoundTick.set(p.name, tick);
-      } catch {}
+    // Floor 0 exit music
+    if (!exitSoundDone && exitPlaced) {
+      const sx = Math.floor(exitWX + 2);
+      const sy = Math.floor(origin.y + 1);
+      const sz = Math.floor(exitWZ + 2);
+      for (const p of world.getPlayers()) {
+        if (!isInShitrooms(p) || playerFloorOf(p) !== 0) continue;
+        const lastPlay = playerSoundTick0.get(p.name) ?? -SOUND_TICKS;
+        if (tick - lastPlay < SOUND_TICKS) continue;
+        const dx = p.location.x - sx, dz = p.location.z - sz;
+        if (Math.sqrt(dx * dx + dz * dz) > HEAR_RANGE) continue;
+        try {
+          p.runCommand(`playsound ${SOUND_ID} @s ${sx} ${sy} ${sz} 6 1 0`);
+          playerSoundTick0.set(p.name, tick);
+        } catch {}
+      }
     }
-  }, 100); // poll every 5 seconds
+
+    // Floor 1 exit music
+    if (exit1Placed) {
+      const sx = Math.floor(exit1WX + 2);
+      const sy = Math.floor(origin.y + CELL_SIZE + 1);
+      const sz = Math.floor(exit1WZ + 2);
+      for (const p of world.getPlayers()) {
+        if (!isInShitrooms(p) || playerFloorOf(p) !== 1) continue;
+        const lastPlay = playerSoundTick1.get(p.name) ?? -SOUND_TICKS;
+        if (tick - lastPlay < SOUND_TICKS) continue;
+        const dx = p.location.x - sx, dz = p.location.z - sz;
+        if (Math.sqrt(dx * dx + dz * dz) > HEAR_RANGE) continue;
+        try {
+          p.runCommand(`playsound ${SOUND_ID} @s ${sx} ${sy} ${sz} 6 1 0`);
+          playerSoundTick1.set(p.name, tick);
+        } catch {}
+      }
+    }
+
+    // Floor 2 exit music
+    if (exit2Placed) {
+      const sx = Math.floor(exit2WX + 2);
+      const sy = Math.floor(origin.y + CELL_SIZE * 2 + 1);
+      const sz = Math.floor(exit2WZ + 2);
+      for (const p of world.getPlayers()) {
+        if (!isInShitrooms(p) || playerFloorOf(p) !== 2) continue;
+        const lastPlay = playerSoundTick2.get(p.name) ?? -SOUND_TICKS;
+        if (tick - lastPlay < SOUND_TICKS) continue;
+        const dx = p.location.x - sx, dz = p.location.z - sz;
+        if (Math.sqrt(dx * dx + dz * dz) > HEAR_RANGE) continue;
+        try {
+          p.runCommand(`playsound ${SOUND_ID} @s ${sx} ${sy} ${sz} 6 1 0`);
+          playerSoundTick2.set(p.name, tick);
+        } catch {}
+      }
+    }
+  }, 100);
 }
 
 // ─── Floor transition tracking ────────────────────────────────────────────────
@@ -123,7 +159,7 @@ function startFloorTransitionLoop() {
       if (!isInShitrooms(player)) continue;
       // Skip players not yet teleported into the maze (still at surface Y)
       const py = player.location.y;
-      if (py < origin.y - 2 || py > origin.y + CELL_SIZE * 2 + 5) continue;
+      if (py < origin.y - 2 || py > origin.y + CELL_SIZE * 3 + 5) continue;
 
       const curFloor  = playerFloorOf(player);
       const prevFloor = world.getDynamicProperty(`shitrooms:player_floor:${player.name}`) ?? 0;
@@ -136,6 +172,12 @@ function startFloorTransitionLoop() {
         if (!exitPlaced) continue;
         onPlayerReachFloor1(player, dim);
         exitSoundDone = true;
+        try { dim.runCommand("stopsound @a shitrooms.level0_exit"); } catch {}
+      }
+      if (curFloor === 2) {
+        const { floor2Active } = getFloor1State();
+        if (!floor2Active) continue;
+        onPlayerReachFloor2(player, dim);
         try { dim.runCommand("stopsound @a shitrooms.level0_exit"); } catch {}
       }
     }
@@ -288,8 +330,14 @@ function startNavmeshLoop() {
     for (const typeId of NEXTBOT_TYPES) {
       for (const entity of dim.getEntities({ type: typeId })) {
         // Determine which floor this entity is on and lock it to that floor's Y
-        const entFloor = entity.location.y >= origin.y + CELL_SIZE - 0.5 ? 1 : 0;
-        const floorY   = origin.y + (entFloor === 1 ? CELL_SIZE : 0);
+        let entFloor, floorY;
+        if (entity.location.y >= origin.y + CELL_SIZE * 2 - 0.5) {
+          entFloor = 2; floorY = origin.y + CELL_SIZE * 2;
+        } else if (entity.location.y >= origin.y + CELL_SIZE - 0.5) {
+          entFloor = 1; floorY = origin.y + CELL_SIZE;
+        } else {
+          entFloor = 0; floorY = origin.y;
+        }
 
         // Only chase players on the same floor
         const floorPlayers = shitroomsPlayers.filter(p => playerFloorOf(p) === entFloor);
@@ -637,9 +685,9 @@ function setupScoreboard() {
       const loc = player.location;
       const curFloor = playerFloorOf(player);
       const origin = getOrigin();
-      const { exitWX, exitWZ } = getFloor1State();
-      const refX = curFloor === 0 ? origin.x : exitWX;
-      const refZ = curFloor === 0 ? origin.z : exitWZ;
+      const { exitWX, exitWZ, exit1WX, exit1WZ } = getFloor1State();
+      const refX = curFloor === 0 ? origin.x : curFloor === 1 ? exitWX : exit1WX;
+      const refZ = curFloor === 0 ? origin.z : curFloor === 1 ? exitWZ : exit1WZ;
       const dx = loc.x - refX, dz = loc.z - refZ;
       const dist = Math.floor(Math.sqrt(dx * dx + dz * dz));
 
@@ -692,10 +740,16 @@ world.afterEvents.playerSpawn.subscribe(ev => {
   const o = world.getDimension("overworld");
   const origin = getOrigin();
   if (origin.x === 0 && origin.y === 0 && origin.z === 0) return;
-  const { floor1Active, exitGx, exitGz } = getFloor1State();
+  const { floor1Active, exitGx, exitGz, floor2Active, exit2EntryGx, exit2EntryGz } = getFloor1State();
   const pFloor = world.getDynamicProperty(`shitrooms:player_floor:${ev.player.name}`) ?? 0;
   let dest;
-  if (pFloor === 1 && floor1Active) {
+  if (pFloor === 2 && floor2Active) {
+    dest = {
+      x: origin.x + exit2EntryGx * CELL_SIZE + 2.5,
+      y: origin.y + CELL_SIZE * 2 + 1,
+      z: origin.z + exit2EntryGz * CELL_SIZE + 2.5
+    };
+  } else if (pFloor === 1 && floor1Active) {
     dest = {
       x: origin.x + exitGx * CELL_SIZE + 2.5,
       y: origin.y + CELL_SIZE + 1,

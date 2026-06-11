@@ -27,5 +27,19 @@
   "shitrooms:fluorescent_light": {
     "textures": "fluorescent_light",
     "sound": "stone"
-  }
+  },
+  "shitrooms:pipe_cross":      { "textures": "pipe_cross",      "sound": "stone" },
+  "shitrooms:pipe_corner_ne":  { "textures": "pipe_corner_ne",  "sound": "stone" },
+  "shitrooms:pipe_corner_nw":  { "textures": "pipe_corner_nw",  "sound": "stone" },
+  "shitrooms:pipe_corner_se":  { "textures": "pipe_corner_se",  "sound": "stone" },
+  "shitrooms:pipe_corner_sw":  { "textures": "pipe_corner_sw",  "sound": "stone" },
+  "shitrooms:pipe_straight_h": { "textures": "pipe_straight_h", "sound": "stone" },
+  "shitrooms:pipe_straight_v": { "textures": "pipe_straight_v", "sound": "stone" },
+  "shitrooms:pipe_t_e":        { "textures": "pipe_t_e",        "sound": "stone" },
+  "shitrooms:pipe_t_n":        { "textures": "pipe_t_n",        "sound": "stone" },
+  "shitrooms:pipe_t_s":        { "textures": "pipe_t_s",        "sound": "stone" },
+  "shitrooms:pipe_t_w":        { "textures": "pipe_t_w",        "sound": "stone" },
+  "shitrooms:pipe_valve_h":    { "textures": "pipe_valve_h",    "sound": "stone" },
+  "shitrooms:pipe_valve_v":         { "textures": "pipe_valve_v",         "sound": "stone" },
+  "shitrooms:backrooms_brick_wall": { "textures": "backrooms_brick_wall",  "sound": "stone" }
 }

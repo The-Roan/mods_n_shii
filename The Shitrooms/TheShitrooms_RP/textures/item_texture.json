@@ -7,6 +7,24 @@
     },
     "flashlight": {
       "textures": "textures/items/flashlight"
+    },
+    "spawn_egg_nextbot": {
+      "textures": "textures/items/spawn_egg_nextbot"
+    },
+    "spawn_egg_nextbot2": {
+      "textures": "textures/items/spawn_egg_nextbot2"
+    },
+    "spawn_egg_nextbot3": {
+      "textures": "textures/items/spawn_egg_nextbot3"
+    },
+    "spawn_egg_nextbot4": {
+      "textures": "textures/items/spawn_egg_nextbot4"
+    },
+    "spawn_egg_nextbot5": {
+      "textures": "textures/items/spawn_egg_nextbot5"
+    },
+    "spawn_egg_nextbot6": {
+      "textures": "textures/items/spawn_egg_nextbot6"
     }
   }
 }
