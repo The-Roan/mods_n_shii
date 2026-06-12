@@ -40,7 +40,7 @@ const DIRS = [
 
 // Rooms with no unlit variant
 const NO_UNLIT   = new Set(["shitrooms0:pickaxe", "shitrooms0:flashlight", "shitrooms0:exit"]);
-const NO_UNLIT_1 = new Set(["shitrooms1:1_flashlight", "shitrooms1:1_exit"]);
+const NO_UNLIT_1 = new Set(["shitrooms1:flashlight", "shitrooms1:exit"]);
 const NO_UNLIT_2 = new Set(["shitrooms2:enter", "shitrooms2:exit", "shitrooms2:flashlight"]);
 
 // ─── State ────────────────────────────────────────────────────────────────────
@@ -383,10 +383,10 @@ function commitCells(newCells, dim, floor) {
         if (dist >= EXIT1_DIST_MIN) {
           const wy = originY + CELL_SIZE;
           dim.runCommand(`fill ${wx} ${wy} ${wz} ${wx + CELL_SIZE - 1} ${wy + CELL_SIZE - 1} ${wz + CELL_SIZE - 1} air`);
-          dim.runCommand(`structure load shitrooms1:1_exit ${wx} ${wy} ${wz}`);
+          dim.runCommand(`structure load shitrooms1:exit ${wx} ${wy} ${wz}`);
           sealRoof(dim, wx, wz, 1);
           cells.set(key, exits);
-          roomsMap.set(key, "shitrooms1:1_exit");
+          roomsMap.set(key, "shitrooms1:exit");
           exit1Placed = true; exit1WX = wx; exit1WZ = wz;
           _buildFloor2(dim);
           continue;
@@ -449,9 +449,9 @@ function _buildFloor1(dim) {
   // Overwrite the entry cell with 1_enter
   try {
     dim.runCommand(`fill ${entryWX} ${entryWY} ${entryWZ} ${entryWX + CELL_SIZE - 1} ${entryWY + CELL_SIZE - 1} ${entryWZ + CELL_SIZE - 1} air`);
-    dim.runCommand(`structure load shitrooms1:1_enter ${entryWX} ${entryWY} ${entryWZ}`);
+    dim.runCommand(`structure load shitrooms1:enter ${entryWX} ${entryWY} ${entryWZ}`);
   } catch {}
-  placedRooms1.set(cellKey(exitGx, exitGz), "shitrooms1:1_enter");
+  placedRooms1.set(cellKey(exitGx, exitGz), "shitrooms1:enter");
 
   // Initial carve outward from 4 corners
   for (const [dgx, dgz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
@@ -559,7 +559,7 @@ export function generateInitial(player) {
 // ─── Nextbot spawner ──────────────────────────────────────────────────────────
 export function startSpawnLoop() {
   const NO_SPAWN_0 = new Set(["shitrooms0:corridors", "shitrooms0:cross", "shitrooms0:x", "shitrooms0:exit"]);
-  const NO_SPAWN_1 = new Set(["shitrooms1:1_corridors", "shitrooms1:1_hall_EW", "shitrooms1:1_hall_NS", "shitrooms1:1_enter", "shitrooms1:1_exit"]);
+  const NO_SPAWN_1 = new Set(["shitrooms1:corridors", "shitrooms1:hall_EW", "shitrooms1:hall_NS", "shitrooms1:enter", "shitrooms1:exit"]);
   const NO_SPAWN_2 = new Set(["shitrooms2:enter", "shitrooms2:exit", "shitrooms2:flashlight"]);
 
   system.runTimeout(() => {
