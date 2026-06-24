@@ -1,0 +1,14 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "shitrooms:wires_display",
+      "materials": { "default": "entity_emissive_alpha" },
+      "textures": { "default": "textures/blocks/exposed_wiring" },
+      "geometry": { "default": "geometry.exposed_wires" },
+      "scripts": { "animate": ["rotation"] },
+      "animations": { "rotation": "animation.wires_display.rotation" },
+      "render_controllers": ["controller.render.wires_display"]
+    }
+  }
+}

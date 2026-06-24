@@ -30,8 +30,9 @@ export const ROOMS_1 = [
 
 export const START_ROOM  = { id: "shitrooms0:shitstart", exits: ["north", "south", "east", "west"] };
 export const OPEN_ROOM   = { id: "shitrooms0:open",      exits: ["north", "south", "east", "west"] };
-export const OPEN_ROOM_1 = { id: "shitrooms1:open",    exits: ["north", "south", "east", "west"] };
+export const OPEN_ROOM_1 = { id: "shitrooms1:open",      exits: ["north", "south", "east", "west"] };
 export const OPEN_ROOM_2 = { id: "shitrooms2:open",      exits: ["north", "south", "east", "west"] };
+export const OPEN_ROOM_3 = { id: "shitrooms3:open",      exits: ["north", "south", "east", "west"] };
 
 export const ROOMS_2 = [
   { id: "shitrooms2:east_wall",  exits: ["north", "south", "west"],         weight: 20 },
@@ -40,4 +41,16 @@ export const ROOMS_2 = [
   { id: "shitrooms2:south_wall", exits: ["north", "east", "west"],          weight: 20 },
   { id: "shitrooms2:open",       exits: ["north", "south", "east", "west"], weight: 1  },
   { id: "shitrooms2:flashlight", exits: ["north", "south", "east", "west"], weight: 0.015 },
+];
+
+export const ROOMS_3 = [
+  { id: "shitrooms3:east_wall",  exits: ["north", "south", "west"],         weight: 20 },
+  { id: "shitrooms3:west_wall",  exits: ["north", "south", "east"],         weight: 20 },
+  { id: "shitrooms3:north_wall", exits: ["south", "east", "west"],          weight: 20 },
+  { id: "shitrooms3:south_wall", exits: ["north", "east", "west"],          weight: 20 },
+  { id: "shitrooms3:open",       exits: ["north", "south", "east", "west"], weight: 1  },
+  { id: "shitrooms3:wires",      exits: ["north", "south", "east", "west"], weight: 2, clusterBonus: 2 },
+  { id: "shitrooms3:generator",  exits: ["north", "south", "east", "west"], weight: 0.5 },
+  { id: "shitrooms3:flashlight", exits: ["north", "south", "east", "west"], weight: 0.015 },
+  { id: "shitrooms3:shears",     exits: ["north", "south", "east", "west"], weight: 0.015 },
 ];

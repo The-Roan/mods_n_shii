@@ -160,6 +160,16 @@
           "pitch": 0.15
         }
       ]
+    },
+    "orbital.e_girl.song": {
+      "category": "hostile",
+      "sounds": [
+        {
+          "name": "sounds/orbital/goon",
+          "volume": 8.0,
+          "pitch": 1.0
+        }
+      ]
     }
   }
 }

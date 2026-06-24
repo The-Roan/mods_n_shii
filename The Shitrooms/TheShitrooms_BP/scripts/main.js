@@ -1,5 +1,5 @@
 import { world, system, BlockPermutation, GameMode } from "@minecraft/server";
-import { generateInitial, startExplorationLoop, startSpawnLoop, resetState, getOrigin, restoreState, getFloor1State, onPlayerReachFloor1, onPlayerReachFloor2, playerFloorOf } from "./generator.js";
+import { generateInitial, startExplorationLoop, startSpawnLoop, resetState, getOrigin, restoreState, getFloor1State, onPlayerReachFloor1, onPlayerReachFloor2, onPlayerReachFloor3, playerFloorOf } from "./generator.js";
 import { CELL_SIZE } from "./rooms.js";
 
 const INIT_PROP  = "shitrooms:initialized";
@@ -53,6 +53,39 @@ world.beforeEvents.playerBreakBlock.subscribe(ev => {
     const item = ev.player.getComponent("minecraft:equippable")?.getEquipment("Mainhand");
     if (!item || item.typeId !== "shitrooms:wall_pickaxe") ev.cancel = true;
   }
+  if (ev.block.typeId === "shitrooms:exposed_wires") {
+    const item = ev.player.getComponent("minecraft:equippable")?.getEquipment("Mainhand");
+    if (!item || item.typeId !== "minecraft:shears") ev.cancel = true;
+  }
+});
+
+world.afterEvents.playerPlaceBlock.subscribe(ev => {
+  if (ev.block.typeId !== "shitrooms:void_glass" && ev.block.typeId !== "shitrooms:exposed_wires") return;
+  const rot = ev.player.getRotation();
+  let facing;
+  if (rot.x < -45) {
+    facing = 0; // looking up  → sky on down face (visible from room below)
+  } else if (rot.x > 45) {
+    facing = 1; // looking down → sky on up face (visible from room above)
+  } else {
+    const yaw = ((rot.y % 360) + 360) % 360;
+    if      (yaw >= 315 || yaw < 45)  facing = 3; // south
+    else if (yaw >= 45  && yaw < 135) facing = 5; // west
+    else if (yaw >= 135 && yaw < 225) facing = 2; // north
+    else                               facing = 4; // east
+  }
+  ev.block.setPermutation(ev.block.permutation.withState("shitrooms:facing", facing));
+  if (ev.block.typeId === "shitrooms:exposed_wires") {
+    const pos = ev.block.location;
+    const dim = ev.block.dimension;
+    for (const ent of dim.getEntities({ type: "shitrooms:wires_display", location: { x: pos.x + 0.5, y: pos.y, z: pos.z + 0.5 }, maxDistance: 0.6 })) {
+      try { ent.remove(); } catch {}
+    }
+    try {
+      const ent = dim.spawnEntity("shitrooms:wires_display", { x: pos.x + 0.5, y: pos.y, z: pos.z + 0.5 });
+      ent.setProperty("shitrooms:facing", facing);
+    } catch {}
+  }
 });
 
 world.afterEvents.playerBreakBlock.subscribe(ev => {
@@ -84,7 +117,8 @@ function startExitAmbientLoop() {
 
   system.runInterval(() => {
     const { exitPlaced, exitWX, exitWZ, exit1Placed, exit1WX, exit1WZ,
-            exit2Placed, exit2WX, exit2WZ } = getFloor1State();
+            exit2Placed, exit2WX, exit2WZ,
+            exit3Placed, exit3WX, exit3WZ } = getFloor1State();
     const origin = getOrigin();
     const tick   = system.currentTick;
 
@@ -141,6 +175,24 @@ function startExitAmbientLoop() {
         } catch {}
       }
     }
+
+    // Floor 3 exit music
+    if (exit3Placed) {
+      const sx = Math.floor(exit3WX + 2);
+      const sy = Math.floor(origin.y + CELL_SIZE * 3 + 1);
+      const sz = Math.floor(exit3WZ + 2);
+      for (const p of world.getPlayers()) {
+        if (!isInShitrooms(p) || playerFloorOf(p) !== 3) continue;
+        const lastPlay = playerSoundTick2.get(p.name) ?? -SOUND_TICKS;
+        if (tick - lastPlay < SOUND_TICKS) continue;
+        const dx = p.location.x - sx, dz = p.location.z - sz;
+        if (Math.sqrt(dx * dx + dz * dz) > HEAR_RANGE) continue;
+        try {
+          p.runCommand(`playsound ${SOUND_ID} @s ${sx} ${sy} ${sz} 6 1 0`);
+          playerSoundTick2.set(p.name, tick);
+        } catch {}
+      }
+    }
   }, 100);
 }
 
@@ -159,7 +211,7 @@ function startFloorTransitionLoop() {
       if (!isInShitrooms(player)) continue;
       // Skip players not yet teleported into the maze (still at surface Y)
       const py = player.location.y;
-      if (py < origin.y - 2 || py > origin.y + CELL_SIZE * 3 + 5) continue;
+      if (py < origin.y - 2 || py > origin.y + CELL_SIZE * 4 + 5) continue;
 
       const curFloor  = playerFloorOf(player);
       const prevFloor = world.getDynamicProperty(`shitrooms:player_floor:${player.name}`) ?? 0;
@@ -180,11 +232,48 @@ function startFloorTransitionLoop() {
         onPlayerReachFloor2(player, dim);
         try { dim.runCommand("stopsound @a shitrooms.level0_exit"); } catch {}
       }
+      if (curFloor === 3) {
+        const { floor3Active } = getFloor1State();
+        if (!floor3Active) continue;
+        onPlayerReachFloor3(player, dim);
+        try { dim.runCommand("stopsound @a shitrooms.level0_exit"); } catch {}
+      }
     }
   }, 5);
 }
 
 // ─── World init ───────────────────────────────────────────────────────────────
+
+function startWiresDisplayCleanup() {
+  system.runInterval(() => {
+    const dim = world.getDimension("overworld");
+    for (const ent of dim.getEntities({ type: "shitrooms:wires_display" })) {
+      const pos = ent.location;
+      try {
+        const block = dim.getBlock({ x: Math.floor(pos.x), y: Math.floor(pos.y), z: Math.floor(pos.z) });
+        if (block?.typeId !== "shitrooms:exposed_wires") ent.remove();
+      } catch { try { ent.remove(); } catch {} }
+    }
+  }, 10);
+}
+
+function startExposedWiresDamageLoop() {
+  const dim = world.getDimension("overworld");
+  system.runInterval(() => {
+    for (const player of world.getPlayers()) {
+      const loc = player.location;
+      try {
+        const bx = Math.floor(loc.x), bz = Math.floor(loc.z);
+        const b0 = dim.getBlock({ x: bx, y: Math.floor(loc.y),     z: bz });
+        const b1 = dim.getBlock({ x: bx, y: Math.floor(loc.y) + 1, z: bz });
+        if (b0?.typeId === "shitrooms:exposed_wires" || b1?.typeId === "shitrooms:exposed_wires") {
+          const health = player.getComponent("minecraft:health");
+          if (health) health.setCurrentValue(Math.max(0, health.currentValue - 1));
+        }
+      } catch {}
+    }
+  }, 2);
+}
 
 world.afterEvents.worldInitialize.subscribe(() => {
   world.sendMessage("§8[The Shitrooms] §7Loaded. Don't look behind you.");
@@ -198,6 +287,8 @@ world.afterEvents.worldInitialize.subscribe(() => {
   startFlashlightLoop();
   startExitAmbientLoop();
   startFloorTransitionLoop();
+  startWiresDisplayCleanup();
+  startExposedWiresDamageLoop();
   setupScoreboard();
 });
 
@@ -685,9 +776,9 @@ function setupScoreboard() {
       const loc = player.location;
       const curFloor = playerFloorOf(player);
       const origin = getOrigin();
-      const { exitWX, exitWZ, exit1WX, exit1WZ } = getFloor1State();
-      const refX = curFloor === 0 ? origin.x : curFloor === 1 ? exitWX : exit1WX;
-      const refZ = curFloor === 0 ? origin.z : curFloor === 1 ? exitWZ : exit1WZ;
+      const { exitWX, exitWZ, exit1WX, exit1WZ, exit2WX, exit2WZ } = getFloor1State();
+      const refX = curFloor === 0 ? origin.x : curFloor === 1 ? exitWX : curFloor === 2 ? exit1WX : exit2WX;
+      const refZ = curFloor === 0 ? origin.z : curFloor === 1 ? exitWZ : curFloor === 2 ? exit1WZ : exit2WZ;
       const dx = loc.x - refX, dz = loc.z - refZ;
       const dist = Math.floor(Math.sqrt(dx * dx + dz * dz));
 
@@ -740,10 +831,17 @@ world.afterEvents.playerSpawn.subscribe(ev => {
   const o = world.getDimension("overworld");
   const origin = getOrigin();
   if (origin.x === 0 && origin.y === 0 && origin.z === 0) return;
-  const { floor1Active, exitGx, exitGz, floor2Active, exit2EntryGx, exit2EntryGz } = getFloor1State();
+  const { floor1Active, exitGx, exitGz, floor2Active, exit2EntryGx, exit2EntryGz,
+          floor3Active, exit3EntryGx, exit3EntryGz } = getFloor1State();
   const pFloor = world.getDynamicProperty(`shitrooms:player_floor:${ev.player.name}`) ?? 0;
   let dest;
-  if (pFloor === 2 && floor2Active) {
+  if (pFloor === 3 && floor3Active) {
+    dest = {
+      x: origin.x + exit3EntryGx * CELL_SIZE + 2.5,
+      y: origin.y + CELL_SIZE * 3 + 1,
+      z: origin.z + exit3EntryGz * CELL_SIZE + 2.5
+    };
+  } else if (pFloor === 2 && floor2Active) {
     dest = {
       x: origin.x + exit2EntryGx * CELL_SIZE + 2.5,
       y: origin.y + CELL_SIZE * 2 + 1,

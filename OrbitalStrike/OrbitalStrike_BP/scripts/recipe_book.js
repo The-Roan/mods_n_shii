@@ -233,6 +233,20 @@ const RECIPES = [
       I: { label: "Implicit Beacon",        id: "orbital:implicit_beacon"        },
       R: { label: "Related Rates Beacon",   id: "orbital:related_rates_beacon"   }
     }
+  },
+  {
+    name:       "Gooner Strike Beacon",
+    color:      "§d",
+    pageIcon:   "textures/items/recipe_page_gooner",
+    detailIcon: "textures/items/recipe_detail_gooner",
+    desc:       "Don't ask where I got the page image",
+    pattern:    ["HPH", "PEP", "DPD"],
+    key: {
+      H: { label: "Heal Strike Beacon", id: "orbital:heal_beacon",   count: 2 },
+      P: { label: "Pink Petals",        id: "minecraft:pink_petals", count: 4 },
+      E: { label: "End Crystal",        id: "minecraft:end_crystal", count: 1 },
+      D: { label: "D/DX Strike Beacon", id: "orbital:ddx_beacon",    count: 2 }
+    }
   }
 ];
 
@@ -254,8 +268,8 @@ const TIERS = [
   {
     color: "§f",
     label: "Tier 3  §l§d— Master",
-    //       Singularity    Bitcoin
-    items: [RECIPES[9], RECIPES[11]]
+    //       Singularity    Bitcoin        Gooner
+    items: [RECIPES[9], RECIPES[11], RECIPES[13]]
   },
   {
     color: "§f",
@@ -324,6 +338,12 @@ const VOID_BASE_INGREDIENTS = [
   { id: "minecraft:command_block",           count: 1 },
   { id: "minecraft:repeating_command_block", count: 1 },
   { id: "minecraft:chain_command_block",     count: 1 }
+];
+const HEAL_BASE_INGREDIENTS = [
+  { id: "minecraft:totem_of_undying", count: 6 },
+  { id: "minecraft:shield",           count: 1 },
+  { id: "minecraft:conduit",          count: 1 },
+  ...ORBITAL_BASE_INGREDIENTS
 ];
 const SINGULARITY_BASE_INGREDIENTS = [
   { id: "minecraft:nether_star",              count: 14 },
@@ -431,6 +451,9 @@ function showRecipePage(player, recipe, parentGroup, tierIndex) {
               try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch {}
           } else if (item.id === "orbital:optimization_beacon") {
             for (const base of OPTIMIZATION_BASE_INGREDIENTS)
+              try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch {}
+          } else if (item.id === "orbital:heal_beacon") {
+            for (const base of HEAL_BASE_INGREDIENTS)
               try { player.runCommand(`give @s ${base.id} ${base.count * count}`); } catch {}
           } else if (item.id === "orbital:singularity_beacon") {
             for (const base of SINGULARITY_BASE_INGREDIENTS)

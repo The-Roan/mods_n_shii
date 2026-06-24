@@ -41,5 +41,10 @@
   "shitrooms:pipe_t_w":        { "textures": "pipe_t_w",        "sound": "stone" },
   "shitrooms:pipe_valve_h":    { "textures": "pipe_valve_h",    "sound": "stone" },
   "shitrooms:pipe_valve_v":         { "textures": "pipe_valve_v",         "sound": "stone" },
-  "shitrooms:backrooms_brick_wall": { "textures": "backrooms_brick_wall",  "sound": "stone" }
+  "shitrooms:backrooms_brick_wall": { "textures": "backrooms_brick_wall",  "sound": "stone" },
+  "shitrooms:crosshatch_steel":    { "textures": "crosshatch_steel",      "sound": "stone" },
+  "shitrooms:rivet_steel":         { "textures": "rivet_steel",           "sound": "stone" },
+  "shitrooms:void_glass":          { "sound": "glass" },
+  "shitrooms:drywall":             { "textures": "drywall",          "sound": "stone" },
+  "shitrooms:exposed_wires":      { "sound": "stone" }
 }

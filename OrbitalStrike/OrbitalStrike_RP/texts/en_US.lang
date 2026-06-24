@@ -14,4 +14,6 @@ item.orbital:singularity_beacon.name=Singularity Strike Beacon
 item.orbital:bitcoin_beacon.name=Bitcoin Strike Beacon
 item.orbital:ultimate_ddx_singularity_beacon.name=Ultimate D/DX Singularity Strike Beacon
 item.orbital:end_of_integrals_beacon.name=End of Integrals Strike Beacon
+item.orbital:gooner_beacon.name=Gooner Strike Beacon
+entity.orbital:e_girl.name=E-Girl
 tile.orbital:strike_block.name=Orbital Strike Block

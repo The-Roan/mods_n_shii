@@ -1,6 +1,8 @@
 {
   "resource_pack_name": "shitrooms",
   "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
   "texture_data": {
     "backrooms_tile_side": {
       "textures": "textures/blocks/backrooms_tile_side"
@@ -36,6 +38,12 @@
     "pipe_t_w":        { "textures": "textures/blocks/pipe_t_w"        },
     "pipe_valve_h":    { "textures": "textures/blocks/pipe_valve_h"    },
     "pipe_valve_v":          { "textures": "textures/blocks/pipe_valve_v"          },
-    "backrooms_brick_wall":  { "textures": "textures/blocks/backrooms_brick_wall"  }
+    "backrooms_brick_wall":  { "textures": "textures/blocks/backrooms_brick_wall"  },
+    "crosshatch_steel":      { "textures": "textures/blocks/crosshatch_steel"      },
+    "rivet_steel":           { "textures": "textures/blocks/rivet_steel"           },
+    "void_glass":            { "textures": "textures/blocks/void_glass"            },
+    "drywall":               { "textures": "textures/blocks/drywall"               },
+    "exposed_wiring":        { "textures": "textures/blocks/exposed_wiring"        },
+    "transparent":           { "textures": "textures/blocks/transparent"           }
   }
 }

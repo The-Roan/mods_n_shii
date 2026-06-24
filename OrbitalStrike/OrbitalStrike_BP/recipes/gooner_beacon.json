@@ -1,0 +1,19 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shaped": {
+    "description": { "identifier": "orbital:gooner_beacon_recipe" },
+    "tags": ["crafting_table"],
+    "unlock": [
+      { "item": "orbital:heal_beacon" },
+      { "item": "orbital:ddx_beacon" }
+    ],
+    "pattern": ["HPH", "PEP", "DPD"],
+    "key": {
+      "H": { "item": "orbital:heal_beacon" },
+      "P": { "item": "minecraft:pink_petals" },
+      "E": { "item": "minecraft:end_crystal" },
+      "D": { "item": "orbital:ddx_beacon" }
+    },
+    "result": { "item": "orbital:gooner_beacon", "count": 1 }
+  }
+}

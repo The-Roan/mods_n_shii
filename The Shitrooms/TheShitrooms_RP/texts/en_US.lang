@@ -20,6 +20,11 @@ tile.shitrooms:pipe_t_w.name=Pipe Wall (T West)
 tile.shitrooms:pipe_valve_v.name=Pipe Wall (Valve Vertical)
 tile.shitrooms:pipe_valve_h.name=Pipe Wall (Valve Horizontal)
 tile.shitrooms:backrooms_brick_wall.name=Backrooms Brick Wall
+tile.shitrooms:crosshatch_steel.name=Crosshatch Steel
+tile.shitrooms:rivet_steel.name=Rivet Steel
+tile.shitrooms:void_glass.name=Void Glass
+tile.shitrooms:drywall.name=Drywall
+tile.shitrooms:exposed_wires.name=Exposed Wires
 
 entity.shitrooms:trump.name=Trump
 entity.shitrooms:nextbot.name=Derivatives

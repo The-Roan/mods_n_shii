@@ -148,6 +148,15 @@
     },
     "recipe_detail_end_of_integrals": {
       "textures": "textures/items/recipe_detail_end_of_integrals"
+    },
+    "gooner_beacon": {
+      "textures": "textures/items/gooner_beacon"
+    },
+    "recipe_page_gooner": {
+      "textures": "textures/items/recipe_page_gooner"
+    },
+    "recipe_detail_gooner": {
+      "textures": "textures/items/recipe_detail_gooner"
     }
   }
 }

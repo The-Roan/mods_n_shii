@@ -1,0 +1,67 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "orbital:e_girl",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "skin_1":  "textures/entity/goon1",
+        "skin_2":  "textures/entity/goon2",
+        "skin_3":  "textures/entity/goon3",
+        "skin_4":  "textures/entity/goon4",
+        "skin_5":  "textures/entity/goon5",
+        "skin_6":  "textures/entity/goon6",
+        "skin_7":  "textures/entity/goon7",
+        "skin_8":  "textures/entity/goon8",
+        "skin_9":  "textures/entity/goon9",
+        "skin_10": "textures/entity/goon10",
+        "skin_11": "textures/entity/goon11",
+        "skin_12": "textures/entity/goon12",
+        "skin_13": "textures/entity/goon13",
+        "skin_14": "textures/entity/goon14",
+        "skin_15": "textures/entity/goon15",
+        "skin_16": "textures/entity/goon16",
+        "skin_17": "textures/entity/goon17",
+        "skin_18": "textures/entity/goon18",
+        "skin_19": "textures/entity/goon19",
+        "skin_20": "textures/entity/goon20",
+        "skin_21": "textures/entity/goon21",
+        "skin_22": "textures/entity/goon22",
+        "skin_23": "textures/entity/goon23",
+        "skin_24": "textures/entity/goon24",
+        "skin_25": "textures/entity/goon25",
+        "skin_26": "textures/entity/goon26",
+        "skin_27": "textures/entity/goon27",
+        "skin_28": "textures/entity/goon28",
+        "skin_29": "textures/entity/goon29",
+        "skin_30": "textures/entity/goon30",
+        "skin_31": "textures/entity/goon31",
+        "skin_32": "textures/entity/goon32",
+        "skin_33": "textures/entity/goon33",
+        "skin_34": "textures/entity/goon34",
+        "skin_35": "textures/entity/goon35",
+        "skin_36": "textures/entity/goon36",
+        "skin_37": "textures/entity/goon37",
+        "skin_38": "textures/entity/goon38",
+        "skin_39": "textures/entity/goon39",
+        "skin_40": "textures/entity/goon40",
+        "skin_41": "textures/entity/goon41",
+        "skin_42": "textures/entity/goon42",
+        "skin_43": "textures/entity/goon43",
+        "skin_44": "textures/entity/goon44",
+        "skin_45": "textures/entity/goon45",
+        "skin_46": "textures/entity/goon46",
+        "skin_47": "textures/entity/goon47",
+        "skin_48": "textures/entity/goon48",
+        "skin_49": "textures/entity/goon49",
+        "skin_50": "textures/entity/goon50"
+      },
+      "geometry": {
+        "default": "geometry.humanoid"
+      },
+      "render_controllers": ["controller.render.e_girl"]
+    }
+  }
+}

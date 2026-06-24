@@ -1,0 +1,15 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:block": {
+    "description": {
+      "identifier": "shitrooms:rivet_steel",
+      "menu_category": {
+        "category": "construction"
+      }
+    },
+    "components": {
+      "minecraft:destructible_by_mining": false,
+      "minecraft:destructible_by_explosion": false
+    }
+  }
+}
